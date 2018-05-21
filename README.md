@@ -4,7 +4,7 @@ Matkanvälityssovellus Kaukokaipuu on nopea reitti maailmalle!
 
 Sovelluksen kautta asiakkaan on mahdollista hakea ja tarkastella välitettäviä matkakohteita sekä varata mieleisensä matkan. Jotta matkan valinta olisi helppoa, tarjoaa sovellus kattavat esittelyt kustakin matkakohteesta. Sovelluksen asiakasläheisyyttä korostaa se, että sovelluksen rekisteröityneet asiakkaat voivat kirjoittaa matkakohteista omat tyytyväisyysarvionsa. Lisäksi jokaisen matkakohteen osalta sovellus esittelee tarjolla olevat majoitusvaihtoehdot, jotka listataan niiden saamien tähtiarvioiden keskiarvon perusteella. Majoitusvaihtoehdoissa vapaina olevat huoneet mainitaan - ja mahdollisesti viimeiset vapaana olevat huoneet vuokrataan tarjoushintaan.
 
-Matkakohteita voi tarkastella sekä kirjautumatta että kirjautuneena oltaessa. Kuitenkin varauksen tekeminen edellyttää viimeistään ennen varaamisen aloittamista asiakkaan kirjautumista sisään. Mikäli asiakkaalla ei ole vielä omaa tunnusta, tarjoaa sovellus mahdollisuuden rekisteröityä. Lisäksi asiakkaan ollessa sisäänkirjautuneena, voi asiakas tarkastella tekemiään varauksia "Omat matkat" osiossa.
+Matkakohteita voi tarkastella sekä kirjautumatta että kirjautuneena oltaessa. Kuitenkin varauksen tekeminen edellyttää viimeistään ennen varaamisen aloittamista asiakkaan kirjautumista. Mikäli asiakkaalla ei ole vielä omaa tunnusta, tarjoaa sovellus mahdollisuuden rekisteröityä. Lisäksi asiakkaan ollessa sisäänkirjautuneena, voi asiakas tarkastella tekemiään varauksia "Omat matkat" osiossa.
 
 Jokaisen varauksen yhteydessä asiakas saa varausnumeron, joka kirjataan järjestelmän muistiin. Onnistuneesta varauksesta lähetetään tilausvahvistus joko tekstiviestillä puhelimelle tai sähköpostitse.
 
