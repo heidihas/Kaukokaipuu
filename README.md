@@ -9,3 +9,6 @@ Matkakohteita voi tarkastella sekä kirjautumatta että kirjautuneena oltaessa. 
 Jokaisen varauksen yhteydessä asiakas saa varausnumeron, joka kirjataan järjestelmän muistiin. Onnistuneesta varauksesta lähetetään tilausvahvistus joko tekstiviestillä puhelimelle tai sähköpostitse.
 
 Jotta sovelluksen ylläpito tehdään mahdolliseksi, määritellään erikseen, että sovelluksen ylläpitäjä voi oman ylläpitäjätunnuksensa avulla kirjautua sisään sovelluksen normaalista sisäänkirjautumisnäkymästä. Kuitenkin juuri ylläpitäjän tunnuksella sisään kirjautuessa sovellus tarjoaa ainoastaan ylläpitäjälle mahdollisia toimintoja - mahdollisuuden matkakohteiden ja majoitusvaihtoehtojen lisäämiseen, muokkaamiseen ja poistamiseen. Lisäksi ylläpitäjä hallitsee tilausvahvistuksia ja sovelluksen toiminnan seurantaa. Ylläpitäjän on esimerkiksi markkinoiden tuottavuuden maksimoimiseksi mahdollista luoda erilaisia matkakohteiden kannattavuuteen liittyviä kyselyitä.
+
+## Sovellus Herokussa
+https://kaukokaipuu.herokuapp.com/
