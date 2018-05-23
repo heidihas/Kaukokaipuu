@@ -12,3 +12,9 @@ Jotta sovelluksen ylläpito tehdään mahdolliseksi, määritellään erikseen, 
 
 ## Sovellus Herokussa
 https://kaukokaipuu.herokuapp.com/
+
+## Dokumentaatio
+
+[Käyttötapaukset]()
+
+[Tietokantakaavio]()
