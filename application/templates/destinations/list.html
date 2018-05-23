@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <table>
+        <tr>
+            <th>Destination</th>
+            <th>Description</th>
+        </tr>
+        {% for destination in destinations %}
+        <tr>
+            <td>{{ destination.name }}</td>
+            <td>{{ destination.description }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
