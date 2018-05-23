@@ -10,6 +10,8 @@ Jokaisen varauksen yhteydessä asiakas saa varausnumeron, joka kirjataan järjes
 
 Jotta sovelluksen ylläpito tehdään mahdolliseksi, määritellään erikseen, että sovelluksen ylläpitäjä voi oman ylläpitäjätunnuksensa avulla kirjautua sisään sovelluksen normaalista sisäänkirjautumisnäkymästä. Kuitenkin juuri ylläpitäjän tunnuksella sisään kirjautuessa sovellus tarjoaa ainoastaan ylläpitäjälle mahdollisia toimintoja - mahdollisuuden matkakohteiden ja majoitusvaihtoehtojen lisäämiseen, muokkaamiseen ja poistamiseen. Lisäksi ylläpitäjä hallitsee tilausvahvistuksia ja sovelluksen toiminnan seurantaa. Ylläpitäjän on esimerkiksi markkinoiden tuottavuuden maksimoimiseksi mahdollista luoda erilaisia matkakohteiden kannattavuuteen liittyviä kyselyitä.
 
+Työ on toteutettu osana kesän 2018 Tietokantasovellus-kurssia.
+
 ## Sovellus Herokussa
 https://kaukokaipuu.herokuapp.com/
 
