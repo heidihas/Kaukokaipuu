@@ -1,0 +1,5 @@
+# User stories
+
+Käyttäjä | Mitä | Miksi
+------------ | ------------- | -------------
+Ylläpitäjä | Matkakohteiden lisääminen | Jotta sovelluksen matkakohdelista vastaa tarjontaa
