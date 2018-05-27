@@ -17,6 +17,6 @@ https://kaukokaipuu.herokuapp.com/
 
 ## Dokumentaatio
 
-[Käyttötapaukset]()
+[Käyttötapaukset](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/userstories.md)
 
 [Tietokantakaavio]()
