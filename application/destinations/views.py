@@ -10,11 +10,42 @@ def destinations_index():
 def destinations_form():
     return render_template("destinations/new.html")
 
-@app.route("/destinations/", methods=["POST"])
+@app.route("/destinations/<destination_id>/", methods=["GET"])
+def destinations_one(destination_id):
+    return render_template("destinations/destination.html", destination = Destination.query.get(destination_id))
+
+@app.route("/destinations", methods=["POST"])
 def destinations_create():
     d = Destination(request.form.get("name"), request.form.get("description"))
     
     db.session().add(d)
+    db.session().commit()
+    
+    return redirect(url_for("destinations_index"))
+
+@app.route("/destinations/<destination_id>/", methods=["POST"])
+def destinations_changename(destination_id):
+    d = Destination.query.get(destination_id)
+    d.name = request.form.get("name")
+    
+    db.session().commit()
+    
+    return redirect(url_for("destinations_index"))
+
+
+@app.route("/destinations/<destination_id>/", methods=["POST"])
+def destinations_changedescription(destination_id):
+    d = Destination.query.get(destination_id)
+    d.description = request.form.get("description")
+    
+    db.session().commit()
+    
+    return redirect(url_for("destinations_index"))
+
+
+@app.route("/destinations/<destination_id>/", methods=["POST"])
+def destinations_delete(destination_id):
+    Destination.query.filter_by(id=destination_id).delete()
     db.session().commit()
     
     return redirect(url_for("destinations_index"))

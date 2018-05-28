@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h1>{{ destination.name }}</h1>
+    
+    <i> {{ destination.description }}</i>
+    
+    <h4>{{ destination.rating }}</h4>
+
+    <form method="POST" action="{{ url_for('destinations_delete', destination_id=destination.id) }}" id="deleteform">
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Delete destination"/>
+                    </td>
+                </tr>
+            </table>
+    </form>
+
+    <h3>Change data</h3>
+
+    <form method="POST" action="{{ url_for('destinations_changename', destination_id=destination.id) }}" id="changeformname">
+        <table>
+            <tr>
+                <td>
+                    New name
+                </td>
+                <td>
+                    <input type="text" name="name"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Change name"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <form method="POST" action="{{ url_for('destinations_changedescription', destination_id=destination.id) }}" id="changeformdesc">
+        <table>
+            <tr>
+                <td>
+                    New description
+                </td>
+                <td>
+                    <input type="text" name="description"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Change description"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}

@@ -4,12 +4,12 @@
     <table>
         <tr>
             <th>Destination</th>
-            <th>Description</th>
+            <th>Rating</th>
         </tr>
         {% for destination in destinations %}
         <tr>
-            <td>{{ destination.name }}</td>
-            <td>{{ destination.description }}</td>
+            <td><a href="{{ url_for('destinations_one', destination_id=destination.id) }}">{{ destination.name }}</a></td>
+            <td>{{ destination.rating }}</td>
         </tr>
         {% endfor %}
     </table>

@@ -1,9 +1,28 @@
 {% extends "layout.html" %}
   
 {% block body %}
-<form method="POST" action="{{ url_for('destinations_create') }}">
-    <input type="text" name="name"/>
-    <input type="text" name="description"/>
-    <input type="submit" value="Add a new destination"/>
+<form method="POST" action="{{ url_for('destinations_create') }}" id="newform">
+    <table>
+        <tr>
+            <td>
+                Destination name
+            </td>
+            <td>
+                <input type="text" name="name"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Description
+            </td>
+            <td>
+                <input type="text" name="description"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Add a new destination"/>
+            </td>
+        </tr>
 </form>
 {% endblock %}
