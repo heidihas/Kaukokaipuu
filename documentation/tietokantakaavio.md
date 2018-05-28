@@ -1,1 +1,1 @@
-![Tietokantakaavio](https://github.com/heidihas/otm-harjoitustyo/blob/master/dokumentaatio/kuvat/Pong_pakkauskaavio.png)
+![Tietokantakaavio](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/tietokantakaavio.jpg)
