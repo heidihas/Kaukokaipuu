@@ -1,2 +1,2 @@
 ![Tietokantakaavio](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/tietokantakaavio.jpg)
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/tietokantakaavio.jpg" width="600">
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/tietokantakaavio.jpg" width="2000">
