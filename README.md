@@ -19,4 +19,4 @@ https://kaukokaipuu.herokuapp.com/
 
 [User stories](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/userstories.md)
 
-[Tietokantakaavio]()
+[Tietokantakaavio](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/tietokantakaavio.md)
