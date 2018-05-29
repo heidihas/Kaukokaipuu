@@ -15,6 +15,8 @@ Työ on toteutettu osana kesän 2018 Tietokantasovellus-kurssia.
 ## Sovellus Herokussa
 https://kaukokaipuu.herokuapp.com/
 
+Testitunnuksen kirjautumistiedot: username = HelloWorld, password = helloworld
+
 ## Dokumentaatio
 
 [User stories](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/userstories.md)
