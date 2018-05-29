@@ -1,5 +1,6 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
+from flask_login import login_required
 from application.destinations.models import Destination
 from application.destinations.forms import DestinationForm
 
@@ -8,6 +9,7 @@ def destinations_index():
     return render_template("destinations/list.html", destinations = Destination.query.all())
 
 @app.route("/destinations/new/")
+@login_required
 def destinations_form():
     return render_template("destinations/new.html", form = DestinationForm())
 
@@ -30,6 +32,7 @@ def destinations_create():
     return redirect(url_for("destinations_index"))
 
 @app.route("/destinations/<destination_id>/", methods=["POST"])
+@login_required
 def destinations_changename(destination_id):
     d = Destination.query.get(destination_id)
     d.name = request.form.get("name")
@@ -40,6 +43,7 @@ def destinations_changename(destination_id):
 
 
 @app.route("/destinations/<destination_id>/", methods=["POST"])
+@login_required
 def destinations_changedescription(destination_id):
     d = Destination.query.get(destination_id)
     d.description = request.form.get("description")
@@ -50,6 +54,7 @@ def destinations_changedescription(destination_id):
 
 
 @app.route("/destinations/<destination_id>/", methods=["POST"])
+@login_required
 def destinations_delete(destination_id):
     Destination.query.filter_by(id=destination_id).delete()
     db.session().commit()
