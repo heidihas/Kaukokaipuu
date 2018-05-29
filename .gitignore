@@ -1,6 +1,6 @@
 venv
 /application/__pycache__
 /application/destinations/__pycache__
+/application/auth/__pycache__
 .DS_Store
-/demo/.DS_Store
 destination.db
