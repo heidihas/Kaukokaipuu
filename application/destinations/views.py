@@ -1,6 +1,7 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
 from application.destinations.models import Destination
+from application.destinations.forms import DestinationForm
 
 @app.route("/destinations", methods=["GET"])
 def destinations_index():
@@ -8,15 +9,20 @@ def destinations_index():
 
 @app.route("/destinations/new/")
 def destinations_form():
-    return render_template("destinations/new.html")
+    return render_template("destinations/new.html", form = DestinationForm())
 
 @app.route("/destinations/<destination_id>/", methods=["GET"])
 def destinations_one(destination_id):
     return render_template("destinations/destination.html", destination = Destination.query.get(destination_id))
 
-@app.route("/destinations", methods=["POST"])
+@app.route("/destinations/", methods=["POST"])
 def destinations_create():
-    d = Destination(request.form.get("name"), request.form.get("description"))
+    form = DestinationForm(request.form)
+
+    if not form.validate():
+        return render_template("destinations/new.html", form = form)
+        
+    d = Destination(form.name.data, form.description.data)
     
     db.session().add(d)
     db.session().commit()

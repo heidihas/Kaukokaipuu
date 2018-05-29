@@ -5,18 +5,32 @@
     <table>
         <tr>
             <td>
-                Destination name
+                {{ form.name.label }}
             </td>
             <td>
-                <input type="text" name="name"/>
+                {{ form.name }}
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
             </td>
         </tr>
         <tr>
             <td>
-                Description
+                {{ form.description.label }}
             </td>
             <td>
-                <input type="text" name="description"/>
+                {{ form.description }}
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.description.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
             </td>
         </tr>
         <tr>
