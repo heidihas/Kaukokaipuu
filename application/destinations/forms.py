@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, validators
+from wtforms import StringField, SubmitField, TextAreaField, validators
 
 class DestinationForm(FlaskForm):
     name = StringField("Destination name", [validators.Length(min=2), validators.Length(max=20)])
-    description = StringField("Description", [validators.Length(max=250)])
+    description = TextAreaField("Description", [validators.Length(max=250)])
 
     class Meta:
         csrf = False
@@ -14,16 +14,10 @@ class DestinationDeleteForm(FlaskForm):
     class Meta:
         csrf = False
 
-class DestinationChangeNameForm(FlaskForm):
+class DestinationChangeForm(FlaskForm):
     name = StringField("New name", [validators.Length(min=2), validators.Length(max=20)])
-    submit1 = SubmitField("Change name")
-
-    class Meta:
-        csrf = False
-
-class DestinationChangeDescriptionForm(FlaskForm):
-    description = StringField("New description", [validators.Length(max=250)])
-    submit2 = SubmitField("Change description")
+    description = TextAreaField("New description", [validators.Length(max=250)])
+    submitChange = SubmitField("Change")
 
     class Meta:
         csrf = False

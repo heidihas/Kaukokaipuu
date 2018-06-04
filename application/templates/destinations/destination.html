@@ -1,70 +1,21 @@
 {% extends "layout.html" %}
 
-{% block body %}
+{% block body %} 
     <h1>{{ destination.name }}</h1>
     
     <i> {{ destination.description }}</i><br />
     <br />
     <h4>{{ destination.rating }}</h4><br />
-
-    <form method="POST" action="{{ url_for('destinations_delete', destination_id=destination.id) }}" id="deleteform">
-            <table>
-                <tr>
-                    <td colspan="2">
-                            {{ formDelete.submitDelete }}
-                    </td>
-                </tr>
-            </table>
-    </form><br />
-
-    <h4>Change data</h4>
-
-    <form method="POST" action="{{ url_for('destinations_changename', destination_id=destination.id) }}" id="changeformname">
+    
+    <form method="POST" action="{{ url_for('destinations_delete', destination_id=destination.id) }}" id="changeform">
         <table>
             <tr>
-                <td>
-                    {{ form1.name.label }}
-                </td>
-                <td>
-                    {{ form1.name }}
-                </td>
-                <td>
-                    <ul>
-                        {% for error in form1.name.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                </td>
-            </tr><br />
-            <tr>
                 <td colspan="2">
-                        {{ form1.submit1 }}
+                        {{ form.submitDelete }}
                 </td>
             </tr>
         </table>
     </form><br />
-    <form method="POST" action="{{ url_for('destinations_changedescription', destination_id=destination.id) }}" id="changeformdesc">
-        <table>
-            <tr>
-                <td>
-                    {{ form2.description.label }}
-                </td>
-                <td>
-                    {{ form2.description }}
-                </td>
-                <td>
-                    <ul>
-                        {% for error in form2.description.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                </td>
-            </tr><br />
-            <tr>
-                <td colspan="2">
-                        {{ form2.submit2 }}
-                </td>
-            </tr>
-        </table>
-    </form>
+
+    <a href="{{ url_for('destinations_one_change', destination_id=destination.id) }}">Change data</a>
 {% endblock %}

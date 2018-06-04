@@ -2,15 +2,19 @@
 
 {% block body %}
     <table>
-        <tr>
-            <th>Destination</th>
-            <th>Rating</th>
-        </tr>
-        {% for destination in destinations %}
-        <tr>
-            <td><a href="{{ url_for('destinations_one', destination_id=destination.id) }}">{{ destination.name }}</a></td>
-            <td>{{ destination.rating }}</td>
-        </tr>
-        {% endfor %}
+        <thead>
+            <tr>
+                <th>Destination</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for destination in destinations %}
+            <tr>
+                <td><a href="{{ url_for('destinations_one', destination_id=destination.id) }}">{{ destination.name }}</a></td>
+                <td>{{ destination.rating }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 {% endblock %}

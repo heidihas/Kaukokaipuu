@@ -4,8 +4,7 @@ from flask_login import login_required
 from application.destinations.models import Destination
 from application.destinations.forms import DestinationForm
 from application.destinations.forms import DestinationDeleteForm
-from application.destinations.forms import DestinationChangeNameForm
-from application.destinations.forms import DestinationChangeDescriptionForm
+from application.destinations.forms import DestinationChangeForm
 
 @app.route("/destinations", methods=["GET"])
 def destinations_index():
@@ -18,7 +17,12 @@ def destinations_form():
 
 @app.route("/destinations/<destination_id>/", methods=["GET"])
 def destinations_one(destination_id):
-    return render_template("destinations/destination.html", destination = Destination.query.get(destination_id), formDelete = DestinationDeleteForm(), form1 = DestinationChangeNameForm(), form2 = DestinationChangeDescriptionForm())
+    return render_template("destinations/destination.html", destination = Destination.query.get(destination_id), form = DestinationDeleteForm())
+
+@app.route("/destinations/<destination_id>/change/", methods=["GET"])
+def destinations_one_change(destination_id):
+    d = Destination.query.get(destination_id)
+    return render_template("destinations/change.html", destination = d, form = DestinationChangeForm(name=d.name, description=d.description))
 
 @app.route("/destinations/", methods=["POST"])
 def destinations_create():
@@ -42,33 +46,18 @@ def destinations_delete(destination_id):
     
     return redirect(url_for("destinations_index"))
 
-@app.route("/destinations/<destination_id>/", methods=["POST"])
+@app.route("/destinations/<destination_id>/change/", methods=["POST"])
 @login_required
-def destinations_changename(destination_id):
-    form1 = DestinationChangeNameForm(request.form)
+def destinations_change(destination_id):
+    form = DestinationChangeForm(request.form)
 
-    if not form1.validate():
-        return render_template("destinations/destination.html", destination = Destination.query.get(destination_id), formDelete = DestinationDeleteForm(), form1 = form1, form2 = DestinationChangeDescriptionForm())
+    if not form.validate():
+        return render_template("destinations/change.html", destination = Destination.query.get(destination_id), form = form)
 
     d = Destination.query.get(destination_id)
-    d.name = form1.name.data
+    d.name = form.name.data
+    d.description = form.description.data
     
     db.session().commit()
     
-    return redirect(url_for("destinations_index"))
-
-
-@app.route("/destinations/<destination_id>/", methods=["POST"])
-@login_required
-def destinations_changedescription(destination_id):
-    form2 = DestinationChangeDescriptionForm(request.form)
-
-    if not form2.validate():
-        return render_template("destinations/destination.html", destination = Destination.query.get(destination_id), formDelete = DestinationDeleteForm(), form1 = DestinationChangeNameForm(), form2 = form2)
-    
-    d = Destination.query.get(destination_id)
-    d.description = form2.description.data
-    
-    db.session().commit()
-    
-    return redirect(url_for("destinations_index"))
+    return redirect(url_for("destinations_one", destination_id=d.id))
