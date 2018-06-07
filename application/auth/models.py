@@ -1,12 +1,9 @@
 from application import db
+from application.models import Base
 
-class Client(db.Model):
+class Client(Base):
 
     __tablename__ = "client"
-
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_motified = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
     name = db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(20), nullable=False)

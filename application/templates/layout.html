@@ -4,29 +4,53 @@
     <meta charset="utf-8">
     <title>Kaukokaipuu</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-      <a class="navbar-brand" href="#">Kaukokaipuu</a>
+      <a class="navbar-brand" href="{{ url_for('index') }} ">Kaukokaipuu</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
 	    </button>
 	    <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('destinations_index') }} ">List of destinations</a>
+              <a class="nav-link" href="{{ url_for('index') }}">
+                <span class="glyphicon glyphicon-home"></span> Home
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('destinations_form') }} ">Add a destination</a>
+              <a class="nav-link" href="{{ url_for('destinations_index') }} ">
+                <span class="glyphicon glyphicon-plane"></span> Destinations
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('destinations_form') }} ">
+                <span class="glyphicon glyphicon-edit"></span> New destination
+              </a>
             </li>
           </ul>
           <div class="form-inline mt-2 mt-md-0">
-            {% if current_user.is_authenticated %}
-            <tr>Logged in as {{ current_user.name }} -><a href="{{ url_for('auth_logout') }}">Logout</a></tr>
-	          {% else %}
-            <a href="{{ url_for('auth_login') }}">Login</a>
-	          {% endif %}
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                {% if current_user.is_authenticated %}
+                  <tr>
+                    <td> Logged in as {{ current_user.name }} -></td>
+                    <td>
+                      <a class="nav-link" href="{{ url_for('auth_logout') }}">
+                        <span class="glyphicon glyphicon-log-out"></span> Logout
+                      </a>
+                    </td>
+                  </tr>
+	              {% else %}
+                  <a class="nav-link" href="{{ url_for('auth_login') }}">
+                    <span class="glyphicon glyphicon-log-in"></span> Login
+                  </a>
+                {% endif %}
+              </li>
+            </ul>
           </div>
 	    </div>
     </nav>

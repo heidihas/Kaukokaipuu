@@ -19,6 +19,9 @@ from application import views
 from application.destinations import models
 from application.destinations import views
 
+from application.accomodations import models
+from application.accomodations import views
+
 from application.auth import models
 from application.auth import views
 

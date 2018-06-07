@@ -1,17 +1,25 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{{ error }}
-<a href="{{ url_for('client_form') }}">Create an account</a>
-<h3>Login</h3>
+<a class="btn btn-default btn-lg" href="{{ url_for('client_form') }}">
+    <span class="glyphicon glyphicon-pawn"></span> New account
+</a>
+
+<h3>Login</h3><br />
+
+<center>{{ error }}</center>
+
 <form method="POST" action="{{ url_for('auth_login') }}">
-    <table>
+    <table class="table">
         <tr>
             <td>
                 {{ form.username.label }}
             </td>
             <td>
-                {{ form.username }}
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-pawn"></span>
+                    {{ form.username }}
+                </span>
             </td>
         </tr>
         <tr>
@@ -19,12 +27,17 @@
                 {{ form.password.label }}
             </td>
             <td>
-                {{ form.password }}
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-lock"></span>
+                    {{ form.password }}
+                </span>
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" value="Login"/>
+                <button type="submit" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-ok-sign"<></span> Login
+                </button>
             </td>
         </tr>
     </table>

@@ -1,11 +1,17 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <table>
-        <thead>
+    <h3>Destinations</h3><br />
+
+    <table class="table">
+        <thead class="thead-light">
             <tr>
-                <th>Destination</th>
-                <th>Rating</th>
+                <th scope="col">
+                    <span class="glyphicon glyphicon-plane"></span> Destination
+                </th>
+                <th scope="col">
+                    <span class="glyphicon glyphicon-star"></span> Rating
+                </th>
             </tr>
         </thead>
         <tbody>

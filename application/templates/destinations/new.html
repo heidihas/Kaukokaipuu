@@ -1,16 +1,19 @@
 {% extends "layout.html" %}
   
 {% block body %}
-<h3>Create a new destination</h3>
+<h3>Create a new destination</h3><br />
 
 <form method="POST" action="{{ url_for('destinations_create') }}" id="newform">
-    <table>
+    <table class="table">
         <tr>
             <td>
                 {{ form.name.label }}
             </td>
             <td>
-                {{ form.name }}
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-plane"></span>
+                    {{ form.name }}
+                </span>
             </td>
             <td>
                 <ul>
@@ -25,7 +28,10 @@
                 {{ form.description.label }}
             </td>
             <td>
-                {{ form.description }}
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    {{ form.description }}
+                </span>
             </td>
             <td>
                 <ul>
@@ -37,7 +43,9 @@
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" value="Add a new destination"/>
+                <button type="submit" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-ok"<></span> Add
+                </button>
             </td>
         </tr>
     </table>

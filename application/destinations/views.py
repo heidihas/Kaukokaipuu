@@ -1,9 +1,9 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
 from flask_login import login_required
+from application.accomodations.models import Accomodation
 from application.destinations.models import Destination
 from application.destinations.forms import DestinationForm
-from application.destinations.forms import DestinationDeleteForm
 from application.destinations.forms import DestinationChangeForm
 
 @app.route("/destinations", methods=["GET"])
@@ -17,9 +17,10 @@ def destinations_form():
 
 @app.route("/destinations/<destination_id>/", methods=["GET"])
 def destinations_one(destination_id):
-    return render_template("destinations/destination.html", destination = Destination.query.get(destination_id), form = DestinationDeleteForm())
+    return render_template("destinations/destination.html", destination = Destination.query.get(destination_id), accomodations = Accomodation.query.filter_by(destination_id=destination_id))
 
 @app.route("/destinations/<destination_id>/change/", methods=["GET"])
+@login_required
 def destinations_one_change(destination_id):
     d = Destination.query.get(destination_id)
     return render_template("destinations/change.html", destination = d, form = DestinationChangeForm(name=d.name, description=d.description))
@@ -41,6 +42,7 @@ def destinations_create():
 @app.route("/destinations/<destination_id>/", methods=["POST"])
 @login_required
 def destinations_delete(destination_id):
+    Accomodation.query.filter_by(destination_id=destination_id).delete()
     Destination.query.filter_by(id=destination_id).delete()
     db.session().commit()
     

@@ -1,16 +1,19 @@
 {% extends "layout.html" %}
   
 {% block body %}
-<h3>Change data</h3>
+<h3>Change data</h3><br />
 
 <form method="POST" action="{{ url_for('destinations_change', destination_id=destination.id) }}" id="changeform">
-    <table>
+    <table class="table">
         <tr>
             <td>
                 {{ form.name.label }}
             </td>
             <td>
-                {{ form.name }}
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-plane"></span>
+                    {{ form.name }}
+                </span>
             </td>
             <td>
                 <ul>
@@ -25,7 +28,10 @@
                 {{ form.description.label }}
             </td>
             <td>
-                {{ form.description }}
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    {{ form.description }}
+                </span>
             </td>
             <td>
                 <ul>
@@ -37,7 +43,9 @@
         </tr>
         <tr>
             <td colspan="2">
-                {{ form.submitChange }}
+                <button type="submit" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-ok"<></span> Submit
+                </button>
             </td>
         </tr>
     </table>
