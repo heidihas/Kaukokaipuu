@@ -1,0 +1,162 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<center><h3>My page</h3></center>
+<br />
+
+<table>
+    <tr>
+        <td><span class="glyphicon glyphicon-user"></span> {{ client.name }}</td>
+    </tr>
+    <tr>
+        <td><span class="glyphicon glyphicon-home"></span> {{ client.address }}</td>
+    </tr>
+    <tr>
+        <td><span class="glyphicon glyphicon-globe"></span> {{ client.country }}</td>
+    </tr>
+    <tr>
+        <td><span class="glyphicon glyphicon-envelope"></span> {{ client.email }}</td>
+    </tr>
+    <tr>
+        <td><span class="glyphicon glyphicon-phone-alt"></span> {{ client.phone }}</td>
+    </tr>
+</table><br />
+<br />
+
+<h4>Approved bookings</h4><br />
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">
+                <span class="glyphicon glyphicon-th"></span> Booking number
+            </th>
+            <th scope="col">
+                <span class="glyphicon glyphicon-plane"></span> Destination
+            </th>
+            <th scope="col">
+                <span class="glyphicon glyphicon-bed"></span> Accomodation
+            </th>
+            <th scope="col">
+                <span class="glyphicon glyphicon-envelope"></span> Email notification
+            </th>
+            <th scope="col">
+                <span class="glyphicon glyphicon-phone-alt"></span> Phone notification
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if approved_bookings is defined %}
+            {% for booking in approved_bookings %}
+            <tr>
+                <td>
+                    booking number
+                </td>
+                <td>
+                    {{ booking.destination }}
+                </td>
+                <td>
+                    {{ booking.accomodation }}
+                </td>
+                <td>
+                    {% if booking.email %}
+                        <span class="glyphicon glyphicon-ok-circle"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if booking.phone %}
+                        <span class="glyphicon glyphicon-ok-circle"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+</table><br />
+
+<h4>Pending bookings</h4><br />
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">
+                <span class="glyphicon glyphicon-th"></span> Booking number
+            </th>
+            <th scope="col">
+                <span class="glyphicon glyphicon-plane"></span> Destination
+            </th>
+            <th scope="col">
+                <span class="glyphicon glyphicon-bed"></span> Accomodation
+            </th>
+            <th scope="col">
+                <span class="glyphicon glyphicon-envelope"></span> Email notification
+            </th>
+            <th scope="col">
+                <span class="glyphicon glyphicon-phone-alt"></span> Phone notification
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if not_approved_bookings is defined %}
+            {% for booking in not_approved_bookings %}
+            <tr>
+                <td>
+                    booking number
+                    <form method="POST" action="{{ url_for('bookings_delete', booking_id=booking.id) }}">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    {{ booking.destination }}
+                </td>
+                <td>
+                    {{ booking.accomodation }}
+                </td>
+                <td>
+                    {% if booking.email %}
+                        <span class="glyphicon glyphicon-ok-circle"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if booking.phone %}
+                        <span class="glyphicon glyphicon-ok-circle"></span>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        {% endif %}    
+    </tbody>
+</table>
+<br />
+
+<form method="POST" action="{{ url_for('client_delete') }}" id="changeform">
+    <table>
+        <tr>
+            <td colspan="2">
+                <button type="submit" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </td>
+        </tr>
+    </table>
+</form>
+<table>
+    <tr>
+        <td colspan="2">
+            <a class="btn btn-default btn-lg" href="{{ url_for('client_one_change') }}">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+        </td>
+    </tr>
+</table>
+{% endblock %}

@@ -5,41 +5,38 @@
     <span class="glyphicon glyphicon-pawn"></span> New account
 </a>
 
-<h3>Login</h3><br />
+<center><h3>Login</h3></center>
+<br />
 
-<center>{{ error }}</center>
+{% if error|length > 0 %}
+    <div class="alert alert-danger" role="alert">
+            <ul>
+                <center>{{ error }}</center>
+            </ul>
+    </div>
+{% endif %}
 
 <form method="POST" action="{{ url_for('auth_login') }}">
     <table class="table">
         <tr>
             <td>
-                {{ form.username.label }}
+                <span class="glyphicon glyphicon-pawn"></span> {{ form.username.label }}
             </td>
             <td>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-pawn"></span>
-                    {{ form.username }}
-                </span>
+                {{ form.username }}
             </td>
         </tr>
         <tr>
             <td>
-                {{ form.password.label }}
+                <span class="glyphicon glyphicon-lock"></span> {{ form.password.label }}
             </td>
             <td>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-lock"></span>
-                    {{ form.password }}
-                </span>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <button type="submit" class="btn btn-default btn-lg">
-                    <span class="glyphicon glyphicon-ok-sign"<></span> Login
-                </button>
+                {{ form.password }}
             </td>
         </tr>
     </table>
+    <center><button type="submit" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-ok-sign"<></span> Login
+    </button></center>
 </form>
 {% endblock %}

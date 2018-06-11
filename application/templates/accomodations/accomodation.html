@@ -9,14 +9,32 @@
     
     <i> {{ accomodation.description }}</i><br />
     <br />
+
+    {% if accomodation.pool %}
+        <span class="glyphicon glyphicon-tint"></span>
+    {% endif %}
+    {% if accomodation.spa %}
+        <span class="glyphicon glyphicon-certificate"></span>
+    {% endif %}
+    {% if accomodation.gym %}
+        <span class="glyphicon glyphicon-heart-empty"></span>
+    {% endif %}
+    {% if accomodation.restaurant %}
+        <span class="glyphicon glyphicon-cutlery"></span>
+    {% endif %}
+
     <h4>{{ accomodation.rating }}</h4><br />
+
+    <a class="btn btn-default btn-lg" href="{{ url_for('bookings_form', destination_id=destination.id, accomodation_id=accomodation.id) }} ">
+        <span class="glyphicon glyphicon-send"></span> Book
+    </a>
     
     <form method="POST" action="{{ url_for('accomodations_delete', destination_id=destination.id, accomodation_id=accomodation.id) }}" id="changeform">
         <table>
             <tr>
                 <td colspan="2">
                     <button type="submit" class="btn btn-default btn-lg">
-                        <span class="glyphicon glyphicon-trash"<></span>
+                        <span class="glyphicon glyphicon-trash"></span>
                     </button>
                 </td>
             </tr>

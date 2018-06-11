@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<h3>Book the holiday trip of your dreams!</h3><br />
+
+<center>
+    <h4>
+        A lovely holiday in {{ destination.name }} at our wonderful resort {{ accomodation.name }}.
+    </h4>
+</center>
+
+<center><h4>Choose email and/or phone notification for your booking.</h4></center>
+
+{% if error|length > 0 %}
+    <div class="alert alert-danger" role="alert">
+            <ul>
+                <center>{{ error }}</center>
+            </ul>
+    </div>
+{% endif %}
+
+<form method="POST" action="{{ url_for('bookings_create', destination_id=destination.id, accomodation_id=accomodation.id) }}" id="newform">
+    <table class="table table-sm">
+        <colgroup>
+            <col class="col-md-1">
+            <col class="col-md-1">
+        </colgroup>
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-envelope"></span> {{ form.email_notification.label }}
+            </td>
+            <td>
+                {{ form.email_notification }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-phone-alt"></span> {{ form.phone_notification.label }}
+            </td>
+            <td>
+                {{ form.phone_notification }}        
+            </td>
+        </tr>
+    </table>
+    <center><button type="submit" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-send"></span> Book
+    </button></center>
+</form>
+{% endblock %}

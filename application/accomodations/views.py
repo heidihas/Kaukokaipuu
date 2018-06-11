@@ -18,7 +18,7 @@ def accomodations_one(destination_id, accomodation_id):
 @app.route("/accomodations/<accomodation_id>/change/", methods=["GET"])
 def accomodations_one_change(accomodation_id):
     a = Accomodation.query.get(accomodation_id)
-    return render_template("accomodations/change.html", accomodation = a, form = AccomodationChangeForm(name=a.name, description=a.description))
+    return render_template("accomodations/change.html", accomodation = a, form = AccomodationChangeForm(name=a.name, description=a.description, pool=a.pool, spa=a.spa, gym=a.gym, restaurant=a.restaurant))
 
 @app.route("/<destination_id>/accomodations/", methods=["POST"])
 def accomodations_create(destination_id):
@@ -28,6 +28,10 @@ def accomodations_create(destination_id):
         return render_template("accomodations/new.html", destination = Destination.query.get(destination_id), form = form)
         
     a = Accomodation(form.name.data, form.description.data, destination_id)
+    a.pool = form.pool.data
+    a.spa = form.spa.data
+    a.gym = form.gym.data
+    a.restaurant = form.restaurant.data
     
     db.session().add(a)
     db.session().commit()
@@ -53,6 +57,10 @@ def accomodations_change(accomodation_id):
     a = Accomodation.query.get(accomodation_id)
     a.name = form.name.data
     a.description = form.description.data
+    a.pool = form.pool.data
+    a.spa = form.spa.data
+    a.gym = form.gym.data
+    a.restaurant = form.restaurant.data
     
     db.session().commit()
     
