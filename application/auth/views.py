@@ -34,7 +34,7 @@ def client_form():
 @app.route("/client/mypage/")
 @login_required
 def client_my():
-    return render_template("auth/my.html", client = current_user, approved_bookings = Booking.approved_bookings(current_user.id, 1), not_approved_bookings = Booking.approved_bookings(current_user.id, 0))
+    return render_template("auth/my.html", client = current_user, approved_bookings = Booking.approved_bookings(current_user.id, True), not_approved_bookings = Booking.approved_bookings(current_user.id, False))
 
 @app.route("/client/mypage/change/", methods=["GET"])
 def client_one_change():
