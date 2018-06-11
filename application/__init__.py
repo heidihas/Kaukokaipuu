@@ -22,6 +22,9 @@ from application.destinations import views
 from application.accomodations import models
 from application.accomodations import views
 
+from application.roomtypes import models
+from application.roomtypes import views
+
 from application.bookings import models
 from application.bookings import views
 

@@ -65,3 +65,14 @@ def accomodations_change(accomodation_id):
     db.session().commit()
     
     return redirect(url_for("accomodations_one", destination_id=a.destination_id, accomodation_id=a.id))
+
+@app.route("/accomodations/<accomodation_id>/like/", methods=["POST"])
+@login_required
+def accomodations_like(accomodation_id):
+
+    a = Accomodation.query.get(accomodation_id)
+    a.rating = a.rating + 1
+    
+    db.session().commit()
+    
+    return redirect(url_for("accomodations_one", destination_id=a.destination_id, accomodation_id=a.id))

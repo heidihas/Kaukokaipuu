@@ -37,17 +37,19 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('roomtypes_form') }} ">
+                <span class="glyphicon glyphicon-edit"></span> New room-type
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{{ url_for('bookings_index') }} ">
                 <span class="glyphicon glyphicon-calendar"></span> Bookings
               </a>
             </li>
             {% if current_user.is_authenticated %}
             <li class="nav-item">
-              Logged in as {{ current_user.name }} ->
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="{{ url_for('auth_logout') }}">
-                <span class="glyphicon glyphicon-log-out"></span> Logout
+                Logged in as {{ current_user.name }} <span class="glyphicon glyphicon-log-out"></span> Logout
               </a> 
             </li>
 	          {% else %}

@@ -2,6 +2,8 @@ venv
 /application/__pycache__
 /application/destinations/__pycache__
 /application/accomodations/__pycache__
+/application/roomtypes/__pycache__
+/application/accomodation_roomtype/__pycache__
 /application/auth/__pycache__
 /application/bookings/__pycache__
 .DS_Store

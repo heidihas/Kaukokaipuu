@@ -1,6 +1,8 @@
 from application import db
 from application.models import Base
 
+from sqlalchemy.sql import text
+
 class Accomodation(Base):
     
     name = db.Column(db.String(20), nullable=False)
@@ -25,3 +27,17 @@ class Accomodation(Base):
         self.gym = False
         self.restaurant = False
         self.destination_id = destination_id
+    
+    @staticmethod
+    def accomodations_in_order(destination_id):
+        stmt = text("SELECT Accomodation.id, Accomodation.name, Accomodation.rating FROM Accomodation"
+                    " WHERE (Accomodation.destination_id = :destination)"
+                    " GROUP BY Accomodation.id"
+                    " ORDER BY Accomodation.rating DESC").params(destination=destination_id)
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"id":row[0], "name":row[1], "rating":row[2]})
+        
+        return response

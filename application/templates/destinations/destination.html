@@ -9,16 +9,16 @@
     
     <i> {{ destination.description }}</i><br />
     <br />
-    <h4>{{ destination.rating }}</h4><br />
+    <h4><span class="glyphicon glyphicon-thumbs-up"></span> {{ destination.rating }}</h4><br />
 
     <table class="table">
         <thead class="thead-light">
             <tr>
                 <th scope="col">
-                    <span class="glyphicon glyphicon-bed"></span> Accomodation
+                    <span class="glyphicon glyphicon-tent"></span> Accomodation
                 </th>
                 <th scope="col">
-                    <span class="glyphicon glyphicon-star"></span> Rating
+                    <span class="glyphicon glyphicon-thumbs-up"></span> Likes
                 </th>
             </tr>
         </thead>
@@ -32,12 +32,24 @@
         </tbody>
     </table><br />
     
-    <form method="POST" action="{{ url_for('destinations_delete', destination_id=destination.id) }}" id="changeform">
+    <form method="POST" action="{{ url_for('destinations_like', destination_id=destination.id) }}" id="likeform">
         <table>
             <tr>
                 <td colspan="2">
                     <button type="submit" class="btn btn-default btn-lg">
-                        <span class="glyphicon glyphicon-trash"<></span>
+                        <span class="glyphicon glyphicon-thumbs-up"></span> Like
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <form method="POST" action="{{ url_for('destinations_delete', destination_id=destination.id) }}" id="deleteform">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-trash"></span>
                     </button>
                 </td>
             </tr>
@@ -55,7 +67,7 @@
         <tr>
             <td colspan="2">
                 <a class="btn btn-default btn-lg" href="{{ url_for('accomodations_form', destination_id=destination.id) }} ">
-                    <span class="glyphicon glyphicon-bed"></span>
+                    <span class="glyphicon glyphicon-tent"></span>
                 </a>
             </td>
         </tr>

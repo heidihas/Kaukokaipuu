@@ -23,13 +23,25 @@
         <span class="glyphicon glyphicon-cutlery"></span>
     {% endif %}
 
-    <h4>{{ accomodation.rating }}</h4><br />
+    <h4><span class="glyphicon glyphicon-thumbs-up"></span> {{ accomodation.rating }}</h4><br />
 
     <a class="btn btn-default btn-lg" href="{{ url_for('bookings_form', destination_id=destination.id, accomodation_id=accomodation.id) }} ">
         <span class="glyphicon glyphicon-send"></span> Book
     </a>
+
+    <form method="POST" action="{{ url_for('accomodations_like', accomodation_id=accomodation.id) }}" id="likeform">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-thumbs-up"></span> Like
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form>
     
-    <form method="POST" action="{{ url_for('accomodations_delete', destination_id=destination.id, accomodation_id=accomodation.id) }}" id="changeform">
+    <form method="POST" action="{{ url_for('accomodations_delete', destination_id=destination.id, accomodation_id=accomodation.id) }}" id="deleteform">
         <table>
             <tr>
                 <td colspan="2">

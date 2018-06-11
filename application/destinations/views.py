@@ -8,7 +8,7 @@ from application.destinations.forms import DestinationChangeForm
 
 @app.route("/destinations", methods=["GET"])
 def destinations_index():
-    return render_template("destinations/list.html", destinations = Destination.query.all())
+    return render_template("destinations/list.html", destinations = Destination.destinations_in_order())
 
 @app.route("/destinations/new/")
 @login_required
@@ -17,7 +17,7 @@ def destinations_form():
 
 @app.route("/destinations/<destination_id>/", methods=["GET"])
 def destinations_one(destination_id):
-    return render_template("destinations/destination.html", destination = Destination.query.get(destination_id), accomodations = Accomodation.query.filter_by(destination_id=destination_id))
+    return render_template("destinations/destination.html", destination = Destination.query.get(destination_id), accomodations = Accomodation.accomodations_in_order(destination_id))
 
 @app.route("/destinations/<destination_id>/change/", methods=["GET"])
 @login_required
@@ -63,3 +63,15 @@ def destinations_change(destination_id):
     db.session().commit()
     
     return redirect(url_for("destinations_one", destination_id=d.id))
+
+@app.route("/destinations/<destination_id>/like/", methods=["POST"])
+@login_required
+def destinations_like(destination_id):
+
+    d = Destination.query.get(destination_id)
+    d.rating = d.rating + 1
+    
+    db.session().commit()
+    
+    return redirect(url_for("destinations_one", destination_id=d.id))
+
