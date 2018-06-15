@@ -15,17 +15,18 @@ Ylläpitäjä | Huonetyyppien poistaminen | Jotta turhat huonetyypit eivät vie 
 Ylläpitäjä | Huonetyyppien päivittäminen | Jotta huonetyyppi vastaa olemassa olevaa
 Ylläpitäjä | Huonetyyppien lisääminen majoituskohteeseen | Jotta majoituskohteen huonevalikoima vastaisi tarjontaa
 Ylläpitäjä | Huonetyyppien poistaminen majoituskohteesta | Jotta majoituskohteen huonevalikoima vastaisi tarjontaa
-Ylläpitäjä | Varausten tarkastelu | Ylläpitäjän on mahdollista nähdä lista saapuneista varauksista
+Ylläpitäjä | Varausten tarkastelu | Ylläpitäjän on mahdollista nähdä lista saapuneista varauksista; varaukset esitetään listalla niiden saapumisjärjestyksessä (ensiksi tullut ylimpänä)
 Ylläpitäjä | Tilausvahvistusten lähettäminen | Ylläpitäjän on mahdollista klikata varaus vahvistetuksi ja samalla toimittaa tilausvahvistusviesti asiakkaan toivomalla tavalla (sähköpostitse tai tekstiviestillä)
 Ylläpitäjä | Varausstatistiikan seuraaminen | Ylläpitäjän on mahdollista nähdä tilastotietoa siitä, miten asiakkaat ovat sovellusta käyttäneet ja miten paljon eri kohteita/majoitusvaihtoehtoja/huonetyyppejä on varattu 
 Asiakas | Käyttäjätunnuksen luominen | Jotta asiakkaan on mahdollista tehdä varauksia käyttäjätunnuksellaan
 Rek. Asiakas | Käyttäjätunnuksen poistaminen | Jotta asiakkaan on mahdollista halutessaan lopettaa sovelluksen käyttäminen
-Rek. Asiakas | Käyttäjätunnuksen tietojen muokkaaminen | Jotta asiakkaan on mahdollista päivittää henkilötietojaan.
+Rek. Asiakas | Käyttäjätunnuksen tietojen muokkaaminen | Jotta asiakkaan on mahdollista päivittää henkilötietojaan
 Rek. Asiakas | Käyttäjätunnuksella sisään kirjautuminen | Asiakkaan on mahdollista kirjautua sisään käyttäjätunnuksellaan ja tehdä varauksia
 Rek. Asiakas | Käyttäjätunnuksella ulos kirjautuminen | Jotta kukaan ulkopuolinen ei pääse tarkastelemaan asiakkaan käyttäjätietoja
 Asiakas/Rek. Asiakas | Matkakohdelistan tarkastelu | Asiakkaan on mahdollista tarkastella matkakohteita joko kirjautuneena tai ei; matkakohteet ovat listalla saamiensa "tykkäysten" määrän mukaisessa järjestyksessä (eniten "tykkäyksiä" saanut ylimpänä)
 Asiakas/Rek. Asiakas | Matkakohteen lähempi tarkastelu | Asiakkaan on mahdollista klikata matkakohdetta ja lukea tarkempaa tietoa kohteesta
 Asiakas/Rek. Asiakas | Matkakohteen majoitusvalikoiman tarkastelu | Asiakkaan on mahdollista tarkastella klikkaamansa matkakohteen majoitusvalikoimaa; majoitusvaihtoehdot ovat listalla saamiensa "tykkäysten" määrän mukaisessa järjestyksessä (eniten "tykkäyksiä" saanut ylimpänä)
+Asiakas/Rek. Asiakas | Majoituskohteen lähempi tarkastelu | Asiakkaan on mahdollista klikata matkakohteen majoitusvaihtoehtoa ja lukea tarkempaa tietoa siitä
 Asiakas/Rek. Asiakas | Majoituskohteen huonevalikoiman tarkastelu | Asiakkaan on mahdollista tarkastella klikkaamansa majoituskohteen huonevalikoimaa; huonevalikoiman yhteydessä kerrotaan, onko kyseinen huonetyyppi vielä tarjolla
 Asiakas/Rek. Asiakas | Matkakohteen/majoituspaikan "tykkäysten" tarkastelu | Asiakkaan on mahdollista tarkastella matkakohteiden ja majoituspaikkojen "tykkäyksiä"
 Rek. Asiakas | Sisäänkirjautuneena "tykkääminen" | Asiakkaan on mahdollista "tykätä" matkakohteesta tai majoitusvaihtoehdosta ainoastaan sisään kirjautuneena
