@@ -16,9 +16,13 @@ Työ on toteutettu osana kesän 2018 Tietokantasovellus-kurssia.
 https://kaukokaipuu.herokuapp.com/
 
 Testitunnuksen kirjautumistiedot: 
+
 ADMIN
+
 username = admin, password = adminadmin
+
 CLIENT
+
 username = HelloWorld, password = helloworld
 
 ## Dokumentaatio
