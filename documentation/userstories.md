@@ -27,7 +27,8 @@ Asiakas/Rek. Asiakas | Matkakohdelistan tarkastelu | Asiakkaan on mahdollista ta
 Asiakas/Rek. Asiakas | Matkakohteen lähempi tarkastelu | Asiakkaan on mahdollista klikata matkakohdetta ja lukea tarkempaa tietoa kohteesta
 Asiakas/Rek. Asiakas | Matkakohteen majoitusvalikoiman tarkastelu | Asiakkaan on mahdollista tarkastella klikkaamansa matkakohteen majoitusvalikoimaa; majoitusvaihtoehdot ovat listalla saamiensa "tykkäysten" määrän mukaisessa järjestyksessä (eniten "tykkäyksiä" saanut ylimpänä)
 Asiakas/Rek. Asiakas | Majoituskohteen lähempi tarkastelu | Asiakkaan on mahdollista klikata matkakohteen majoitusvaihtoehtoa ja lukea tarkempaa tietoa siitä
-Asiakas/Rek. Asiakas | Majoituskohteen huonevalikoiman tarkastelu | Asiakkaan on mahdollista tarkastella klikkaamansa majoituskohteen huonevalikoimaa; huonevalikoiman yhteydessä kerrotaan, onko kyseinen huonetyyppi vielä tarjolla
+Asiakas/Rek. Asiakas | Majoituskohteen huonevalikoiman tarkastelu | Asiakkaan on mahdollista tarkastella klikkaamansa majoituskohteen huonevalikoimaa
+Rek. Asiakas | Majoituskohteen vapaiden huonetyyppien tarkastelu | Kirjautuneen asiakkaan on mahdollista nähdä klikkaamansa majoituskohteen vapaana olevat huonetyypit
 Asiakas/Rek. Asiakas | Matkakohteen/majoituspaikan "tykkäysten" tarkastelu | Asiakkaan on mahdollista tarkastella matkakohteiden ja majoituspaikkojen "tykkäyksiä"
 Rek. Asiakas | Sisäänkirjautuneena "tykkääminen" | Asiakkaan on mahdollista "tykätä" matkakohteesta tai majoitusvaihtoehdosta ainoastaan sisään kirjautuneena
 Rek. Asiakas | Sisäänkirjautuneena varauksen tekeminen | Asiakkaan on mahdollista varata matka tietyn matkakohteen majoitusvaihtoehdon vapaaseen huoneeseen; varauksen yhteydessä asiakas voi määritellä, lähetetäänkö hänelle onnistuneesta varauksesta tilausvahvistusviesti sähköpostitse vai tekstiviestillä; varauksen yhteydessä asiakkaalle annetaan varausnumero
