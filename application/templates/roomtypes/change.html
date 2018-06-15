@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<center><h3><font color=#ff9900>Change</font> data</h3></center>
+<br />
+
+<form method="POST" action="{{ url_for('roomtypes_change', roomtype_id=roomtype.id) }}" id="changeform">
+    <table class="table">
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-bed"></span> {{ form.name.label }}
+            </td>
+            <td>
+                {{ form.name }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-eye-open"></span> {{ form.size.label }}
+            </td>
+            <td>
+                {{ form.size }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-eur"></span> {{ form.price.label }}
+            </td>
+            <td>
+                {{ form.price }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-header"></span> {{ form.many.label }}
+            </td>
+            <td>
+                {{ form.many }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-picture"></span> {{ form.seaside_view.label }}
+            </td>
+            <td>
+                {{ form.seaside_view }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-refresh"></span> {{ form.air_conditioned.label }}
+            </td>
+            <td>
+                {{ form.air_conditioned }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-glass"></span> {{ form.mini_bar.label }}
+            </td>
+            <td>
+                {{ form.mini_bar }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-film"></span> {{ form.tv.label }}
+            </td>
+            <td>
+                {{ form.tv }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-tint"></span> {{ form.bath.label }}
+            </td>
+            <td>
+                {{ form.bath }}
+            </td>
+        </tr>
+    </table>
+    {% if form.name.errors|length > 0 or form.size.errors|length > 0 or form.price.errors|length > 0 or form.many.errors|length > 0 %}
+    <div class="alert alert-danger" role="alert">
+            <ul>
+                {% for error in form.name.errors %}
+                {{ form.name.label }}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for error in form.size.errors %}
+                {{ form.size.label }}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for error in form.price.errors %}
+                {{ form.price.label }}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for error in form.many.errors %}
+                {{ form.many.label }}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+    </div>
+    {% endif %}
+    <center><button type="submit" class="btn btn-default btn-lg">
+        <font color=#ff9900><span class="glyphicon glyphicon-ok"></span></font> Submit
+    </button></center>
+</form>
+{% endblock %}

@@ -9,13 +9,13 @@
         <td><span class="glyphicon glyphicon-user"></span> {{ client.name }}</td>
     </tr>
     <tr>
-        <td><span class="glyphicon glyphicon-home"></span> {{ client.address }}</td>
+        <td><span class="glyphicon glyphicon-home"></span> <font color=#ff9900>{{ client.address }}</font></td>
     </tr>
     <tr>
         <td><span class="glyphicon glyphicon-globe"></span> {{ client.country }}</td>
     </tr>
     <tr>
-        <td><span class="glyphicon glyphicon-envelope"></span> {{ client.email }}</td>
+        <td><span class="glyphicon glyphicon-envelope"></span> <font color=#ff9900>{{ client.email }}</font></td>
     </tr>
     <tr>
         <td><span class="glyphicon glyphicon-phone-alt"></span> {{ client.phone }}</td>
@@ -23,7 +23,7 @@
 </table><br />
 <br />
 
-<h4>Approved bookings</h4><br />
+<h4><font color=#ff9900>Approved</font> bookings</h4><br />
 
 <table class="table">
     <thead class="thead-light">
@@ -38,10 +38,16 @@
                 <span class="glyphicon glyphicon-tent"></span> Accomodation
             </th>
             <th scope="col">
-                <span class="glyphicon glyphicon-envelope"></span> Email notification
+                <span class="glyphicon glyphicon-bed"></span> Room-type
             </th>
             <th scope="col">
-                <span class="glyphicon glyphicon-phone-alt"></span> Phone notification
+                <span class="glyphicon glyphicon-eye-open"></span> Person(s)
+            </th>
+            <th scope="col">
+                <span class="glyphicon glyphicon-eur"></span> Price
+            </th>
+            <th scope="col">
+                Notification
             </th>
         </tr>
     </thead>
@@ -50,7 +56,7 @@
             {% for booking in approved_bookings %}
             <tr>
                 <td>
-                    booking number
+                    {{ booking.booking_number }}
                 </td>
                 <td>
                     {{ booking.destination }}
@@ -59,17 +65,20 @@
                     {{ booking.accomodation }}
                 </td>
                 <td>
-                    {% if booking.email %}
-                        <span class="glyphicon glyphicon-ok-circle"></span>
-                    {% else %}
-                        <span class="glyphicon glyphicon-remove-circle"></span>
-                    {% endif %}
+                    {{ booking.roomtype }}
                 </td>
                 <td>
+                    {{ booking.size }}
+                </td>
+                <td>
+                    {{ booking.price }}€
+                </td>
+                <td>
+                    {% if booking.email %}
+                        <span class="glyphicon glyphicon-envelope"></span>
+                    {% endif %}
                     {% if booking.phone %}
-                        <span class="glyphicon glyphicon-ok-circle"></span>
-                    {% else %}
-                        <span class="glyphicon glyphicon-remove-circle"></span>
+                        <span class="glyphicon glyphicon-phone-alt"></span>
                     {% endif %}
                 </td>
             </tr>
@@ -78,7 +87,7 @@
     </tbody>
 </table><br />
 
-<h4>Pending bookings</h4><br />
+<h4><font color=#ff9900>Pending</font> bookings</h4><br />
 
 <table class="table">
     <thead class="thead-light">
@@ -93,10 +102,16 @@
                 <span class="glyphicon glyphicon-tent"></span> Accomodation
             </th>
             <th scope="col">
-                <span class="glyphicon glyphicon-envelope"></span> Email notification
+                <span class="glyphicon glyphicon-bed"></span> Room-type
             </th>
             <th scope="col">
-                <span class="glyphicon glyphicon-phone-alt"></span> Phone notification
+                <span class="glyphicon glyphicon-eye-open"></span> Person(s)
+            </th>
+            <th scope="col">
+                <span class="glyphicon glyphicon-eur"></span> Price
+            </th>
+            <th scope="col">
+                Notification
             </th>
         </tr>
     </thead>
@@ -105,10 +120,10 @@
             {% for booking in not_approved_bookings %}
             <tr>
                 <td>
-                    booking number
+                    {{ booking.booking_number }}
                     <form method="POST" action="{{ url_for('bookings_delete', booking_id=booking.id) }}">
                         <button type="submit">
-                            <span class="glyphicon glyphicon-trash"></span>
+                            <font color=#ff9900><span class="glyphicon glyphicon-trash"></span></font>
                         </button>
                     </form>
                 </td>
@@ -119,17 +134,20 @@
                     {{ booking.accomodation }}
                 </td>
                 <td>
-                    {% if booking.email %}
-                        <span class="glyphicon glyphicon-ok-circle"></span>
-                    {% else %}
-                        <span class="glyphicon glyphicon-remove-circle"></span>
-                    {% endif %}
+                    {{ booking.roomtype }}
                 </td>
                 <td>
+                    {{ booking.size }}
+                </td>
+                <td>
+                    {{ booking.price }}€
+                </td>
+                <td>
+                    {% if booking.email %}
+                        <span class="glyphicon glyphicon-envelope"></span>
+                    {% endif %}
                     {% if booking.phone %}
-                        <span class="glyphicon glyphicon-ok-circle"></span>
-                    {% else %}
-                        <span class="glyphicon glyphicon-remove-circle"></span>
+                        <span class="glyphicon glyphicon-phone-alt"></span>
                     {% endif %}
                 </td>
             </tr>

@@ -1,15 +1,23 @@
 {% extends "layout.html" %}
   
 {% block body %}
-<h3>Book the holiday trip of your dreams!</h3><br />
+<center><h3>Book the holiday trip of your dreams!</h3></center>
+<br />
 
 <center>
     <h4>
-        A lovely holiday in {{ destination.name }} at our wonderful resort {{ accomodation.name }}.
+        Lovely holiday in <font color=#ff9900><b>{{ destination.name }}</b></font> at our wonderful resort <font color=#ff9900><b>{{ accomodation.name }}</b></font>!
     </h4>
 </center>
 
-<center><h4>Choose email and/or phone notification for your booking.</h4></center>
+<center>
+    <h5>
+        A cozy {{ roomtype.name }} is waiting for you at the price of {{ roomtype.price }}€/night.
+    </h5>
+</center><br />
+<br />
+
+<center><h4>Please choose email and/or phone notification for your booking.</h4></center>
 
 {% if error|length > 0 %}
     <div class="alert alert-danger" role="alert">
@@ -19,7 +27,7 @@
     </div>
 {% endif %}
 
-<form method="POST" action="{{ url_for('bookings_create', destination_id=destination.id, accomodation_id=accomodation.id) }}" id="newform">
+<form method="POST" action="{{ url_for('bookings_create', destination_id=destination.id, accomodation_id=accomodation.id, roomtype_id=roomtype.id) }}" id="newform">
     <table class="table table-sm">
         <colgroup>
             <col class="col-md-1">
@@ -43,7 +51,7 @@
         </tr>
     </table>
     <center><button type="submit" class="btn btn-default btn-lg">
-            <span class="glyphicon glyphicon-send"></span> Book
+            <font color=#ff9900><span class="glyphicon glyphicon-send"></span></font> Book
     </button></center>
 </form>
 {% endblock %}

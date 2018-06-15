@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block body %} 
+
+    <center><h1>Room-types</h1></center>
+    <br />
+    <center><p>Choose from below which <font color=#ff9900>roomtypes</font> will be added.</p></center>
+
+    {% for roomtype in roomtypes %}
+    <form method="POST" action="{{ url_for('roomtypes_add', roomtype_id=roomtype.id, accomodation_id=accomodation.id) }}" id="addform">
+        <center><table>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-default btn-lg">
+                        {{ roomtype.name }}
+                    </button>
+                </td>
+            </tr>
+        </table></center>
+    </form>
+    {% endfor %}
+    <br />
+    <br />
+    <br />
+    <center>
+        <a class="btn btn-default btn-lg" href="{{ url_for('accomodations_one', destination_id=accomodation.destination_id, accomodation_id=accomodation.id) }}">
+            <font color=#ff9900><span class="glyphicon glyphicon-ok"></span></font> Done
+        </a>
+    </center>
+    
+{% endblock %}

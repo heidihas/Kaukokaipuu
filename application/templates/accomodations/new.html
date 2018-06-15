@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
   
 {% block body %}
-<center><h3>Create a new accomodation</h3></center>
+<center><h3>Create a <font color=#ff9900>new accomodation</font></h3></center>
 <br />
 
 <form method="POST" action="{{ url_for('accomodations_create', destination_id=destination.id) }}" id="newform">
@@ -72,7 +72,7 @@
     </div>
     {% endif %}
     <center><button type="submit" class="btn btn-default btn-lg">
-        <span class="glyphicon glyphicon-ok"<></span> Add
+        <font color=#ff9900><span class="glyphicon glyphicon-ok"></span></font> Add
     </button></center>
 </form>
 {% endblock %}

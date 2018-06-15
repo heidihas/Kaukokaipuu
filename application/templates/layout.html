@@ -18,44 +18,53 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('index') }}">
-                <span class="glyphicon glyphicon-home"></span> Home
+                <font color=#ff9900><span class="glyphicon glyphicon-home"></span></font> Home
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('destinations_index') }} ">
-                <span class="glyphicon glyphicon-plane"></span> Destinations
+                  <font color=#ff9900><span class="glyphicon glyphicon-plane"></span></font> Destinations
               </a>
             </li>
+            {% if (current_user.username != "admin") and current_user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('client_my') }} ">
-                <span class="glyphicon glyphicon-send"></span> My page
+                  <font color=#ff9900><span class="glyphicon glyphicon-send"></span></font> My page
               </a>
             </li>
+            {% endif %}
+            {% if current_user.username == "admin" %}
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('destinations_form') }} ">
-                <span class="glyphicon glyphicon-edit"></span> New destination
+                  <font color=#ff9900><span class="glyphicon glyphicon-edit"></span></font> New destination
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('roomtypes_form') }} ">
-                <span class="glyphicon glyphicon-edit"></span> New room-type
+                  <font color=#ff9900><span class="glyphicon glyphicon-edit"></span></font> New room-type
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('bookings_index') }} ">
-                <span class="glyphicon glyphicon-calendar"></span> Bookings
+                  <font color=#ff9900><span class="glyphicon glyphicon-calendar"></span></font> Bookings
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('navigation') }} ">
+                  <font color=#ff9900><span class="glyphicon glyphicon-search"></span></font> Navigation
+              </a>
+            </li>
+            {% endif %}
             {% if current_user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('auth_logout') }}">
-                Logged in as {{ current_user.name }} <span class="glyphicon glyphicon-log-out"></span> Logout
+                Logged in as {{ current_user.name }} <font color=#ff9900><span class="glyphicon glyphicon-log-out"></span></font> Logout
               </a> 
             </li>
 	          {% else %}
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('auth_login') }}">
-                <span class="glyphicon glyphicon-log-in"></span> Login
+                  <font color=#ff9900><span class="glyphicon glyphicon-log-in"></span></font> Login
               </a>
             </li>
             {% endif %}

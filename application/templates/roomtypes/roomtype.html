@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block body %} 
+
+    <center><h1>{{ roomtype.name }}</h1></center>
+    <br />
+    
+    <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">
+                        <span class="glyphicon glyphicon-eye-open"></span> Person(s)
+                    </th>
+                    <th scope="col">
+                        <span class="glyphicon glyphicon-eur"></span> Price
+                    </th>
+                    <th scope="col">
+                        <span class="glyphicon glyphicon-header"></span> Rooms/hotel
+                    </th>
+                    <th scope="col">
+                        <span class="glyphicon glyphicon-list-alt"></span> Features
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ roomtype.size }} person(s)</td>
+                    <td>{{ roomtype.price }}€</td>
+                    <td>{{ roomtype.many }}</td>
+                    <td>
+                        {% if roomtype.seaside_view %}
+                            <span class="glyphicon glyphicon-picture"></span>
+                        {% endif %}
+                        {% if roomtype.air_conditioned %}
+                            <span class="glyphicon glyphicon-refresh"></span>
+                        {% endif %}
+                        {% if roomtype.mini_bar %}
+                            <span class="glyphicon glyphicon-glass"></span>
+                        {% endif %}
+                        {% if roomtype.tv %}
+                            <span class="glyphicon glyphicon-film"></span>
+                        {% endif %}
+                        {% if roomtype.bath %}
+                            <span class="glyphicon glyphicon-tint"></span>
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+    </table>
+
+    <font color=#ff9900><h3>Available at</h3></font>
+    {% for accomodation in accomodations %}
+    <ul>
+        <li>
+            {{ accomodation.name }}
+        </li>
+    </ul>
+    {% endfor %}
+    <br />
+    <p> 
+        <span class="glyphicon glyphicon-picture"></span> = Seaside-view 
+        <span class="glyphicon glyphicon-refresh"></span> = Air-conditioned 
+        <span class="glyphicon glyphicon-glass"></span> = Mini-bar 
+        <span class="glyphicon glyphicon-film"></span> = Tv 
+        <span class="glyphicon glyphicon-tint"></span> = Bath
+    </p>
+    <br />
+    <form method="POST" action="{{ url_for('roomtypes_delete', roomtype_id=roomtype.id) }}" id="deleteform">
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" class="btn btn-default btn-lg">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    
+    <table>
+        <tr>
+            <td colspan="2">
+                <a class="btn btn-default btn-lg" href="{{ url_for('roomtypes_one_change', roomtype_id=roomtype.id) }}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}

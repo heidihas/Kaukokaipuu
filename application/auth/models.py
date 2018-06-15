@@ -37,11 +37,17 @@ class Client(Base):
     
     def is_authenticated(self):
         return True
+
+    def roles(self):
+        if self.username == "admin":
+            return ["ADMIN"]
+        return ["CLIENT"]
     
     @staticmethod
     def how_many_bookings():
         stmt = text("SELECT Client.name, COUNT(Booking.id) FROM Client"
                     " LEFT JOIN Booking ON Booking.client_id = Client.id"
+                    " WHERE Client.username != 'admin'"
                     " GROUP BY Client.id")
         res = db.engine.execute(stmt)
 

@@ -29,3 +29,16 @@ class Destination(Base):
             response.append({"id":row[0], "name":row[1], "rating":row[2]})
         
         return response
+    
+    @staticmethod
+    def destinations_alphabetic():
+        stmt = text("SELECT Destination.id, Destination.name FROM Destination"
+                    " GROUP BY Destination.id"
+                    " ORDER BY Destination.name")
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"id":row[0], "name":row[1]})
+        
+        return response

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <center><h3>Navigation</h3></center>
+    <br />
+
+    <p>
+        <span class="glyphicon glyphicon-plane"></span><font color=#ff9900><b> Destinations</b></font>
+    </p>
+      
+    <ul>
+        {% for destination in destinations %}
+        <li>
+            <a href="{{ url_for('destinations_one', destination_id=destination.id) }}">{{ destination.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <p>
+        <span class="glyphicon glyphicon-tent"></span><font color=#ff9900><b> Accomodations</b></font>
+    </p>
+      
+    <ul>
+        {% for accomodation in accomodations %}
+        <li>
+            <a href="{{ url_for('accomodations_one', destination_id=accomodation.destination_id, accomodation_id=accomodation.id) }}">{{ accomodation.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <p>
+        <span class="glyphicon glyphicon-bed"></span><font color=#ff9900><b> Room-types</b></font>
+    </p>
+      
+    <ul>
+        {% for roomtype in roomtypes %}
+        <li>
+            <a href="{{ url_for('roomtypes_one', roomtype_id=roomtype.id) }}">{{ roomtype.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+       
+{% endblock %}

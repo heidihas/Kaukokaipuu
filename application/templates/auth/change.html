@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
   
 {% block body %}
-<center><h3>Change data</h3></center>
+<center><h3><font color=#ff9900>Change</font> data</h3></center>
 <br />
 
 <form method="POST" action="{{ url_for('client_change') }}" id="changeform">
@@ -82,7 +82,7 @@
     </div>
     {% endif %}
     <center><button type="submit" class="btn btn-default btn-lg">
-            <span class="glyphicon glyphicon-ok"></span> Change
+        <font color=#ff9900><span class="glyphicon glyphicon-ok"></span></font> Change
     </button></center>
 </form>
 {% endblock %}

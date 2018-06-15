@@ -1,11 +1,14 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user, current_user, login_required
+from flask_login import login_user, logout_user, current_user
 
-from application import app, db
+from application import app, db, login_required
 from application.auth.models import Client
 from application.auth.forms import LoginForm
 from application.auth.forms import ClientForm
 from application.auth.forms import ClientChangeForm
+from application.destinations.models import Destination
+from application.accomodations.models import Accomodation
+from application.roomtypes.models import RoomType
 from application.bookings.models import Booking
 
 @app.route("/auth/login", methods = ["GET", "POST"])
@@ -32,13 +35,19 @@ def client_form():
     return render_template("auth/new.html", form = ClientForm())
 
 @app.route("/client/mypage/")
-@login_required
+@login_required(role="CLIENT")
 def client_my():
     return render_template("auth/my.html", client = current_user, approved_bookings = Booking.approved_bookings(current_user.id, True), not_approved_bookings = Booking.approved_bookings(current_user.id, False))
 
 @app.route("/client/mypage/change/", methods=["GET"])
+@login_required(role="CLIENT")
 def client_one_change():
     return render_template("auth/change.html", client = current_user, form = ClientChangeForm(name=current_user.name, address=current_user.address, country=current_user.country, email=current_user.email, phone=current_user.phone))
+
+@app.route("/navigation/")
+@login_required(role="ADMIN")
+def navigation():
+    return render_template("navigation.html", destinations = Destination.destinations_alphabetic(), accomodations = Accomodation.accomodations_alphabetic(), roomtypes = RoomType.roomtypes_alpabetic())
 
 @app.route("/client/", methods=["POST"])
 def client_create():
@@ -59,6 +68,7 @@ def client_create():
     return redirect(url_for("auth_login"))
 
 @app.route("/client/mypage/change/", methods=["POST"])
+@login_required(role="CLIENT")
 def client_change():
     form = ClientChangeForm(request.form)
 
@@ -77,6 +87,7 @@ def client_change():
     return redirect(url_for("client_my"))
 
 @app.route("/client/mypage/delete/", methods=["POST"])
+@login_required(role="CLIENT")
 def client_delete():
     client = current_user
 

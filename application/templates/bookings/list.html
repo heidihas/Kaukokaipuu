@@ -5,7 +5,7 @@
     <br />
 
     {% if how_many_bookings is defined %}
-    <h4>List of registered clients and the amount of their bookings</h4>
+    <h4>List of registered <font color=#ff9900>clients</font> and the number of their <font color=#ff9900>bookings</font></h4>
     <br />
 
     <table class="table">
@@ -36,14 +36,17 @@
     <br />
     <br />
     
-    <h4>List of all bookings</h4>
+    <h4>List of <font color=#ff9900>all bookings</font></h4>
     <br />
 
     <table class="table">
         <thead class="thead-light">
             <tr>
                 <th scope="col">
-                    <span class="glyphicon glyphicon-th"></span> Booking number
+                    <span class="glyphicon glyphicon-th"></span> Booking
+                </th>
+                <th scope="col">
+                    <span class="glyphicon glyphicon-user"></span> Client
                 </th>
                 <th scope="col">
                     <span class="glyphicon glyphicon-plane"></span> Destination
@@ -52,16 +55,19 @@
                     <span class="glyphicon glyphicon-tent"></span> Accomodation
                 </th>
                 <th scope="col">
-                    <span class="glyphicon glyphicon-user"></span> Client
+                    <span class="glyphicon glyphicon-bed"></span> Room-type
                 </th>
                 <th scope="col">
-                    <span class="glyphicon glyphicon-ok"></span> Approved
+                    <span class="glyphicon glyphicon-eye-open"></span> Person(s)
                 </th>
                 <th scope="col">
-                    <span class="glyphicon glyphicon-envelope"></span> Email notification
+                    <span class="glyphicon glyphicon-eur"></span> Price
                 </th>
                 <th scope="col">
-                    <span class="glyphicon glyphicon-phone-alt"></span> Phone notification
+                    Approved
+                </th>
+                <th scope="col">
+                    Notification
                 </th>
             </tr>
         </thead>
@@ -69,7 +75,11 @@
             {% for booking in all_bookings %}
             <tr>
                 <td>
-                    booking number
+                    {{ booking.booking_number }}<br />
+                    {{ booking.date }}
+                </td>
+                <td> 
+                    {{ booking.client }}
                 </td>
                 <td> 
                     {{ booking.destination }}
@@ -78,30 +88,29 @@
                     {{ booking.accomodation }} 
                 </td>
                 <td> 
-                    {{ booking.client }}
+                    {{ booking.roomtype }}
+                </td>
+                <td> 
+                    {{ booking.size }}
+                </td>
+                <td> 
+                    {{ booking.price }}€
                 </td>
                 <td>
                     {% if booking.approved %}
-                        <span class="glyphicon glyphicon-ok-circle"></span>
+                    <font color=#ff9900><span class="glyphicon glyphicon-ok"></span></font>
                     {% else %}
                         <form method="POST" action="{{ url_for('bookings_set_approved', booking_id=booking.id) }}">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
                             <input type="submit" value="Approve"/>
                         </form>
                     {% endif %}
                 </td>
                 <td>
                     {% if booking.email %}
-                        <span class="glyphicon glyphicon-ok-circle"></span>
-                    {% else %}
-                        <span class="glyphicon glyphicon-remove-circle"></span>
+                        <span class="glyphicon glyphicon-envelope"></span>
                     {% endif %}
-                </td>
-                <td>
                     {% if booking.phone %}
-                        <span class="glyphicon glyphicon-ok-circle"></span>
-                    {% else %}
-                        <span class="glyphicon glyphicon-remove-circle"></span>
+                        <span class="glyphicon glyphicon-phone-alt"></span>
                     {% endif %}
                 </td>
             </tr>

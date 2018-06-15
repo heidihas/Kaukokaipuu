@@ -1,26 +1,36 @@
-from application import app, db
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required
+from flask_login import current_user
+
+from application import app, db, login_required
 from application.destinations.models import Destination
+from application.roomtypes.models import RoomType
 from application.accomodations.models import Accomodation
 from application.accomodations.forms import AccomodationForm
 from application.accomodations.forms import AccomodationChangeForm
 
 @app.route("/<destination_id>/accomodations/new/")
-@login_required
+@login_required(role="ADMIN")
 def accomodations_form(destination_id):
     return render_template("accomodations/new.html", destination = Destination.query.get(destination_id), form = AccomodationForm())
 
 @app.route("/<destination_id>/accomodations/<accomodation_id>/", methods=["GET"])
 def accomodations_one(destination_id, accomodation_id):
-    return render_template("accomodations/accomodation.html", destination = Destination.query.get(destination_id), accomodation = Accomodation.query.get(accomodation_id))
+    return render_template("accomodations/accomodation.html", destination = Destination.query.get(destination_id), accomodation = Accomodation.query.get(accomodation_id), roomtypes = Accomodation.children_in_order(accomodation_id), user = current_user)
 
 @app.route("/accomodations/<accomodation_id>/change/", methods=["GET"])
+@login_required(role="ADMIN")
 def accomodations_one_change(accomodation_id):
     a = Accomodation.query.get(accomodation_id)
     return render_template("accomodations/change.html", accomodation = a, form = AccomodationChangeForm(name=a.name, description=a.description, pool=a.pool, spa=a.spa, gym=a.gym, restaurant=a.restaurant))
 
+@app.route("/accomodations/<accomodation_id>/roomtypes/", methods=["GET"])
+@login_required(role="ADMIN")
+def accomodations_roomtypes(accomodation_id):
+    a = Accomodation.query.get(accomodation_id)
+    return render_template("roomtypes/list.html", accomodation = a, roomtypes = RoomType.remaining_roomtypes(accomodation_id))
+
 @app.route("/<destination_id>/accomodations/", methods=["POST"])
+@login_required(role="ADMIN")
 def accomodations_create(destination_id):
     form = AccomodationForm(request.form)
 
@@ -39,15 +49,16 @@ def accomodations_create(destination_id):
     return redirect(url_for("destinations_one", destination_id=a.destination_id))
 
 @app.route("/<destination_id>/accomodations/<accomodation_id>/", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def accomodations_delete(destination_id, accomodation_id):
+    Accomodation.delete_roomtypes_linked(accomodation_id)
     Accomodation.query.filter_by(id=accomodation_id).delete()
     db.session().commit()
     
     return redirect(url_for("destinations_one", destination_id=destination_id))
 
 @app.route("/accomodations/<accomodation_id>/change/", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def accomodations_change(accomodation_id):
     form = AccomodationChangeForm(request.form)
 
@@ -67,7 +78,7 @@ def accomodations_change(accomodation_id):
     return redirect(url_for("accomodations_one", destination_id=a.destination_id, accomodation_id=a.id))
 
 @app.route("/accomodations/<accomodation_id>/like/", methods=["POST"])
-@login_required
+@login_required(role="CLIENT")
 def accomodations_like(accomodation_id):
 
     a = Accomodation.query.get(accomodation_id)

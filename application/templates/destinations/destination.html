@@ -2,15 +2,30 @@
 
 {% block body %} 
     <a class="btn btn-default btn-lg" href="{{ url_for('destinations_index') }}">
-        <span class="glyphicon glyphicon-arrow-left"></span> Return
+        <font color=#ff9900><span class="glyphicon glyphicon-arrow-left"></span></font> Destinations
     </a>
 
     <h1>{{ destination.name }}</h1>
     
     <i> {{ destination.description }}</i><br />
     <br />
-    <h4><span class="glyphicon glyphicon-thumbs-up"></span> {{ destination.rating }}</h4><br />
+    <h4><span class="glyphicon glyphicon-thumbs-up"></span> <font color=#ff9900>{{ destination.rating }}</font></h4><br />
 
+    {% if user.is_authenticated and (user.username != "admin" ) %}
+    <form method="POST" action="{{ url_for('destinations_like', destination_id=destination.id) }}" id="likeform">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-thumbs-up"></span> <font color=#ff9900>Like</font>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form><br />
+    {% endif%}
+    <br />
+    <br />
     <table class="table">
         <thead class="thead-light">
             <tr>
@@ -31,19 +46,8 @@
             {% endfor %}
         </tbody>
     </table><br />
-    
-    <form method="POST" action="{{ url_for('destinations_like', destination_id=destination.id) }}" id="likeform">
-        <table>
-            <tr>
-                <td colspan="2">
-                    <button type="submit" class="btn btn-default btn-lg">
-                        <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                    </button>
-                </td>
-            </tr>
-        </table>
-    </form>
 
+    {% if user.is_authenticated and (user.username == "admin") %}
     <form method="POST" action="{{ url_for('destinations_delete', destination_id=destination.id) }}" id="deleteform">
         <table>
             <tr>
@@ -72,4 +76,5 @@
             </td>
         </tr>
     </table>
+    {% endif %}
 {% endblock %}
