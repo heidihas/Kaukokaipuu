@@ -52,7 +52,7 @@ class Booking(Base):
                     " AND association.accomodation_id = Accomodation.id"
                     " AND Booking.accomodation_id = Accomodation.id"
                     " AND Accomodation.destination_id = Destination.id"
-                    " GROUP BY Booking.id"
+                    " GROUP BY Booking.id, RoomType.name"
                     " ORDER BY Booking.date_created")
         res = db.engine.execute(stmt)
 
