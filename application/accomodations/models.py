@@ -50,7 +50,7 @@ class Accomodation(Base):
     @staticmethod
     def children_in_order(accomodation_id):
         stmt = text("SELECT RoomType.id, RoomType.name, RoomType.size, RoomType.price, RoomType.many, RoomType.seaside_view, RoomType.air_conditioned, RoomType.mini_bar, RoomType.tv, RoomType.bath, COUNT(Booking.id) FROM RoomType, association, Accomodation"
-                    " LEFT JOIN Booking ON Booking.roomtype_id = RoomType.id"
+                    " LEFT JOIN Booking ON RoomType.id = Booking.roomtype_id"
                     " WHERE RoomType.id = association.roomtype_id"
                     " AND association.accomodation_id = :accomodation"
                     " GROUP BY RoomType.id"
@@ -92,7 +92,7 @@ class Accomodation(Base):
     @staticmethod
     def how_many_bookings_roomtype(accomodation_id):
         stmt = text("SELECT RoomType.id, COUNT(Booking.id) FROM RoomType"
-                    " LEFT JOIN Booking ON Booking.roomtype_id = RoomType.id"
+                    " LEFT JOIN Booking ON RoomType.id = Booking.roomtype_id"
                     " WHERE Booking.accomodation_id = :accomodation"
                     " GROUP BY RoomType.id"
                     " ORDER BY RoomType.size, RoomType.name").params(accomodation=accomodation_id)
