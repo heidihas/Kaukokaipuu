@@ -50,7 +50,8 @@ class Accomodation(Base):
     @staticmethod
     def children_in_order(accomodation_id):
         stmt = text("SELECT RoomType.id, RoomType.name, RoomType.size, RoomType.price, RoomType.many, RoomType.seaside_view, RoomType.air_conditioned, RoomType.mini_bar, RoomType.tv, RoomType.bath, COUNT(DISTINCT Booking.id) FROM Booking"
-                    " INNER JOIN RoomType ON Booking.roomtype_id = RoomType.id"
+                    " RIGHT JOIN RoomType ON Booking.roomtype_id = RoomType.id"
+                    " INNER JOIN Accomodation ON Booking.accomodation_id = :accomodation"
                     " INNER JOIN association ON RoomType.id = association.roomtype_id"
                     " INNER JOIN Accomodation ON association.accomodation_id = :accomodation"
                     " GROUP BY RoomType.id, RoomType.name, RoomType.size, RoomType.price, RoomType.many, RoomType.seaside_view, RoomType.air_conditioned, RoomType.mini_bar, RoomType.tv, RoomType.bath"
