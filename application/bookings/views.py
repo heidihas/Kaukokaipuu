@@ -52,7 +52,7 @@ def bookings_delete(booking_id):
     Booking.query.filter_by(id=booking_id).delete()
     db.session().commit()
 
-    return render_template("auth/my.html", client = current_user, approved_bookings = Booking.approved_bookings(current_user.id, 1), not_approved_bookings = Booking.approved_bookings(current_user.id, 0))
+    return render_template("auth/my.html", client = current_user, approved_bookings = Booking.approved_bookings(current_user.id, True), not_approved_bookings = Booking.approved_bookings(current_user.id, False))
 
 @app.route("/bookings/<booking_id>/", methods=["POST"])
 @login_required(role="ADMIN")
