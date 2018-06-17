@@ -49,11 +49,11 @@ class Accomodation(Base):
     
     @staticmethod
     def children_in_order(accomodation_id):
-        stmt = text("SELECT RoomType.id, RoomType.name, RoomType.size, RoomType.price, RoomType.many, RoomType.seaside_view, RoomType.air_conditioned, RoomType.mini_bar, RoomType.tv, RoomType.bath, COUNT(Booking.id) FROM RoomType, association, Accomodation"
+        stmt = text("SELECT RoomType.id, RoomType.name, RoomType.size, RoomType.price, RoomType.many, RoomType.seaside_view, RoomType.air_conditioned, RoomType.mini_bar, RoomType.tv, RoomType.bath, COUNT(Booking.id) FROM RoomType"
                     " LEFT JOIN Booking ON RoomType.id = Booking.roomtype_id"
-                    " WHERE RoomType.id = association.roomtype_id"
-                    " AND association.accomodation_id = :accomodation"
-                    " GROUP BY RoomType.id"
+                    " INNER JOIN association ON RoomType.id = association.roomtype_id"
+                    " INNER JOIN Accomodation ON association.accomodation_id = :accomodation"
+                    " GROUP BY RoomType.id, RoomType.name, RoomType.size, RoomType.price, RoomType.many, RoomType.seaside_view, RoomType.air_conditioned, RoomType.mini_bar, RoomType.tv, RoomType.bath"
                     " ORDER BY RoomType.size, RoomType.price").params(accomodation=accomodation_id)
         res = db.engine.execute(stmt)
 
