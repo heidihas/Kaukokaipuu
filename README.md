@@ -15,7 +15,7 @@ Työ on toteutettu osana kesän 2018 Tietokantasovellus-kurssia.
 ## Sovellus Herokussa
 https://kaukokaipuu.herokuapp.com/
 
-Testitunnuksen kirjautumistiedot: 
+Testitunnusten kirjautumistiedot: 
 
 ADMIN
 
