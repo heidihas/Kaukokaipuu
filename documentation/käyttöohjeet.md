@@ -10,7 +10,7 @@ Tavallisen, rekisteröitymättömän selaajan on mahdollista selata sovelluksen 
 Selaajan on myös mahdollista luoda sovellukseen oman käyttäjätunnuksensa. Tämä tapahtuu klikkaamalla sivuston yläreunan "Login"-painiketta ja edelleen avautuvan näkymän vasemmassa yläreunassa olevaa "New account" -nappia. Sovellus esittää lomakkeen, jonka jokaiseen kenttään on vastattava. Virheellisen tiedon tapauksessa "Sign up" -nappia painettaessa sovellus antaa virheilmoitukset punaisessa laatikossa, kentän rivien mukaan. Mikäli selaaja yrittää luoda käyttäjätunnuksen jo olemassa olevalla käyttäjänimellä, pyytää sovellus selaajaa vaihtamaan käyttäjänimeä. Kun kaikki lomakkeen tiedot ovat virheettömiä, sovellukseen luodaan uusi käyttäjätunnus "Sign up" -napin painalluksella.
 
 
-
+---
 ## 2) Rekisteröitynyt käyttäjä
 
 Rekisteröitynyt käyttäjä pääsee kirjautumaan sisään sovellukseen sivuston yläpalkin "Login"-nappia painamalla. Sovellus pyytää käyttäjän käyttäjänimeä ja salasanaa sekä tarkistaa annetut tiedot käyttäjän painaessa sisäänkirjautumisnäkymän "Login"-nappia. Virheellisestä tiedosta ilmoitetaan. Rekisteröityneen käyttäjän ollessa sisäänkirjautunut, ilmoittaa sovellus kirjautuneena olevan käyttäjän nimen sivuston yläpalkissa muodossa "Logged in as...". Tämän ohessa on kohta "Logout", jota klikkaamalla käyttäjän on mahdollista kirjautua ulos sovelluksesta.
@@ -20,7 +20,7 @@ Kun rekisteröitynyt käyttäjä on kirjautunut sisään tunnuksillaan, on käyt
 Sekä onnistunut varaaminen että sivuston yläpalkin "My page"-kohdan painaminen johtaa rekisteröityneen käyttäjän omalle sivulle. Omalla sivulla esitetään kirjautuneena olevan käyttäjän tiedot ja kyseiseen käyttäjään liittyvät varauspyynnöt. Sovelluksen ylläpitäjän hyväksymät varauspyynnöt ovat omassa listassaan, samoin vielä hyväksyntää odottavat varauspyynnöt, jotka käyttäjä voi halutessaan peruuttaa varausnumeron alla olevaa roskakorinappia painamalla. Näkymän alla olevan isomman roskakorinapin painaminen poistaa kirjautuneena olevan käyttäjätunnuksen tietoineen. Kynänappi puolestaan mahdollistaa käyttäjätietojen muokkaamisen. Tietojen muokkaussivulla muokattavien käyttäjätietojen kentissä on oletuksena tämänhetkinen sovelluksen muistissa oleva tieto. Muutokset saa voimaan "Change"-nappia painamalla, virhetapauksessa sivun alareunaan punaiseen laatikkoon ilmestyy lista virheilmoituksista.
 
 
-
+---
 ## 3) Ylläpitäjä
 
 Ylläpitäjän käyttäjänimi on sovelluksessa aina muotoa "admin". Kirjautuminen ja uloskirjautuminen tapahtuu samaan tapaan kuin rekisteröityneen käyttäjän tapauksessa. 
