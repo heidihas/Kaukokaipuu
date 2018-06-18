@@ -32,3 +32,5 @@ username = HelloWorld, password = helloworld
 [Tietokantakaavio](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/tietokantakaavio.md)
 
 [Käyttöohjeet](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/k%C3%A4ytt%C3%B6ohjeet.md)
+
+[Asennusohjeet](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/asennusohjeet.md)
