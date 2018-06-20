@@ -33,7 +33,7 @@ username = HelloWorld, password = helloworld
 
 [User stories](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/userstories.md)
 
-[Tietokantakaavio](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/tietokantakaavio.md)
+[Tietokantakaavio](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/kaukokaipuu_tietokantakaavio.jpg)
 
 [Työn rajoitteet ja puuttuvat ominaisuudet](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/rajoitteetpuutteet.md)
 
