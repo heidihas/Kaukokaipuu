@@ -16,6 +16,8 @@ class Client(Base):
     password = db.Column(db.String(10), nullable=False)
 
     bookings = db.relationship("Booking", backref='client', lazy=True)
+    likes_destination = db.relationship("LikeDestination", backref='client', lazy=True)
+    likes_accomodation = db.relationship("LikeAccomodation", backref='client', lazy=True)
 
     def __init__(self, name, address, country, email, phone, username, password):
         self.name = name

@@ -5,5 +5,6 @@ venv
 /application/roomtypes/__pycache__
 /application/auth/__pycache__
 /application/bookings/__pycache__
+/application/likes/__pycache__
 .DS_Store
 destination.db

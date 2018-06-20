@@ -29,3 +29,10 @@ class ClientChangeForm(FlaskForm):
     
     class Meta:
         csrf = False
+
+class PasswordChangeForm(FlaskForm):
+    password = PasswordField("Current password", [validators.Length(min=7), validators.Length(max=10)], render_kw={"class":"form-control"})
+    new = PasswordField("New password", [validators.Length(min=7), validators.Length(max=10)], render_kw={"class":"form-control"})
+    
+    class Meta:
+        csrf = False

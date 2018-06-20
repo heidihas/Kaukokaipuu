@@ -7,7 +7,7 @@ class RoomType(Base):
     __tablename__ = 'roomtype'
     name = db.Column(db.String(20), nullable=False)
     size = db.Column(db.Integer, nullable=False)
-    price = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Float, nullable=False)
     many = db.Column(db.Integer, nullable=False)
     
     seaside_view = db.Column(db.Boolean, nullable=False)
@@ -15,6 +15,8 @@ class RoomType(Base):
     mini_bar = db.Column(db.Boolean, nullable=False)
     tv = db.Column(db.Boolean, nullable=False)
     bath = db.Column(db.Boolean, nullable=False)
+
+    unavailable = db.Column(db.Boolean, nullable=False)
 
     bookings = db.relationship("Booking", backref='roomtype', lazy=True)
 
@@ -28,10 +30,11 @@ class RoomType(Base):
         self.mini_bar = False
         self.tv = False
         self.bath = False
+        self.unavailable = False
     
     @staticmethod
     def remaining_roomtypes(accomodation_id):
-        stmt = text("SELECT RoomType.id, RoomType.name, RoomType.size FROM RoomType"
+        stmt = text("SELECT RoomType.id, RoomType.unavailable, RoomType.name, RoomType.size FROM RoomType"
                     " WHERE NOT EXISTS (SELECT association.roomtype_id FROM association"
                     " WHERE association.roomtype_id = RoomType.id"
                     " AND association.accomodation_id = :accomodation)"
@@ -40,7 +43,7 @@ class RoomType(Base):
 
         response = []
         for row in res:
-            response.append({"id":row[0], "name":row[1], "size":row[2]})
+            response.append({"id":row[0], "unavailable":row[1], "name":row[2], "size":row[3]})
         
         return response
     
@@ -52,14 +55,21 @@ class RoomType(Base):
     
     @staticmethod
     def roomtypes_alpabetic():
-        stmt = text("SELECT RoomType.id, RoomType.name FROM RoomType"
+        stmt = text("SELECT RoomType.id, RoomType.name, RoomType.unavailable FROM RoomType"
                     " GROUP BY RoomType.id"
                     " ORDER BY RoomType.name")
         res = db.engine.execute(stmt)
 
         response = []
         for row in res:
-            response.append({"id":row[0], "name":row[1]})
+            response.append({"id":row[0], "name":row[1], "unavailable":row[2]})
         
         return response
     
+    @staticmethod
+    def how_many_bookings(roomtype_id):
+        stmt = text("SELECT COUNT(Booking.id) FROM Booking"
+                    " WHERE Booking.roomtype_id = :roomtype").params(roomtype=roomtype_id)
+        count = db.engine.execute(stmt).scalar()
+
+        return count

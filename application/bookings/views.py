@@ -13,20 +13,32 @@ from application.bookings.forms import BookingForm
 @app.route("/bookings", methods=["GET"])
 @login_required(role="ADMIN")
 def bookings_index():
-    return render_template("bookings/list.html", how_many_bookings=Client.how_many_bookings(), all_bookings=Booking.all_bookings())
+    return render_template("bookings/list.html", how_many_bookings = Client.how_many_bookings(), all_bookings = Booking.all_bookings())
 
-@app.route("/<destination_id>/accomodations/<accomodation_id>/bookings/new/<roomtype_id>/")
+@app.route("/destinations/<destination_id>/accomodations/<accomodation_id>/bookings/new/<roomtype_id>/")
 @login_required(role="CLIENT")
 def bookings_form(destination_id, accomodation_id, roomtype_id):
-    return render_template("bookings/new.html", destination = Destination.query.get(destination_id), accomodation = Accomodation.query.get(accomodation_id), roomtype = RoomType.query.get(roomtype_id), form = BookingForm())
+    d = Destination.query.get(destination_id)
+    a = Accomodation.query.get(accomodation_id)
+    r = RoomType.query.get(roomtype_id)
+    price = a.pricelevel * r.price
+    return render_template("bookings/new.html", destination = d, accomodation = a, roomtype = r, price = price, form = BookingForm())
 
-@app.route("/<destination_id>/accomodations/<accomodation_id>/bookings/new/<roomtype_id>/", methods=["POST"])
+@app.route("/destinations/<destination_id>/accomodations/<accomodation_id>/bookings/new/<roomtype_id>/", methods=["POST"])
 @login_required(role="CLIENT")
 def bookings_create(destination_id, accomodation_id, roomtype_id):
     form = BookingForm(request.form)
-    
+
+    d = Destination.query.get(destination_id)
+    a = Accomodation.query.get(accomodation_id)
+    r = RoomType.query.get(roomtype_id)
+    price = a.pricelevel * r.price
+
+    if not form.validate():
+        return render_template("bookings/new.html", destination = d, accomodation = a, roomtype = r, price = price, form = form, error = "Choose at least one of the two notification options.")
+
     if not (form.email_notification.data or form.phone_notification.data):
-        return render_template("bookings/new.html", destination = Destination.query.get(destination_id), accomodation = Accomodation.query.get(accomodation_id), roomtype = RoomType.query.get(roomtype_id), form = BookingForm(), error = "Choose at least one of the two.")
+        return render_template("bookings/new.html", destination = d, accomodation = a, roomtype = r, price = price, form = form, error = "Choose at least one of the two notification options.")
 
     x = random.choice(range(1000000, 9999999))
     
@@ -35,7 +47,12 @@ def bookings_create(destination_id, accomodation_id, roomtype_id):
         x = random.choice(range(1000000, 9999999))
         bookings = Booking.booking_number_exists(x)
 
-    b = Booking(x, roomtype_id, accomodation_id)
+    r = RoomType.query.get(roomtype_id)
+    a = Accomodation.query.get(accomodation_id)
+    nights = form.nights.data
+    price = a.pricelevel * r.price * nights
+
+    b = Booking(x, roomtype_id, price, nights, accomodation_id)
     b.email_notification = form.email_notification.data
     b.phone_notification = form.phone_notification.data
     b.client_id = current_user.id

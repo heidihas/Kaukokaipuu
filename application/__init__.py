@@ -64,6 +64,8 @@ from application.roomtypes import views
 from application.bookings import models
 from application.bookings import views
 
+from application.likes import models
+
 from application.auth import models
 from application.auth import views
 

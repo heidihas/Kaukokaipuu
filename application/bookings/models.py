@@ -10,21 +10,26 @@ class Booking(Base):
     email_notification = db.Column(db.Boolean, nullable=False)
     phone_notification = db.Column(db.Boolean, nullable=False)
 
+    price = db.Column(db.Float, nullable=False)
+    nights = db.Column(db.Integer, nullable=False)
+
     roomtype_id = db.Column(db.Integer, db.ForeignKey('roomtype.id'), nullable=False)
     accomodation_id = db.Column(db.Integer, db.ForeignKey('accomodation.id'), nullable=False)
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
 
-    def __init__(self, booking_number, roomtype_id, accomodation_id):
+    def __init__(self, booking_number, price, nights, roomtype_id, accomodation_id):
         self.booking_number = booking_number
         self.approved = False
         self.email_notification = False
         self.phone_notification = False
+        self.price = price
+        self.nights = nights
         self.roomtype_id = roomtype_id
         self.accomodation_id = accomodation_id
     
     @staticmethod
     def approved_bookings(client_id, approved):
-        stmt = text("SELECT Booking.id, Booking.booking_number, Booking.date_created, Booking.email_notification, Booking.phone_notification, RoomType.name, RoomType.size, RoomType.price, Accomodation.name, Destination.name" 
+        stmt = text("SELECT Booking.id, Booking.booking_number, Booking.date_created, Booking.price, Booking.nights, Booking.email_notification, Booking.phone_notification, RoomType.name, RoomType.size, Accomodation.name, Destination.name" 
                     " FROM Booking, RoomType, association, Accomodation, Destination"
                     " WHERE (Booking.client_id = :client AND Booking.approved = :approved)"
                     " AND Booking.roomtype_id = RoomType.id"
@@ -37,13 +42,13 @@ class Booking(Base):
 
         response = []
         for row in res:
-            response.append({"id":row[0], "booking_number":row[1], "date":row[2], "email":row[3], "phone":row[4], "roomtype":row[5], "size":row[6], "price":row[7], "accomodation":row[8], "destination":row[9]})
+            response.append({"id":row[0], "booking_number":row[1], "date":row[2], "price":row[3], "nights":row[4], "email":row[5], "phone":row[6], "roomtype":row[7], "size":row[8], "accomodation":row[9], "destination":row[10]})
         
         return response
     
     @staticmethod
     def all_bookings():
-        stmt = text("SELECT Booking.id, Booking.booking_number, Booking.date_created, Booking.approved, Booking.email_notification, Booking.phone_notification, RoomType.name, RoomType.size, RoomType.price, Accomodation.name, Destination.name, Client.name"
+        stmt = text("SELECT Booking.id, Booking.booking_number, Booking.date_created, Booking.approved, Booking.price, Booking.email_notification, Booking.phone_notification, RoomType.name, RoomType.size, Accomodation.name, Destination.name, Client.name"
                     " FROM Booking, RoomType, association, Accomodation, Destination, Client"
                     " WHERE Booking.client_id = Client.id"
                     " AND Booking.roomtype_id = RoomType.id"
@@ -56,7 +61,7 @@ class Booking(Base):
 
         response = []
         for row in res:
-            response.append({"id":row[0], "booking_number":row[1], "date":row[2], "approved":row[3], "email":row[4], "phone":row[5], "roomtype":row[6], "size":row[7], "price":row[8], "accomodation":row[9], "destination":row[10], "client":row[11]})
+            response.append({"id":row[0], "booking_number":row[1], "date":row[2], "approved":row[3], "price":row[4], "email":row[5], "phone":row[6], "roomtype":row[7], "size":row[8], "accomodation":row[9], "destination":row[10], "client":row[11]})
         
         return response
 

@@ -7,38 +7,49 @@ class Destination(Base):
     
     name = db.Column(db.String(20), nullable=False)
     description = db.Column(db.String(250), nullable=False)
-    
-    rating = db.Column(db.Integer, nullable=False)
+
+    unavailable = db.Column(db.Boolean, nullable=False)
 
     accomodations = db.relationship("Accomodation", backref='destination', lazy=True)
+    likes_destination = db.relationship("LikeDestination", backref='destination', lazy=True)
     
     def __init__(self, name, description):
         self.name = name
         self.description = description
-        self.rating = 0
+        self.unavailable = False
     
     @staticmethod
     def destinations_in_order():
-        stmt = text("SELECT Destination.id, Destination.name, Destination.rating FROM Destination"
+        stmt = text("SELECT Destination.id, Destination.name, Destination.unavailable, COUNT(LikeDestination.id) AS likes FROM Destination"
+                    " LEFT JOIN LikeDestination ON Destination.id = LikeDestination.destination_id"
                     " GROUP BY Destination.id"
-                    " ORDER BY Destination.rating DESC")
+                    " ORDER BY likes DESC")
         res = db.engine.execute(stmt)
 
         response = []
         for row in res:
-            response.append({"id":row[0], "name":row[1], "rating":row[2]})
+            response.append({"id":row[0], "name":row[1], "unavailable":row[2], "likes":row[3]})
         
         return response
     
     @staticmethod
     def destinations_alphabetic():
-        stmt = text("SELECT Destination.id, Destination.name FROM Destination"
+        stmt = text("SELECT Destination.id, Destination.name, Destination.unavailable FROM Destination"
                     " GROUP BY Destination.id"
                     " ORDER BY Destination.name")
         res = db.engine.execute(stmt)
 
         response = []
         for row in res:
-            response.append({"id":row[0], "name":row[1]})
+            response.append({"id":row[0], "name":row[1], "unavailable":row[2]})
         
         return response
+
+    @staticmethod
+    def how_many_bookings(destination_id):
+        stmt = text("SELECT COUNT(Booking.id) FROM Accomodation"
+                    " LEFT JOIN Booking ON Accomodation.id = Booking.accomodation_id"
+                    " WHERE Accomodation.destination_id = :destination").params(destination=destination_id)
+        count = db.engine.execute(stmt).scalar()
+
+        return count

@@ -4,6 +4,14 @@
 <center><h3>Create a <font color=#ff9900>new room-type</font></h3></center>
 <br />
 
+{% if error|length > 0 %}
+    <div class="alert alert-danger" role="alert">
+            <ul>
+                <center>{{ error }}</center>
+            </ul>
+    </div>
+{% endif %}
+
 <form method="POST" action="{{ url_for('roomtypes_create') }}" id="newform">
     <table class="table">
         <tr>

@@ -15,7 +15,7 @@ def roomtypes_form():
 @app.route("/roomtypes/<roomtype_id>/", methods=["GET"])
 @login_required(role="ADMIN")
 def roomtypes_one(roomtype_id):
-    return render_template("roomtypes/roomtype.html", roomtype = RoomType.query.get(roomtype_id), accomodations = RoomType.query.get(roomtype_id).parents)
+    return render_template("roomtypes/roomtype.html", roomtype = RoomType.query.get(roomtype_id), accomodations = RoomType.query.get(roomtype_id).parents, bookings = RoomType.how_many_bookings(roomtype_id))
 
 @app.route("/roomtypes/<roomtype_id>/change/", methods=["GET"])
 @login_required(role="ADMIN")
@@ -30,7 +30,11 @@ def roomtypes_create():
 
     if not form.validate():
         return render_template("roomtypes/new.html", form = form)
-        
+
+    roomtype = RoomType.query.filter_by(name=form.name.data).first()
+    if roomtype:
+        return render_template("roomtypes/new.html", form = form, error = "Room-type already exists")
+      
     r = RoomType(form.name.data, form.size.data, form.price.data, form.many.data)
     r.seaside_view = form.seaside_view.data
     r.air_conditioned = form.air_conditioned.data
@@ -61,6 +65,24 @@ def roomtypes_delete(roomtype_id):
     db.session().commit()
     
     return redirect(url_for("navigation"))
+
+@app.route("/roomtypes/<roomtype_id>/unavailable/", methods=["POST"])
+@login_required(role="ADMIN")
+def roomtypes_unavailable(roomtype_id):
+    r = RoomType.query.get(roomtype_id)
+    r.unavailable = True
+    db.session().commit()
+    
+    return redirect(url_for("roomtypes_one", roomtype_id=r.id))
+
+@app.route("/roomtypes/<roomtype_id>/available/", methods=["POST"])
+@login_required(role="ADMIN")
+def roomtypes_available(roomtype_id):
+    r = RoomType.query.get(roomtype_id)
+    r.unavailable = False
+    db.session().commit()
+    
+    return redirect(url_for("roomtypes_one", roomtype_id=r.id))
 
 @app.route("/roomtypes/<roomtype_id>/change/", methods=["POST"])
 @login_required(role="ADMIN")

@@ -12,6 +12,9 @@
         {% for destination in destinations %}
         <li>
             <a href="{{ url_for('destinations_one', destination_id=destination.id) }}">{{ destination.name }}</a>
+            {% if destination.unavailable %}
+                <font color=#ff9900>(Unavailable)</font>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>
@@ -24,6 +27,9 @@
         {% for accomodation in accomodations %}
         <li>
             <a href="{{ url_for('accomodations_one', destination_id=accomodation.destination_id, accomodation_id=accomodation.id) }}">{{ accomodation.name }}</a>
+            {% if accomodation.unavailable %}
+                <font color=#ff9900>(Unavailable)</font>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>
@@ -36,6 +42,9 @@
         {% for roomtype in roomtypes %}
         <li>
             <a href="{{ url_for('roomtypes_one', roomtype_id=roomtype.id) }}">{{ roomtype.name }}</a>
+            {% if roomtype.unavailable %}
+                <font color=#ff9900>(Unavailable)</font>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>

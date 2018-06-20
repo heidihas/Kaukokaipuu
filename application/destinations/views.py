@@ -3,13 +3,15 @@ from flask_login import current_user
 
 from application import app, db, login_required
 from application.accomodations.models import Accomodation
+from application.likes.models import LikeDestination
+from application.auth.models import Client
 from application.destinations.models import Destination
 from application.destinations.forms import DestinationForm
 from application.destinations.forms import DestinationChangeForm
 
 @app.route("/destinations", methods=["GET"])
 def destinations_index():
-    return render_template("destinations/list.html", destinations = Destination.destinations_in_order())
+    return render_template("destinations/list.html", destinations = Destination.destinations_in_order(), user = current_user)
 
 @app.route("/destinations/new/")
 @login_required(role="ADMIN")
@@ -18,7 +20,11 @@ def destinations_form():
 
 @app.route("/destinations/<destination_id>/", methods=["GET"])
 def destinations_one(destination_id):
-    return render_template("destinations/destination.html", destination = Destination.query.get(destination_id), accomodations = Accomodation.accomodations_in_order(destination_id), user = current_user)
+    like = 0
+    if current_user.is_authenticated:
+        if LikeDestination.has_liked(current_user.id, destination_id):
+            like = LikeDestination.has_liked(current_user.id, destination_id)
+    return render_template("destinations/destination.html", destination = Destination.query.get(destination_id), likes = LikeDestination.how_many_likes_destination(destination_id), accomodations = Accomodation.accomodations_in_order(destination_id), user = current_user, liked = like, bookings = Destination.how_many_bookings(destination_id))
 
 @app.route("/destinations/<destination_id>/change/", methods=["GET"])
 @login_required(role="ADMIN")
@@ -34,6 +40,10 @@ def destinations_create():
     if not form.validate():
         return render_template("destinations/new.html", form = form)
         
+    destination = Destination.query.filter_by(name=form.name.data).first()
+    if destination:
+        return render_template("destinations/new.html", form = form, error = "Destination already exists")
+   
     d = Destination(form.name.data, form.description.data)
     
     db.session().add(d)
@@ -45,10 +55,33 @@ def destinations_create():
 @login_required(role="ADMIN")
 def destinations_delete(destination_id):
     Accomodation.query.filter_by(destination_id=destination_id).delete()
+    LikeDestination.query.filter_by(destination_id=destination_id).delete()
     Destination.query.filter_by(id=destination_id).delete()
     db.session().commit()
     
     return redirect(url_for("navigation"))
+
+@app.route("/destinations/<destination_id>/unavailable/", methods=["POST"])
+@login_required(role="ADMIN")
+def destinations_unavailable(destination_id):
+    accomodations = Accomodation.query.filter_by(destination_id=destination_id)
+    for accomodation in accomodations:
+        accomodation.unavailable = True
+
+    d = Destination.query.get(destination_id)
+    d.unavailable = True
+    db.session().commit()
+    
+    return redirect(url_for("destinations_one", destination_id=d.id))
+
+@app.route("/destinations/<destination_id>/available/", methods=["POST"])
+@login_required(role="ADMIN")
+def destinations_available(destination_id):
+    d = Destination.query.get(destination_id)
+    d.unavailable = False
+    db.session().commit()
+    
+    return redirect(url_for("destinations_one", destination_id=d.id))
 
 @app.route("/destinations/<destination_id>/change/", methods=["POST"])
 @login_required(role="ADMIN")
@@ -71,9 +104,12 @@ def destinations_change(destination_id):
 def destinations_like(destination_id):
 
     d = Destination.query.get(destination_id)
-    d.rating = d.rating + 1
+    c = current_user
+
+    l = LikeDestination(c.id, d.id)
     
+    db.session().add(l)
     db.session().commit()
-    
+
     return redirect(url_for("destinations_one", destination_id=d.id))
 

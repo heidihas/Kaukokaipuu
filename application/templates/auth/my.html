@@ -44,6 +44,9 @@
                 <span class="glyphicon glyphicon-eye-open"></span> Person(s)
             </th>
             <th scope="col">
+                    <span class="glyphicon glyphicon-lamp"></span> Nights
+                </th>
+            <th scope="col">
                 <span class="glyphicon glyphicon-eur"></span> Price
             </th>
             <th scope="col">
@@ -69,6 +72,9 @@
                 </td>
                 <td>
                     {{ booking.size }}
+                </td>
+                <td>
+                    {{ booking.nights }}€
                 </td>
                 <td>
                     {{ booking.price }}€
@@ -108,6 +114,9 @@
                 <span class="glyphicon glyphicon-eye-open"></span> Person(s)
             </th>
             <th scope="col">
+                <span class="glyphicon glyphicon-lamp"></span> Nights
+            </th>
+            <th scope="col">
                 <span class="glyphicon glyphicon-eur"></span> Price
             </th>
             <th scope="col">
@@ -140,6 +149,9 @@
                     {{ booking.size }}
                 </td>
                 <td>
+                    {{ booking.nights }}€
+                </td>
+                <td>
                     {{ booking.price }}€
                 </td>
                 <td>
@@ -157,6 +169,22 @@
 </table>
 <br />
 
+<table>
+    <tr>
+        <td colspan="2">
+            <a class="btn btn-default btn-lg" href="{{ url_for('client_one_change') }}">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <a class="btn btn-default btn-lg" href="{{ url_for('client_one_password_change') }}">
+                <span class="glyphicon glyphicon-lock"></span>
+            </a>
+        </td>
+    </tr>
+</table>
 <form method="POST" action="{{ url_for('client_delete') }}" id="changeform">
     <table>
         <tr>
@@ -168,13 +196,4 @@
         </tr>
     </table>
 </form>
-<table>
-    <tr>
-        <td colspan="2">
-            <a class="btn btn-default btn-lg" href="{{ url_for('client_one_change') }}">
-                <span class="glyphicon glyphicon-pencil"></span>
-            </a>
-        </td>
-    </tr>
-</table>
 {% endblock %}

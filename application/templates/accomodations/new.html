@@ -4,6 +4,14 @@
 <center><h3>Create a <font color=#ff9900>new accomodation</font></h3></center>
 <br />
 
+{% if error|length > 0 %}
+    <div class="alert alert-danger" role="alert">
+            <ul>
+                <center>{{ error }}</center>
+            </ul>
+    </div>
+{% endif %}
+
 <form method="POST" action="{{ url_for('accomodations_create', destination_id=destination.id) }}" id="newform">
     <table class="table">
         <tr>
@@ -20,6 +28,14 @@
             </td>
             <td>
                 {{ form.description }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="glyphicon glyphicon-eur"></span> {{ form.pricelevel.label }}
+            </td>
+            <td>
+                {{ form.pricelevel }}
             </td>
         </tr>
         <tr>
@@ -55,7 +71,7 @@
             </td>
         </tr>
     </table>
-    {% if form.name.errors|length > 0 or form.description.errors|length > 0 %}
+    {% if form.name.errors|length > 0 or form.description.errors|length > 0 or form.pricelevel.errors|length > 0 %}
     <div class="alert alert-danger" role="alert">
             <ul>
                 {% for error in form.name.errors %}
@@ -66,6 +82,12 @@
             <ul>
                 {% for error in form.description.errors %}
                 {{ form.description.label }}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for error in form.pricelevel.errors %}
+                {{ form.pricelevel.label }}
                 <li>{{ error }}</li>
                 {% endfor %}
             </ul>

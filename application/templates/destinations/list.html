@@ -22,10 +22,22 @@
         </thead>
         <tbody>
             {% for destination in destinations %}
-            <tr>
-                <td><a href="{{ url_for('destinations_one', destination_id=destination.id) }}">{{ destination.name }}</a></td>
-                <td>{{ destination.rating }}</td>
-            </tr>
+                {% if not destination.unavailable %}
+                    <tr>
+                        <td><a href="{{ url_for('destinations_one', destination_id=destination.id) }}">{{ destination.name }}</a></td>
+                        <td>{{ destination.likes }}</td>
+                    </tr>
+                {% else %}
+                    {% if user.username == "admin" %}
+                        <tr>
+                            <td>
+                                <a href="{{ url_for('destinations_one', destination_id=destination.id) }}">{{ destination.name }}</a>
+                                <font color=#ff9900>(Unavailable)</font>
+                            </td>
+                            <td>{{ destination.likes }}</td>
+                        </tr>
+                    {% endif %}
+                {% endif %}
             {% endfor %}
         </tbody>
     </table>

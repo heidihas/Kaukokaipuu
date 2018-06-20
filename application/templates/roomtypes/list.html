@@ -7,17 +7,19 @@
     <center><p>Choose from below which <font color=#ff9900>roomtypes</font> will be added.</p></center>
 
     {% for roomtype in roomtypes %}
-    <form method="POST" action="{{ url_for('roomtypes_add', roomtype_id=roomtype.id, accomodation_id=accomodation.id) }}" id="addform">
-        <center><table>
-            <tr>
-                <td colspan="2">
-                    <button type="submit" class="btn btn-default btn-lg">
-                        {{ roomtype.name }}
-                    </button>
-                </td>
-            </tr>
-        </table></center>
-    </form>
+        {% if not roomtype.unavailable %}
+            <form method="POST" action="{{ url_for('roomtypes_add', roomtype_id=roomtype.id, accomodation_id=accomodation.id) }}" id="addform">
+                <center><table>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit" class="btn btn-default btn-lg">
+                                {{ roomtype.name }}
+                            </button>
+                        </td>
+                    </tr>
+                </table></center>
+            </form>
+        {% endif %}
     {% endfor %}
     <br />
     <br />

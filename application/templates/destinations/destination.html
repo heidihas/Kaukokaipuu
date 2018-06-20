@@ -7,22 +7,32 @@
 
     <h1>{{ destination.name }}</h1>
     
+    {% if destination.unavailable %}
+        <h4><font color=#ff9900>(Unavailable)</font></h4>
+        <br />
+    {% endif %}
+
     <i> {{ destination.description }}</i><br />
     <br />
-    <h4><span class="glyphicon glyphicon-thumbs-up"></span> <font color=#ff9900>{{ destination.rating }}</font></h4><br />
+        <h4><span class="glyphicon glyphicon-thumbs-up"></span> <font color=#ff9900>{{ likes }}</font></h4><br />
 
     {% if user.is_authenticated and (user.username != "admin" ) %}
-    <form method="POST" action="{{ url_for('destinations_like', destination_id=destination.id) }}" id="likeform">
-        <table>
-            <tr>
-                <td colspan="2">
-                    <button type="submit" class="btn btn-default btn-lg">
-                        <span class="glyphicon glyphicon-thumbs-up"></span> <font color=#ff9900>Like</font>
-                    </button>
-                </td>
-            </tr>
-        </table>
-    </form><br />
+        {% if liked == 0 %}
+            <form method="POST" action="{{ url_for('destinations_like', destination_id=destination.id) }}" id="likeform">
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit" class="btn btn-default btn-lg">
+                                <span class="glyphicon glyphicon-thumbs-up"></span> <font color=#ff9900>Like</font>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        {% else %}
+            You have already <font color=#ff9900>liked</font>
+        {% endif %}
+    <br />
     {% endif%}
     <br />
     <br />
@@ -39,42 +49,80 @@
         </thead>
         <tbody>
             {% for accomodation in accomodations %}
-            <tr>
-                <td><a href="{{ url_for('accomodations_one', destination_id=destination.id, accomodation_id=accomodation.id) }}">{{ accomodation.name }}</a></td>
-                <td>{{ accomodation.rating }}</td>
-            </tr>
+                {% if not accomodation.unavailable %}
+                    <tr>
+                        <td><a href="{{ url_for('accomodations_one', destination_id=destination.id, accomodation_id=accomodation.id) }}">{{ accomodation.name }}</a></td>
+                        <td>{{ accomodation.likes }}</td>
+                    </tr>
+                {% else %}
+                    {% if user.username == "admin" %}
+                        <tr>
+                            <td>
+                                <a href="{{ url_for('accomodations_one', destination_id=destination.id, accomodation_id=accomodation.id) }}">{{ accomodation.name }}</a>
+                                <font color=#ff9900>(Unavailable)</font>
+                            </td>
+                            <td>{{ accomodation.likes }}</td>
+                        </tr>
+                    {% endif %}
+                {% endif %}
             {% endfor %}
         </tbody>
     </table><br />
 
     {% if user.is_authenticated and (user.username == "admin") %}
-    <form method="POST" action="{{ url_for('destinations_delete', destination_id=destination.id) }}" id="deleteform">
-        <table>
-            <tr>
-                <td colspan="2">
-                    <button type="submit" class="btn btn-default btn-lg">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </button>
-                </td>
-            </tr>
-        </table>
-    </form>
-
-    <table>
-        <tr>
-            <td colspan="2">
-                <a class="btn btn-default btn-lg" href="{{ url_for('destinations_one_change', destination_id=destination.id) }}">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <a class="btn btn-default btn-lg" href="{{ url_for('accomodations_form', destination_id=destination.id) }} ">
-                    <span class="glyphicon glyphicon-tent"></span>
-                </a>
-            </td>
-        </tr>
-    </table>
+        {% if not destination.unavailable %}
+            {% if bookings == 0 %}
+                <form method="POST" action="{{ url_for('destinations_delete', destination_id=destination.id) }}" id="deleteform">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" class="btn btn-default btn-lg">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            {% endif %}
+            <form method="POST" action="{{ url_for('destinations_unavailable', destination_id=destination.id) }}" id="unavailableform">
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit" class="btn btn-default btn-lg">
+                                <span class="glyphicon glyphicon-ban-circle"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <a class="btn btn-default btn-lg" href="{{ url_for('destinations_one_change', destination_id=destination.id) }}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a class="btn btn-default btn-lg" href="{{ url_for('accomodations_form', destination_id=destination.id) }} ">
+                            <span class="glyphicon glyphicon-tent"></span>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        {% else %}
+            <form method="POST" action="{{ url_for('destinations_available', destination_id=destination.id) }}" id="availableform">
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit" class="btn btn-default btn-lg">
+                                <span class="glyphicon glyphicon-ok-circle"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        {% endif %}
     {% endif %}
 {% endblock %}
