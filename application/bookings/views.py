@@ -52,7 +52,7 @@ def bookings_create(destination_id, accomodation_id, roomtype_id):
     nights = form.nights.data
     price = a.pricelevel * r.price * nights
 
-    b = Booking(x, roomtype_id, price, nights, accomodation_id)
+    b = Booking(x, price, nights, roomtype_id, accomodation_id)
     b.email_notification = form.email_notification.data
     b.phone_notification = form.phone_notification.data
     b.client_id = current_user.id
