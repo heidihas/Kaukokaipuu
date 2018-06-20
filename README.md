@@ -27,13 +27,13 @@ username = HelloWorld, password = helloworld
 
 ## Dokumentaatio
 
-[User stories](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/userstories.md)
-
-[Tietokantakaavio](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/tietokantakaavio.md)
+[Asennusohjeet](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/asennusohjeet.md)
 
 [Käyttöohjeet](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/k%C3%A4ytt%C3%B6ohjeet.md)
 
-[Asennusohjeet](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/asennusohjeet.md)
+[User stories](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/userstories.md)
+
+[Tietokantakaavio](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/tietokantakaavio.md)
 
 [Työn rajoitteet ja puuttuvat ominaisuudet](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/rajoitteetpuutteet.md)
 
