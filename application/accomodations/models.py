@@ -62,15 +62,6 @@ class Accomodation(Base):
                     " ORDER BY RoomType.size, RoomType.price").params(accomodation=accomodation_id)
         res = db.engine.execute(stmt)
 
-        """FROM RoomType"
-                    " LEFT JOIN Booking ON RoomType.id = Booking.roomtype_id"
-                    " INNER JOIN association ON RoomType.id = association.roomtype_id"
-                    " INNER JOIN Accomodation ON association.accomodation_id = :accomodation""""
-        """FROM Accomodation"
-                    " INNER JOIN Booking ON :accomodation = Booking.accomodation_id"
-                    " RIGHT JOIN RoomType ON Booking.roomtype_id = RoomType.id"
-                    " INNER JOIN association ON RoomType.id = association.roomtype_id"
-                    " WHERE association.accomodation_id = :accomodation"""
         response = []
         for row in res:
             response.append({"id":row[0], "unavailable":row[1], "name":row[2], "size":row[3], "price":row[4], "many":row[5], "seaside_view":row[6], "air_conditioned":row[7], "mini_bar":row[8], "tv":row[9], "bath":row[10], "booked":row[11]})
