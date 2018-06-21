@@ -50,34 +50,49 @@
     {% if form.name.errors|length > 0 or form.address.errors|length > 0 or form.country.errors|length > 0 or form.email.errors|length > 0 or form.phone.errors|length > 0 %}
     <div class="alert alert-danger" role="alert">
             <ul>
-                {% for error in form.name.errors %}
-                {{ form.name.label }}
-                <li>{{ error }}</li>
-                {% endfor %}
+                {% if form.name.errors|length > 0 %}
+                    {{ form.name.label }}
+                    {% for error in form.name.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    <br />
+                {% endif %}
             </ul>
             <ul>
-                {% for error in form.address.errors %}
-                {{ form.address.label }}
-                <li>{{ error }}</li>
-                {% endfor %}
+                {% if form.address.errors|length > 0 %}
+                    {{ form.address.label }}
+                    {% for error in form.address.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    <br />
+                {% endif %}
             </ul>
             <ul>
-                {% for error in form.country.errors %}
-                {{ form.country.label }}
-                <li>{{ error }}</li>
-                {% endfor %}
+                {% if form.country.errors|length > 0 %}
+                    {{ form.country.label }}
+                    {% for error in form.country.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    <br />
+                {% endif %}
             </ul>
             <ul>
-                {% for error in form.email.errors %}
-                {{ form.email.label }}
-                <li>{{ error }}</li>
-                {% endfor %}
+                {% if form.email.errors|length > 0 %}
+                    {{ form.email.label }}
+                    {% for error in form.email.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    <br />
+                {% endif %}
             </ul>
             <ul>
-                {% for error in form.phone.errors %}
-                {{ form.phone.label }}
-                <li>{{ error }}</li>
-                {% endfor %}
+                {% if form.phone.errors|length > 0 %}
+                    {{ form.phone.label }}
+                    {% for error in form.phone.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    <br />
+                {% endif %}
             </ul>
     </div>
     {% endif %}

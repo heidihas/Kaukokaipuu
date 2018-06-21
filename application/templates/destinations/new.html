@@ -34,16 +34,22 @@
     {% if form.name.errors|length > 0 or form.description.errors|length > 0 %}
     <div class="alert alert-danger" role="alert">
             <ul>
-                {% for error in form.name.errors %}
-                {{ form.name.label }}
-                <li>{{ error }}</li>
-                {% endfor %}
+                {% if form.name.errors|length > 0 %}
+                    {{ form.name.label }}
+                    {% for error in form.name.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    <br />
+                {% endif %}
             </ul>
             <ul>
-                {% for error in form.description.errors %}
-                {{ form.description.label }}
-                <li>{{ error }}</li>
-                {% endfor %}
+                {% if form.description.errors|length > 0 %}
+                    {{ form.description.label }}
+                    {% for error in form.description.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    <br />
+                {% endif %}
             </ul>
     </div>
     {% endif %}

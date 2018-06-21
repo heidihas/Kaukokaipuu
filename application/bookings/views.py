@@ -35,7 +35,7 @@ def bookings_create(destination_id, accomodation_id, roomtype_id):
     price = a.pricelevel * r.price
 
     if not form.validate():
-        return render_template("bookings/new.html", destination = d, accomodation = a, roomtype = r, price = price, form = form, error = "Choose at least one of the two notification options.")
+        return render_template("bookings/new.html", destination = d, accomodation = a, roomtype = r, price = price, form = form)
 
     if not (form.email_notification.data or form.phone_notification.data):
         return render_template("bookings/new.html", destination = d, accomodation = a, roomtype = r, price = price, form = form, error = "Choose at least one of the two notification options.")

@@ -37,13 +37,13 @@ def destinations_one_change(destination_id):
 def destinations_create():
     form = DestinationForm(request.form)
 
-    if not form.validate():
-        return render_template("destinations/new.html", form = form)
-        
     destination = Destination.query.filter_by(name=form.name.data).first()
     if destination:
         return render_template("destinations/new.html", form = form, error = "Destination already exists")
    
+    if not form.validate():
+        return render_template("destinations/new.html", form = form)
+    
     d = Destination(form.name.data, form.description.data)
     
     db.session().add(d)

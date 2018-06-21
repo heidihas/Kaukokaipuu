@@ -28,13 +28,13 @@ def roomtypes_one_change(roomtype_id):
 def roomtypes_create():
     form = RoomTypeForm(request.form)
 
-    if not form.validate():
-        return render_template("roomtypes/new.html", form = form)
-
     roomtype = RoomType.query.filter_by(name=form.name.data).first()
     if roomtype:
         return render_template("roomtypes/new.html", form = form, error = "Room-type already exists")
-      
+     
+    if not form.validate():
+        return render_template("roomtypes/new.html", form = form)
+
     r = RoomType(form.name.data, form.size.data, form.price.data, form.many.data)
     r.seaside_view = form.seaside_view.data
     r.air_conditioned = form.air_conditioned.data

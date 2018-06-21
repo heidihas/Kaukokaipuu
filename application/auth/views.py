@@ -59,13 +59,13 @@ def navigation():
 def client_create():
     form = ClientForm(request.form)
 
-    if not form.validate():
-        return render_template("auth/new.html", form = form)
-
     client = Client.query.filter_by(username=form.username.data).first()
     if client:
         return render_template("auth/new.html", form = form, error = "Username not available")
    
+    if not form.validate():
+        return render_template("auth/new.html", form = form)
+
     c = Client(form.name.data, form.address.data, form.country.data, form.email.data, form.phone.data, form.username.data, form.password.data)
     
     db.session().add(c)
@@ -97,14 +97,14 @@ def client_change():
 def client_password_change():
     form = PasswordChangeForm(request.form)
 
-    if not form.validate():
-        return render_template("auth/passwordchange.html", client = current_user, form = form)
-
     c = current_user
 
     if c.password != form.password.data:
         return render_template("auth/passwordchange.html", client = c, form = form, error = "Current password incorrect")
     
+    if not form.validate():
+        return render_template("auth/passwordchange.html", client = current_user, form = form)
+
     c.password = form.new.data
     
     db.session().commit()

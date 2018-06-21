@@ -39,13 +39,13 @@ def accomodations_roomtypes(accomodation_id):
 def accomodations_create(destination_id):
     form = AccomodationForm(request.form)
 
-    if not form.validate():
-        return render_template("accomodations/new.html", destination = Destination.query.get(destination_id), form = form)
-
     accomodation = Accomodation.query.filter_by(name=form.name.data).first()
     if accomodation:
         return render_template("accomodations/new.html", destination = Destination.query.get(destination_id), form = form, error = "Accomodation already exists")
      
+    if not form.validate():
+        return render_template("accomodations/new.html", destination = Destination.query.get(destination_id), form = form)
+
     a = Accomodation(form.name.data, form.description.data, form.pricelevel.data, destination_id)
     a.pool = form.pool.data
     a.spa = form.spa.data

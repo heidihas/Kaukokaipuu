@@ -82,28 +82,40 @@
     {% if form.name.errors|length > 0 or form.size.errors|length > 0 or form.price.errors|length > 0 or form.many.errors|length > 0 %}
     <div class="alert alert-danger" role="alert">
             <ul>
-                {% for error in form.name.errors %}
-                {{ form.name.label }}
-                <li>{{ error }}</li>
-                {% endfor %}
+                {% if form.name.errors|length > 0 %}
+                    {{ form.name.label }}
+                    {% for error in form.name.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    <br />
+                {% endif %}
             </ul>
             <ul>
-                {% for error in form.size.errors %}
-                {{ form.size.label }}
-                <li>{{ error }}</li>
-                {% endfor %}
+                {% if form.size.errors|length > 0 %}
+                    {{ form.size.label }}
+                    {% for error in form.size.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    <br />
+                {% endif %}
             </ul>
             <ul>
-                {% for error in form.price.errors %}
-                {{ form.price.label }}
-                <li>{{ error }}</li>
-                {% endfor %}
+                {% if form.price.errors|length > 0 %}
+                    {{ form.price.label }}
+                    {% for error in form.price.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    <br />
+                {% endif %}
             </ul>
             <ul>
-                {% for error in form.many.errors %}
-                {{ form.many.label }}
-                <li>{{ error }}</li>
-                {% endfor %}
+                {% if form.many.errors|length > 0 %}
+                    {{ form.many.label }}
+                    {% for error in form.many.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    <br />
+                {% endif %}
             </ul>
     </div>
     {% endif %}
