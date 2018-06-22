@@ -38,7 +38,7 @@ class Accomodation(Base):
     
     @staticmethod
     def accomodations_in_order(destination_id):
-        stmt = text("SELECT Accomodation.id, Accomodation.name, Accomodation.unavailable, COUNT(LikeAccomodation.id) AS likes, FROM Accomodation"
+        stmt = text("SELECT Accomodation.id, Accomodation.name, Accomodation.unavailable, COUNT(LikeAccomodation.id) AS likes FROM Accomodation"
                     " LEFT JOIN LikeAccomodation ON LikeAccomodation.accomodation_id = Accomodation.id"
                     " WHERE (Accomodation.destination_id = :destination)"
                     " GROUP BY Accomodation.id"
