@@ -43,9 +43,6 @@
                     <span class="glyphicon glyphicon-tent"></span> Accomodation
                 </th>
                 <th scope="col">
-                    <span class="glyphicon glyphicon-info-sign"></span> Availability
-                </th>
-                <th scope="col">
                     <span class="glyphicon glyphicon-thumbs-up"></span> Likes
                 </th>
             </tr>
@@ -55,13 +52,6 @@
                 {% if not accomodation.unavailable %}
                     <tr>
                         <td><a href="{{ url_for('accomodations_one', destination_id=destination.id, accomodation_id=accomodation.id) }}">{{ accomodation.name }}</a></td>
-                        <td>
-                            {% if accomodation.bookings == accomodation.many %}
-                                <span class="glyphicon glyphicon-exclamation-sign"></span><font color=#ff9900><b> Fully Booked</b></font>
-                            {% else %}
-                                <font color=#ff9900><b>Rooms Left</b></font>
-                            {% endif %}
-                        </td>
                         <td>{{ accomodation.likes }}</td>
                     </tr>
                 {% else %}

@@ -38,19 +38,16 @@ class Accomodation(Base):
     
     @staticmethod
     def accomodations_in_order(destination_id):
-        stmt = text("SELECT Accomodation.id, Accomodation.name, Accomodation.unavailable, COUNT(LikeAccomodation.id) AS likes, COUNT(Booking.id) AS bookings, SUM(RoomType.many) AS many FROM Accomodation"
-                    " LEFT JOIN LikeAccomodation ON Accomodation.id = LikeAccomodation.accomodation_id"
-                    " LEFT JOIN Booking ON Accomodation.id = Booking.accomodation_id"
-                    " LEFT JOIN association ON Accomodation.id = association.accomodation_id"
-                    " INNER JOIN RoomType ON association.roomtype_id = RoomType.id"
+        stmt = text("SELECT Accomodation.id, Accomodation.name, Accomodation.unavailable, COUNT(LikeAccomodation.id) AS likes, FROM Accomodation"
+                    " LEFT JOIN LikeAccomodation ON LikeAccomodation.accomodation_id = Accomodation.id"
                     " WHERE (Accomodation.destination_id = :destination)"
-                    " GROUP BY Accomodation.id, Accomodation.name, Accomodation.unavailable"
+                    " GROUP BY Accomodation.id"
                     " ORDER BY likes DESC").params(destination=destination_id)
         res = db.engine.execute(stmt)
 
         response = []
         for row in res:
-            response.append({"id":row[0], "name":row[1], "unavailable":row[2], "likes":row[3], "bookings":row[4], "many":row[5]})
+            response.append({"id":row[0], "name":row[1], "unavailable":row[2], "likes":row[3]})
         
         return response
 
