@@ -13,7 +13,7 @@ from application.bookings.forms import BookingForm
 @app.route("/bookings", methods=["GET"])
 @login_required(role="ADMIN")
 def bookings_index():
-    return render_template("bookings/list.html", how_many_bookings = Client.how_many_bookings(), all_bookings = Booking.all_bookings())
+    return render_template("bookings/list.html", how_many_bookings = Client.how_many_bookings(), all_bookings = Booking.all_bookings(), destinations = Destination.how_many_bookings_all(), accomodations = Accomodation.how_many_bookings_all(), roomtypes = RoomType.how_many_bookings_all())
 
 @app.route("/destinations/<destination_id>/accomodations/<accomodation_id>/bookings/new/<roomtype_id>/")
 @login_required(role="CLIENT")

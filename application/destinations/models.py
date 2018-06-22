@@ -53,3 +53,18 @@ class Destination(Base):
         count = db.engine.execute(stmt).scalar()
 
         return count
+    
+    @staticmethod
+    def how_many_bookings_all():
+        stmt = text("SELECT Destination.name, COUNT(Booking.id) FROM Destination"
+                    " LEFT JOIN Accomodation ON Destination.id = Accomodation.destination_id"
+                    " INNER JOIN Booking ON Accomodation.id = Booking.accomodation_id"
+                    " GROUP BY Destination.id"
+                    " ORDER BY Destination.name")
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"name":row[0], "count":row[1]})
+        
+        return response

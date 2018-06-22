@@ -4,38 +4,6 @@
     <center><h3>Bookings</h3></center>
     <br />
 
-    {% if how_many_bookings is defined %}
-    <h4>List of registered <font color=#ff9900>clients</font> and the number of their <font color=#ff9900>bookings</font></h4>
-    <br />
-
-    <table class="table">
-        <thead class="thead-light">
-            <tr>
-                <th scope="col">
-                    <span class="glyphicon glyphicon-user"></span> Client
-                </th>
-                <th scope="col">
-                    <span class="glyphicon glyphicon-th"></span> Bookings
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for client in how_many_bookings %}
-            <tr>
-                <td>
-                    {{ client.name }}
-                </td>
-                <td>
-                    {{ client.count }}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% endif %}
-    <br />
-    <br />
-    
     <h4>List of <font color=#ff9900>all bookings</font></h4>
     <br />
 
@@ -59,6 +27,9 @@
                 </th>
                 <th scope="col">
                     <span class="glyphicon glyphicon-eye-open"></span> Person(s)
+                </th>
+                <th scope="col">
+                    <span class="glyphicon glyphicon-lamp"></span> Nights
                 </th>
                 <th scope="col">
                     <span class="glyphicon glyphicon-eur"></span> Price
@@ -94,6 +65,9 @@
                     {{ booking.size }}
                 </td>
                 <td> 
+                    {{ booking.nights }}€
+                </td>
+                <td> 
                     {{ booking.price }}€
                 </td>
                 <td>
@@ -117,4 +91,133 @@
             {% endfor %}
         </tbody>
     </table>
+    <br />
+    <br />
+
+    {% if how_many_bookings is defined %}
+    <h4>List of registered <font color=#ff9900>clients</font> and the number of their <font color=#ff9900>bookings</font></h4>
+    <br />
+
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    <span class="glyphicon glyphicon-user"></span> Client
+                </th>
+                <th scope="col">
+                    <span class="glyphicon glyphicon-th"></span> Bookings
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in how_many_bookings %}
+            <tr>
+                <td>
+                    {{ client.name }}
+                </td>
+                <td>
+                    {{ client.count }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <br />
+    <br />
+
+    {% if destinations is defined %}
+    <h4>List of <font color=#ff9900>destinations</font> and the number of their <font color=#ff9900>bookings</font></h4>
+    <br />
+
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    <span class="glyphicon glyphicon-plane"></span> Destination
+                </th>
+                <th scope="col">
+                    <span class="glyphicon glyphicon-th"></span> Bookings
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for destination in destinations %}
+            <tr>
+                <td>
+                    {{ destination.name }}
+                </td>
+                <td>
+                    {{ destination.count }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <br />
+    <br />
+
+    {% if accomodations is defined %}
+    <h4>List of <font color=#ff9900>accomodations</font> and the number of their <font color=#ff9900>bookings</font></h4>
+    <br />
+
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    <span class="glyphicon glyphicon-tent"></span> Accomodation
+                </th>
+                <th scope="col">
+                    <span class="glyphicon glyphicon-th"></span> Bookings
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for accomodaiton in accomodations %}
+            <tr>
+                <td>
+                    {{ accomodation.name }}
+                </td>
+                <td>
+                    {{ accomodation.count }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <br />
+    <br />
+
+    {% if roomtypes is defined %}
+    <h4>List of <font color=#ff9900>room-types</font> and the number of their <font color=#ff9900>bookings</font></h4>
+    <br />
+
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    <span class="glyphicon glyphicon-bed"></span> Room-type
+                </th>
+                <th scope="col">
+                    <span class="glyphicon glyphicon-th"></span> Bookings
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for roomtype in roomtypes %}
+            <tr>
+                <td>
+                    {{ roomtype.name }}
+                </td>
+                <td>
+                    {{ roomtype.count }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
 {% endblock %}

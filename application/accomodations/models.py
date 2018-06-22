@@ -88,6 +88,20 @@ class Accomodation(Base):
         count = db.engine.execute(stmt).scalar()
 
         return count
+    
+    @staticmethod
+    def how_many_bookings_all():
+        stmt = text("SELECT Accomodation.name, COUNT(Booking.id) FROM Accomodation"
+                    " LEFT JOIN Booking ON Booking.accomodation_id = Accomodation.id"
+                    " GROUP BY Accomodation.id"
+                    " ORDER BY Accomodation.name")
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"name":row[0], "count":row[1]})
+        
+        return response
 
     @staticmethod
     def delete_roomtypes_linked(accomodation_id):

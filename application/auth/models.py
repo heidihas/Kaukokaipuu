@@ -50,7 +50,8 @@ class Client(Base):
         stmt = text("SELECT Client.name, COUNT(Booking.id) FROM Client"
                     " LEFT JOIN Booking ON Booking.client_id = Client.id"
                     " WHERE Client.username != 'admin'"
-                    " GROUP BY Client.id")
+                    " GROUP BY Client.id"
+                    " ORDER BY Client.name")
         res = db.engine.execute(stmt)
 
         response = []
