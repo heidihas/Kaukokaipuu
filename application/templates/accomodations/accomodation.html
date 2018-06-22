@@ -74,15 +74,13 @@
                     <tr>
                         <td>
                             {{ roomtype.name }}
-                            <form method="POST" action="{{ url_for('roomtypes_delete_one', accomodation_id=accomodation.id, roomtype_id=roomtype.id) }}">
-                                {% if user.is_authenticated and (user.username == "admin") %}
-                                    {% if roomtype.booked == 0 %}
-                                        <button type="submit">
-                                            <font color=#ff9900><span class="glyphicon glyphicon-trash"></span></font>
-                                        </button>
-                                    {% endif %}
-                                {% endif %}
-                            </form>
+                            {% if (not accomodation.unavailable) and user.is_authenticated and (user.username == "admin") and (roomtype.booked == 0) %}
+                                <form method="POST" action="{{ url_for('roomtypes_delete_one', accomodation_id=accomodation.id, roomtype_id=roomtype.id) }}">
+                                    <button type="submit">
+                                        <font color=#ff9900><span class="glyphicon glyphicon-trash"></span></font>
+                                    </button>
+                                </form>
+                            {% endif %}    
                         </td>
                         <td>{{ roomtype.size }} person(s)</td>
                         <td>
