@@ -76,10 +76,10 @@ class RoomType(Base):
     
     @staticmethod
     def how_many_bookings_all():
-        stmt = text("SELECT RoomType.name, COUNT(Booking.id) FROM RoomType"
+        stmt = text("SELECT RoomType.name, COUNT(Booking.id) AS count FROM RoomType"
                     " LEFT JOIN Booking ON Booking.roomtype_id = RoomType.id"
                     " GROUP BY RoomType.id"
-                    " ORDET BY RoomType.name")
+                    " ORDER BY count")
         res = db.engine.execute(stmt)
 
         response = []

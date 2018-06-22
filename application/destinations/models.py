@@ -56,11 +56,11 @@ class Destination(Base):
     
     @staticmethod
     def how_many_bookings_all():
-        stmt = text("SELECT Destination.name, COUNT(Booking.id) FROM Destination"
+        stmt = text("SELECT Destination.name, COUNT(Booking.id) AS count FROM Destination"
                     " LEFT JOIN Accomodation ON Destination.id = Accomodation.destination_id"
                     " INNER JOIN Booking ON Accomodation.id = Booking.accomodation_id"
                     " GROUP BY Destination.id"
-                    " ORDER BY Destination.name")
+                    " ORDER BY count")
         res = db.engine.execute(stmt)
 
         response = []
