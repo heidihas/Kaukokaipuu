@@ -79,7 +79,7 @@ class RoomType(Base):
         stmt = text("SELECT RoomType.name, COUNT(Booking.id) AS count FROM RoomType"
                     " LEFT JOIN Booking ON Booking.roomtype_id = RoomType.id"
                     " GROUP BY RoomType.id"
-                    " ORDER BY count DESC")
+                    " ORDER BY count DESC, RoomType.name ASC")
         res = db.engine.execute(stmt)
 
         response = []
