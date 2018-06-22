@@ -94,7 +94,7 @@ class Accomodation(Base):
         stmt = text("SELECT Accomodation.name, Destination.name, COUNT(Booking.id) AS count FROM Accomodation"
                     " LEFT JOIN Booking ON Booking.accomodation_id = Accomodation.id"
                     " INNER JOIN Destination ON Accomodation.destination_id = Destination.id"
-                    " GROUP BY Accomodation.id"
+                    " GROUP BY Accomodation.id, Destination.name"
                     " ORDER BY count")
         res = db.engine.execute(stmt)
 
