@@ -42,11 +42,11 @@ Virheellisestä tiedosta ilmoitetaan. Rekisteröityneen käyttäjän ollessa sis
 
 Kun rekisteröitynyt käyttäjä on kirjautunut sisään tunnuksillaan, on käyttäjän mahdollista selata sovelluksen tarjoamia matkakohteita ja niiden majoitusvaihtoehtoja samaan tapaan, kuin yllä esitettiin tavallisen selaajan tapauksessa. Erona tavallisen selaajan tilanteeseen on se, että rekisteröityneen käyttäjän on mahdollista "tykätä" sekä valitsemastaan matkakohteesta että majoitusvaihtoehdosta kunkin omalla sivulla. 
 
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_like.png" width=400>
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_like.png" width=300>
 
 "Tykkääminen" tapahtuu "Like"-nappia painamalla, ja samasta kohteesta voi "tykätä" vain kerran. Mikäli kirjautunut käyttäjä on jo "tykännyt" kohteesta, ilmoittaa sovellus tästä tekstillä "You have already liked". 
 
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_liked.png" width=400>
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_liked.png" width=300>
 
 Lisäksi rekisteröityneelle käyttäjälle on tarjolla huoneen varaaminen valitsemansa matkakohteen valitsemassaan majoitusvaihtoehdossa. Jos majoitusvaihtoehdon huonetyyppi on edelleen tarjolla - se ei ole varattu täyteen - on huonetyypin rivillä "Book"-nappi. Muussa tapauksessa napin paikalla lukee "Fully Booked", eikä nappia ole mahdollista painaa. 
 
@@ -70,7 +70,7 @@ Ylläpitäjän käyttäjänimi on sovelluksessa aina muotoa "admin". Kirjautumin
 
 Kuten muidenkin käyttäjäroolien on ylläpitäjänkin mahdollista selata tarjolla olevia matkakohteita ja niiden majoitusvaihtoehtoja. Tavallisen selaajan tapaan ylläpitäjän ei ole mahdollista "tykätä" kohteista. Sen sijaan matkakohdenäkymän alareunassa olevalla roskakorinapilla ylläpitäjä voi poistaa matkakohteen, estonapilla laittaa matkakohteen syrjään, kynänapilla muokata matkakohteen tietoja ja tenttanapilla lisätä matkakohteeseen uuden majoitusvaihtoehdon. Sekä matkakohteen tietoja muokattaessa että uuden majoitusvaihtoehdon lisäämisen yhteydessä sovellus tarkistaa annetun tiedon oikeellisuuden ja esittää virheilmoitukset tarvittaessa. 
 
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_kuvakkeet.png" width=300>
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_kuvakkeet.png" width=100>
 
 Poiston ja eston erona on se, että ensiksi mainitun poistaessa kohteen kokonaan sovelluksesta syrjään siirtäminen mahdollistaa kohteeseen jo tehtyjen varausten säästämisen. Tämän vuoksi poistaminen on mahdollista vain kohteille, joihin ei ole tehty varauksia. Kun kohde siirretään syrjään, ainoastaan ylläpitäjän on mahdollista nähdä kohde matkakohteiden listalla. Myös kaikki kohteeseen liittyvät majoitusvaihtoehdot siirretään syrjään. Ylläpitäjä voi edelleen tarkastella syrjässä olevien kohteiden tietoja, vaikka tietojen muokkaaminen ei ole mahdollista. Ylläpitäjän voi myös palauttaa kohteen takaisin tarjolla olevaan valikoimaan.
 
