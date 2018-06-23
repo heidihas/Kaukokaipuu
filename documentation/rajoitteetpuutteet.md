@@ -4,7 +4,7 @@
 
 ## Rajoitteet
 
-
+Mikäli sovelluksen halutaan muistuttavan todellista matkanvarausjärjestelmää, tulisi saman huoneen olla varattavissa useammin kuin kerran.
 
 -huonetyyppiä on eri hotelleissa aina sama määrä
 
