@@ -82,9 +82,15 @@ Majoitusvaihtoehdon näkymässä sivun alareunassa on poisto- (roskakorinappi), 
 
 Kunkin huonetyypin nimeä esittävää nappia painamalla kyseinen huonetyyppi lisätään majoitusvaihtoehtoon - samassa näkymässä pysytään siis mahdollisesti useamman huonetyypin lisäämisen ajan. Vasta "Done"-napin painaminen palauttaa ylläpitäjän majoitusvaihtoehdon näkymään. Majoitusvaihtoehdossa tarjolla olevien huonetyyppien listaan ovat ilmestyneet lisätyt huonetyypit. Huonetyypin voi myös poistaa majoitusvaihtoehdosta klikkaamalla huonetyypin nimen alla olevaa roskakorinappia. Huonetyypin poistaminen kyseisestä majoitusvaihtoehdosta ei poista sitä koko sovelluksesta.
 
-Sivuston yläpalkin "New destination" tai "New room-type" -nappia painamalla ylläpitäjä voi lisätä sovellukseen uuden matkakohteen tai uuden huonetyypin. "Add"-napin painaminen tiedonsyötön jälkeen toteuttaa lisäyksen. Virheellisen tiedon tapauksessa sovellus esittää sivun alalaidassa, punaisessa laatikossa tapauskohtaiset virheilmoitukset.
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_poista_huonetyyppi.png" width=900>
+
+Sivuston yläpalkin "New destination" tai "New room-type" -nappia painamalla ylläpitäjä voi lisätä sovellukseen uuden matkakohteen tai uuden huonetyypin.
 
 <img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_new_roomtype.png" width=900>
+
+"Add"-napin painaminen tiedonsyötön jälkeen toteuttaa lisäyksen. Virheellisen tiedon tapauksessa sovellus esittää sivun alalaidassa, punaisessa laatikossa tapauskohtaiset virheilmoitukset.
+
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_errorit.png" width=900>
 
 "Bookings"-kohtaa sivuston yläpalkissa painettaessa ylläpitäjä saa näkyviinsä tiedot koskien tehtyjä varauksia. Näkymässä on tarkka lista kaikista tehdyista varauspyynnöistä tietoineen. Varauspyynnöt ovat järjestyksessä sen mukaan, mikä niistä on lähetetty ajallisesti ensimmäisenä. 
 
