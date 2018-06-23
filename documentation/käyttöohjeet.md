@@ -1,11 +1,12 @@
 # Käyttöohjeet
 
 
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_etusivu.png" width=900>
+
+
 ---
 
-## 1) Tavallinen selaaja
-
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_etusivu.png" width=900>
+## Tavallinen selaaja 
 
 Tavallisen, rekisteröitymättömän selaajan on mahdollista selata sovelluksen tarjoamia matkakohteita painamalla sivuston yläpalkin "Destinations"-nappia. 
 
