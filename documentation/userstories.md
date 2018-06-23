@@ -21,6 +21,7 @@ Ylläpitäjä | Varausstatistiikan seuraaminen | Ylläpitäjän on mahdollista n
 Asiakas | Käyttäjätunnuksen luominen | Jotta asiakkaan on mahdollista tehdä varauksia käyttäjätunnuksellaan
 Rek. Asiakas | Käyttäjätunnuksen poistaminen | Jotta asiakkaan on mahdollista halutessaan lopettaa sovelluksen käyttäminen
 Rek. Asiakas | Käyttäjätunnuksen tietojen muokkaaminen | Jotta asiakkaan on mahdollista päivittää henkilötietojaan
+Rek. Asiakas | Käyttäjätunnuksen salasanan vaihtaminen | Asiakkaan turvallisuus taataan mahdollistamalla salasanan vaihtaminen
 Rek. Asiakas | Käyttäjätunnuksella sisään kirjautuminen | Asiakkaan on mahdollista kirjautua sisään käyttäjätunnuksellaan ja tehdä varauksia
 Rek. Asiakas | Käyttäjätunnuksella ulos kirjautuminen | Jotta kukaan ulkopuolinen ei pääse tarkastelemaan asiakkaan käyttäjätietoja
 Asiakas/Rek. Asiakas | Matkakohdelistan tarkastelu | Asiakkaan on mahdollista tarkastella matkakohteita joko kirjautuneena tai ei; matkakohteet ovat listalla saamiensa "tykkäysten" määrän mukaisessa järjestyksessä (eniten "tykkäyksiä" saanut ylimpänä)
