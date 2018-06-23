@@ -5,7 +5,7 @@
 
 ## 1) Tavallinen selaaja
 
-<img scr="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_etusivu.png" width=600>
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_etusivu.png" width=600>
 
 Tavallisen, rekisteröitymättömän selaajan on mahdollista selata sovelluksen tarjoamia matkakohteita painamalla sivuston yläpalkin "Destinations"-nappia. Avautuu tarjolla olevien matkakohteiden lista, jossa kohteet ovat suosituimmuusjärjestyksessä. Kohteen nimeä klikkaamalla selaaja saa tarkempaa tietoa kyseisestä kohteesta - erityisesti selaaja löytää kohteessa tarjolla olevien majoitusvaihtoehtojen listan. Majoitusvaihtoehdot ovat samoin saamiensa "tykkäämisten" mukaisessa järjestyksessä. Majoitusvaihtoehdon nimeä klikkaamalla selaaja pääsee tarkemmin tutustumaan kyseisen kohteen ominaisuuksiin ja siellä tarjolla oleviin huonetyyppeihin. Huonetyyppien tiedot on kirjattu listaan, jossa huonetyypit ovat hintansa ja kokonsa mukaisessa järjestyksessä. Sivun alareunassa ovat käytettyjen pikkukuvakkeiden selitykset.
 
