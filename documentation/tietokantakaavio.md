@@ -62,13 +62,13 @@ CREATE TABLE Client (
 	password VARCHAR(10) NOT NULL   
 );
 
-CREATE TABLE Destination (
-	id INTEGER NOT NULL PRIMARY KEY, 
-	date_created DATETIME, 
-	date_modified DATETIME, 
-	name VARCHAR(20) NOT NULL, 
-	description VARCHAR(250) NOT NULL, 
-	unavailable BOOLEAN NOT NULL
+CREATE TABLE Destination (  
+	id INTEGER NOT NULL PRIMARY KEY,   
+	date_created DATETIME,   
+	date_modified DATETIME,   
+	name VARCHAR(20) NOT NULL,   
+	description VARCHAR(250) NOT NULL,   
+	unavailable BOOLEAN NOT NULL  
 );
 
 CREATE TABLE LikeAccomodation (  
@@ -89,18 +89,18 @@ CREATE TABLE LikeDestination (
 	FOREIGN KEY(destination_id) REFERENCES Destination (id)  
 );
 
-CREATE TABLE RoomType (
-	id INTEGER NOT NULL PRIMARY KEY, 
-	date_created DATETIME, 
-	date_modified DATETIME, 
-	name VARCHAR(20) NOT NULL, 
-	size INTEGER NOT NULL, 
-	price FLOAT NOT NULL, 
-	many INTEGER NOT NULL, 
-	seaside_view BOOLEAN NOT NULL, 
-	air_conditioned BOOLEAN NOT NULL, 
-	mini_bar BOOLEAN NOT NULL, 
-	tv BOOLEAN NOT NULL, 
-	bath BOOLEAN NOT NULL, 
-	unavailable BOOLEAN NOT NULL
+CREATE TABLE RoomType (  
+	id INTEGER NOT NULL PRIMARY KEY,   
+	date_created DATETIME,   
+	date_modified DATETIME,   
+	name VARCHAR(20) NOT NULL,   
+	size INTEGER NOT NULL,   
+	price FLOAT NOT NULL,   
+	many INTEGER NOT NULL,   
+	seaside_view BOOLEAN NOT NULL,   
+	air_conditioned BOOLEAN NOT NULL,   
+	mini_bar BOOLEAN NOT NULL,   
+	tv BOOLEAN NOT NULL,   
+	bath BOOLEAN NOT NULL,   
+	unavailable BOOLEAN NOT NULL  
 );
