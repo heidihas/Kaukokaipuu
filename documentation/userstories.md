@@ -1,4 +1,4 @@
-# User stories
+# User stories ja keskeiset SQL-kyselyt
 
 Käyttäjärooli | Mitä | Miksi
 ------------ | ------------- | -------------
@@ -43,9 +43,103 @@ Rek. Asiakas | Sisäänkirjautuneena "My page" -osion tarkastelu | Asiakkaan on 
 Rek. Asiakas | Sisäänkirjautuneena vahvistamattomien varauspyyntöjen poistaminen | Asiakkaan on mahdollista poistaa vahvistamattomia varauksia "My page" -osiossa
 
 
+## SQL-kyselyt
+
+### ) Tietyn matkakohteen majoitusvaihtoehdot suosittuusjärjestyksessä
+
 SELECT Accomodation.id, Accomodation.name, Accomodation.unavailable, COUNT(LikeAccomodation.id) AS likes  
 FROM Accomodation  
 LEFT JOIN LikeAccomodation ON LikeAccomodation.accomodation_id = Accomodation.id  
 WHERE (Accomodation.destination_id = :destination)  
 GROUP BY Accomodation.id  
 ORDER BY likes DESC  
+
+### ) Tietyssä majoituskohteessa tarjolla olevat huonetyypit
+
+SELECT RoomType.id, RoomType.unavailable, RoomType.name, RoomType.size, RoomType.price, RoomType.many, RoomType.seaside_view, RoomType.air_conditioned, RoomType.mini_bar, RoomType.tv, RoomType.bath, COUNT(DISTINCT Booking.id)  
+FROM Accomodation  
+INNER JOIN Booking ON :accomodation = Booking.accomodation_id  
+RIGHT JOIN RoomType ON Booking.roomtype_id = RoomType.id  
+INNER JOIN association ON RoomType.id = association.roomtype_id  
+WHERE association.accomodation_id = :accomodation  
+GROUP BY RoomType.id, RoomType.unavailable, RoomType.name, RoomType.size, RoomType.price, RoomType.many, RoomType.seaside_view, RoomType.air_conditioned, RoomType.mini_bar, RoomType.tv, RoomType.bath  
+ORDER BY RoomType.size, RoomType.price
+
+### ) Huonetyypin poistaminen majoituskohteesta
+
+DELETE FROM association  
+WHERE (association.accomodation_id = :accomodation  
+AND association.roomtype_id = :roomtype)
+
+### ) Huonetyypin varausten määrä tietyssä majoituskohteessa
+ 
+SELECT RoomType.id, COUNT(Booking.id)  
+FROM RoomType  
+LEFT JOIN Booking ON RoomType.id = Booking.roomtype_id  
+WHERE Booking.accomodation_id = :accomodation  
+GROUP BY RoomType.id  
+ORDER BY RoomType.size, RoomType.name
+
+### ) Asiakkaiden tekemien varausten määrät
+
+SELECT Client.name, COUNT(Booking.id)  
+FROM Client  
+LEFT JOIN Booking ON Booking.client_id = Client.id  
+WHERE Client.username != 'admin'  
+GROUP BY Client.id  
+ORDER BY Client.name
+
+### ) Vahvistetut/vahvistamattomat asiakkaan varauspyynnöt
+
+SELECT Booking.id, Booking.booking_number, Booking.date_created, Booking.price, Booking.nights, Booking.email_notification, Booking.phone_notification, RoomType.name, RoomType.size, Accomodation.name, Destination.name  
+FROM Booking, RoomType, association, Accomodation, Destination  
+WHERE (Booking.client_id = :client AND Booking.approved = :approved)  
+AND Booking.roomtype_id = RoomType.id  
+AND RoomType.id = association.roomtype_id  
+AND association.accomodation_id = Accomodation.id  
+AND Booking.accomodation_id = Accomodation.id  
+AND Accomodation.destination_id = Destination.id  
+ORDER BY Booking.date_created
+
+### ) Kaikki tehdyt varauspyynnöt tietoineen
+
+SELECT Booking.id, Booking.booking_number, Booking.date_created, Booking.approved, Booking.nights, Booking.price, Booking.email_notification, Booking.phone_notification, RoomType.name, RoomType.size, Accomodation.name, Destination.name, Client.name  
+FROM Booking, RoomType, association, Accomodation, Destination, Client  
+WHERE Booking.client_id = Client.id  
+AND Booking.roomtype_id = RoomType.id  
+AND RoomType.id = association.roomtype_id  
+AND association.accomodation_id = Accomodation.id  
+AND Booking.accomodation_id = Accomodation.id  
+AND Accomodation.destination_id = Destination.id  
+ORDER BY Booking.date_created
+
+### ) Matkakohteiden varausten määrä
+
+SELECT Destination.name, COUNT(Booking.id) AS count  
+FROM Destination  
+LEFT JOIN Accomodation ON Destination.id = Accomodation.destination_id  
+INNER JOIN Booking ON Accomodation.id = Booking.accomodation_id  
+GROUP BY Destination.id  
+ORDER BY count DESC, Destination.name ASC
+
+### ) Miten monta "tykkäystä" majoituskohde on saanut
+
+SELECT COUNT(LikeAccomodation.id)  
+FROM LikeAccomodation  
+WHERE LikeAccomodation.accomodation_id = :accomodation
+
+### ) Onko asiakas "tykännyt" majoituskohteesta
+
+SELECT COUNT(LikeAccomodation.id)  
+FROM LikeAccomodation  
+WHERE LikeAccomodation.client_id = :client  
+AND LikeAccomodation.accomodation_id = :accomodation
+    
+### ) Huonetyypit, joita ei ole vielä lisätty majoituskohteeseen
+
+SELECT RoomType.id, RoomType.unavailable, RoomType.name, RoomType.size  
+FROM RoomType  
+WHERE NOT EXISTS (SELECT association.roomtype_id FROM association  
+WHERE association.roomtype_id = RoomType.id  
+AND association.accomodation_id = :accomodation)  
+ORDER BY RoomType.size, RoomType.name
