@@ -90,7 +90,7 @@ Sivuston yläpalkin "New destination" tai "New room-type" -nappia painamalla yll
 
 "Add"-napin painaminen tiedonsyötön jälkeen toteuttaa lisäyksen. Virheellisen tiedon tapauksessa sovellus esittää sivun alalaidassa, punaisessa laatikossa tapauskohtaiset virheilmoitukset.
 
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_errorit.png" width=900>
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_errorit.png" width=400>
 
 "Bookings"-kohtaa sivuston yläpalkissa painettaessa ylläpitäjä saa näkyviinsä tiedot koskien tehtyjä varauksia. Näkymässä on tarkka lista kaikista tehdyista varauspyynnöistä tietoineen. Varauspyynnöt ovat järjestyksessä sen mukaan, mikä niistä on lähetetty ajallisesti ensimmäisenä. 
 
