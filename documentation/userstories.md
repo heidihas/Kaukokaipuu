@@ -41,3 +41,10 @@ Rek. Asiakas | Sisäänkirjautuneena "tykkääminen" | Asiakkaan on mahdollista 
 Rek. Asiakas | Sisäänkirjautuneena varauksen tekeminen | Asiakkaan on mahdollista varata matka tietyn matkakohteen majoitusvaihtoehdon vapaaseen huoneeseen; varauksen yhteydessä asiakas päättää varattavien öiden määrän; varauksen yhteydessä asiakas voi määritellä, lähetetäänkö hänelle onnistuneesta varauksesta tilausvahvistusviesti sähköpostitse vai tekstiviestillä; varauksen yhteydessä asiakkaalle annetaan varausnumero
 Rek. Asiakas | Sisäänkirjautuneena "My page" -osion tarkastelu | Asiakkaan on mahdollista tarkastella tekemiään varauksia "My page" -osiossa; varaustietojen ohessa lukee, onko varaus vahvistettu
 Rek. Asiakas | Sisäänkirjautuneena vahvistamattomien varauspyyntöjen poistaminen | Asiakkaan on mahdollista poistaa vahvistamattomia varauksia "My page" -osiossa
+
+
+SELECT Accomodation.id, Accomodation.name, Accomodation.unavailable, COUNT(LikeAccomodation.id) AS likes FROM Accomodation 
+LEFT JOIN LikeAccomodation ON LikeAccomodation.accomodation_id = Accomodation.id
+WHERE (Accomodation.destination_id = :destination)
+GROUP BY Accomodation.id
+ORDER BY likes DESC
