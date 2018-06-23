@@ -9,8 +9,8 @@
 ## CREATE TABLE -lauseet
 
 CREATE TABLE Accomodation (  
-	id INTEGER NOT NULL PRIMARY KEY,  
-  destination_id INTEGER NOT NULL,  
+	id INTEGER NOT NULL PRIMARY KEY,   
+        destination_id INTEGER NOT NULL,   
 	date_created DATETIME,  
 	date_modified DATETIME,   
 	name VARCHAR(20) NOT NULL,   
@@ -24,76 +24,73 @@ CREATE TABLE Accomodation (
 	FOREIGN KEY(destination_id) REFERENCES Destination(id)  
 );
 
-CREATE TABLE association (
-	accomodation_id INTEGER, 
-	roomtype_id INTEGER, 
-	FOREIGN KEY(accomodation_id) REFERENCES accomodation (id), 
-	FOREIGN KEY(roomtype_id) REFERENCES roomtype (id)
+CREATE TABLE Association (  
+	accomodation_id INTEGER,  
+	roomtype_id INTEGER,  
+	FOREIGN KEY(accomodation_id) REFERENCES Accomodation(id),  
+	FOREIGN KEY(roomtype_id) REFERENCES Roomtype(id) 
 );
-CREATE TABLE booking (
-	id INTEGER NOT NULL, 
-	date_created DATETIME, 
-	date_modified DATETIME, 
-	booking_number BIGINT NOT NULL, 
-	approved BOOLEAN NOT NULL, 
-	email_notification BOOLEAN NOT NULL, 
-	phone_notification BOOLEAN NOT NULL, 
-	price FLOAT NOT NULL, 
-	nights INTEGER NOT NULL, 
-	roomtype_id INTEGER NOT NULL, 
-	accomodation_id INTEGER NOT NULL, 
-	client_id INTEGER NOT NULL, 
-	PRIMARY KEY (id), 
-	CHECK (approved IN (0, 1)), 
-	CHECK (email_notification IN (0, 1)), 
-	CHECK (phone_notification IN (0, 1)), 
-	FOREIGN KEY(roomtype_id) REFERENCES roomtype (id), 
-	FOREIGN KEY(accomodation_id) REFERENCES accomodation (id), 
-	FOREIGN KEY(client_id) REFERENCES client (id)
+
+CREATE TABLE Booking (  
+	id INTEGER NOT NULL PRIMARY KEY,   
+	roomtype_id INTEGER NOT NULL,   
+	accomodation_id INTEGER NOT NULL,  
+	client_id INTEGER NOT NULL,  
+	date_created DATETIME,   
+	date_modified DATETIME,   
+	booking_number BIGINT NOT NULL,  
+	approved BOOLEAN NOT NULL,   
+	email_notification BOOLEAN NOT NULL,   
+	phone_notification BOOLEAN NOT NULL,   
+	price FLOAT NOT NULL,   
+	nights INTEGER NOT NULL,    
+	FOREIGN KEY(roomtype_id) REFERENCES Roomtype (id),   
+	FOREIGN KEY(accomodation_id) REFERENCES Accomodation (id),   
+	FOREIGN KEY(client_id) REFERENCES Client (id)  
 );
-CREATE TABLE client (
-	id INTEGER NOT NULL, 
-	date_created DATETIME, 
-	date_modified DATETIME, 
-	name VARCHAR(144) NOT NULL, 
-	address VARCHAR(144) NOT NULL, 
-	country VARCHAR(20) NOT NULL, 
-	email VARCHAR(30) NOT NULL, 
-	phone VARCHAR(20) NOT NULL, 
-	username VARCHAR(20) NOT NULL, 
-	password VARCHAR(10) NOT NULL, 
-	PRIMARY KEY (id)
+
+CREATE TABLE Client (  
+	id INTEGER NOT NULL PRIMARY KEY,   
+	date_created DATETIME,   
+	date_modified DATETIME,   
+	name VARCHAR(144) NOT NULL,   
+	address VARCHAR(144) NOT NULL,   
+	country VARCHAR(20) NOT NULL,   
+	email VARCHAR(30) NOT NULL,   
+	phone VARCHAR(20) NOT NULL,   
+	username VARCHAR(20) NOT NULL,   
+	password VARCHAR(10) NOT NULL   
 );
-CREATE TABLE destination (
-	id INTEGER NOT NULL, 
+
+CREATE TABLE Destination (
+	id INTEGER NOT NULL PRIMARY KEY, 
 	date_created DATETIME, 
 	date_modified DATETIME, 
 	name VARCHAR(20) NOT NULL, 
 	description VARCHAR(250) NOT NULL, 
-	unavailable BOOLEAN NOT NULL, 
-	PRIMARY KEY (id), 
-	CHECK (unavailable IN (0, 1))
+	unavailable BOOLEAN NOT NULL
 );
-CREATE TABLE likeaccomodation (
-	id INTEGER NOT NULL, 
-	date_created DATETIME, 
-	client_id INTEGER NOT NULL, 
-	accomodation_id INTEGER NOT NULL, 
-	PRIMARY KEY (id), 
-	FOREIGN KEY(client_id) REFERENCES client (id), 
-	FOREIGN KEY(accomodation_id) REFERENCES accomodation (id)
+
+CREATE TABLE LikeAccomodation (  
+	id INTEGER NOT NULL PRIMARY KEY,   
+	client_id INTEGER NOT NULL,   
+	accomodation_id INTEGER NOT NULL,  
+	date_created DATETIME,     
+	FOREIGN KEY(client_id) REFERENCES Client (id),   
+	FOREIGN KEY(accomodation_id) REFERENCES Accomodation (id)  
 );
-CREATE TABLE likedestination (
-	id INTEGER NOT NULL, 
-	date_created DATETIME, 
-	client_id INTEGER NOT NULL, 
-	destination_id INTEGER NOT NULL, 
-	PRIMARY KEY (id), 
-	FOREIGN KEY(client_id) REFERENCES client (id), 
-	FOREIGN KEY(destination_id) REFERENCES destination (id)
+
+CREATE TABLE LikeDestination (  
+	id INTEGER NOT NULL PRIMARY KEY,   
+	client_id INTEGER NOT NULL,   
+	destination_id INTEGER NOT NULL,  
+	date_created DATETIME,    
+	FOREIGN KEY(client_id) REFERENCES Client (id),   
+	FOREIGN KEY(destination_id) REFERENCES Destination (id)  
 );
-CREATE TABLE roomtype (
-	id INTEGER NOT NULL, 
+
+CREATE TABLE RoomType (
+	id INTEGER NOT NULL PRIMARY KEY, 
 	date_created DATETIME, 
 	date_modified DATETIME, 
 	name VARCHAR(20) NOT NULL, 
@@ -105,12 +102,5 @@ CREATE TABLE roomtype (
 	mini_bar BOOLEAN NOT NULL, 
 	tv BOOLEAN NOT NULL, 
 	bath BOOLEAN NOT NULL, 
-	unavailable BOOLEAN NOT NULL, 
-	PRIMARY KEY (id), 
-	CHECK (seaside_view IN (0, 1)), 
-	CHECK (air_conditioned IN (0, 1)), 
-	CHECK (mini_bar IN (0, 1)), 
-	CHECK (tv IN (0, 1)), 
-	CHECK (bath IN (0, 1)), 
-	CHECK (unavailable IN (0, 1))
+	unavailable BOOLEAN NOT NULL
 );
