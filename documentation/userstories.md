@@ -43,10 +43,9 @@ Rek. Asiakas | Sisäänkirjautuneena "My page" -osion tarkastelu | Asiakkaan on 
 Rek. Asiakas | Sisäänkirjautuneena vahvistamattomien varauspyyntöjen poistaminen | Asiakkaan on mahdollista poistaa vahvistamattomia varauksia "My page" -osiossa
 
 
-SELECT Accomodation.id, Accomodation.name, Accomodation.unavailable, COUNT(LikeAccomodation.id) AS likes FROM Accomodation 
+SELECT Accomodation.id, Accomodation.name, Accomodation.unavailable, COUNT(LikeAccomodation.id) AS likes 
+FROM Accomodation 
 LEFT JOIN LikeAccomodation ON LikeAccomodation.accomodation_id = Accomodation.id
 WHERE (Accomodation.destination_id = :destination)
-
 GROUP BY Accomodation.id
-
 ORDER BY likes DESC
