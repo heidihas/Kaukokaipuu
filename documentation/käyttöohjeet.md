@@ -70,7 +70,7 @@ Ylläpitäjän käyttäjänimi on sovelluksessa aina muotoa "admin". Kirjautumin
 
 Kuten muidenkin käyttäjäroolien on ylläpitäjänkin mahdollista selata tarjolla olevia matkakohteita ja niiden majoitusvaihtoehtoja. Tavallisen selaajan tapaan ylläpitäjän ei ole mahdollista "tykätä" kohteista. Sen sijaan matkakohdenäkymän alareunassa olevalla roskakorinapilla ylläpitäjä voi poistaa matkakohteen, estonapilla laittaa matkakohteen syrjään, kynänapilla muokata matkakohteen tietoja ja tenttanapilla lisätä matkakohteeseen uuden majoitusvaihtoehdon. Sekä matkakohteen tietoja muokattaessa että uuden majoitusvaihtoehdon lisäämisen yhteydessä sovellus tarkistaa annetun tiedon oikeellisuuden ja esittää virheilmoitukset tarvittaessa. 
 
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_kuvakkeet.png" width=600>
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_kuvakkeet.png" width=300>
 
 Poiston ja eston erona on se, että ensiksi mainitun poistaessa kohteen kokonaan sovelluksesta syrjään siirtäminen mahdollistaa kohteeseen jo tehtyjen varausten säästämisen. Tämän vuoksi poistaminen on mahdollista vain kohteille, joihin ei ole tehty varauksia. Kun kohde siirretään syrjään, ainoastaan ylläpitäjän on mahdollista nähdä kohde matkakohteiden listalla. Myös kaikki kohteeseen liittyvät majoitusvaihtoehdot siirretään syrjään. Ylläpitäjä voi edelleen tarkastella syrjässä olevien kohteiden tietoja, vaikka tietojen muokkaaminen ei ole mahdollista. Ylläpitäjän voi myös palauttaa kohteen takaisin tarjolla olevaan valikoimaan.
 
@@ -78,7 +78,7 @@ Poiston ja eston erona on se, että ensiksi mainitun poistaessa kohteen kokonaan
 
 Majoitusvaihtoehdon näkymässä sivun alareunassa on poisto- (roskakorinappi), esto- (ban-nappi) ja muokkaustoimintojen (kynänappi) lisäksi mahdollista lisätä majoitusvaihtoehtoon sovellukseen luotuja huonetyyppejä. Huonetyyppien lisäykseen päästään plusnappia painamalla. Avautuu lista niistä huonetyypeistä, joita majoitusvaihtoehtoon ei vielä ole lisätty. 
 
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_huonetyypit.png" width=600>
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_huonetyypit.png" width=400>
 
 Kunkin huonetyypin nimeä esittävää nappia painamalla kyseinen huonetyyppi lisätään majoitusvaihtoehtoon - samassa näkymässä pysytään siis mahdollisesti useamman huonetyypin lisäämisen ajan. Vasta "Done"-napin painaminen palauttaa ylläpitäjän majoitusvaihtoehdon näkymään. Majoitusvaihtoehdossa tarjolla olevien huonetyyppien listaan ovat ilmestyneet lisätyt huonetyypit. Huonetyypin voi myös poistaa majoitusvaihtoehdosta klikkaamalla huonetyypin nimen alla olevaa roskakorinappia. Huonetyypin poistaminen kyseisestä majoitusvaihtoehdosta ei poista sitä koko sovelluksesta.
 
