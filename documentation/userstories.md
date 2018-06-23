@@ -5,13 +5,19 @@ Käyttäjärooli | Mitä | Miksi
 Ylläpitäjä | Sisäänkirjautuminen ylläpitäjänä | Ylläpitäjällä ainoastaan on lupa muuttaa sovelluksen sisältöä
 Ylläpitäjä | Uloskirjautuminen ylläpitäjänä | Jotta kukaan ulkopuolinen ei pääse päivittämään sovelluksen sisältöä
 Ylläpitäjä | Matkakohteiden lisääminen | Jotta sovelluksen matkakohdelista vastaisi tarjontaa
-Ylläpitäjä | Matkakohteiden poistaminen | Jotta sovelluksen matkakohdelista vastaisi tarjontaa
+Ylläpitäjä | Matkakohteiden poistaminen | Jotta kannattamattomat kohteet voidaan poistaa
+Ylläpitäjä | Matkakohteiden laittaminen syrjään | Jotta tieto aiemmista varauksista säilyy tietokannassa vaikka kohde ei ole enää varattavissa
+Ylläpitäjä | Matkakohteiden palauttaminen varattavaksi | Jotta kohde saadaan takaisin valikoimaan
 Ylläpitäjä | Matkakohteiden päivittäminen | Matkakohteen kuvausta päivittämällä lisätään kohteen kiinnostavuutta
 Ylläpitäjä | Majoituskohteiden lisääminen matkakohteeseen | Jotta matkakohteen majoitusvalikoima vastaisi tarjontaa
 Ylläpitäjä | Majoituskohteiden poistaminen matkakohteesta | Jotta matkakohteen majoitusvalikoima vastaisi tarjontaa
+Ylläpitäjä | Majoituskohteiden laittaminen syrjään | Jotta tieto aiemmista varauksista säilyy tietokannassa vaikka kohde ei ole enää varattavissa
+Ylläpitäjä | Majoituskohteiden palauttaminen varattavaksi | Jotta kohde saadaan takaisin valikoimaan
 Ylläpitäjä | Majoituskohteiden päivittäminen | Majoituskohteen houkuttavuus on sitä parempi, mitä tarkemmin sitä kuvataan
 Ylläpitäjä | Huonetyyppien lisääminen | Jotta majoituskohteisiin voidaan lisätä haluttuja huonetyyppejä
 Ylläpitäjä | Huonetyyppien poistaminen | Jotta turhat huonetyypit eivät vie muistitilaa
+Ylläpitäjä | Huonetyypin laittaminen syrjään | Jotta tieto aiemmista varauksista säilyy tietokannassa vaikka huonetyyppi ei ole enää varattavissa
+Ylläpitäjä | Huonetyypin palauttaminen varattavaksi | Jotta huonetyyppi saadaan takaisin valikoimaan
 Ylläpitäjä | Huonetyyppien päivittäminen | Jotta huonetyyppi vastaa olemassa olevaa
 Ylläpitäjä | Huonetyyppien lisääminen majoituskohteeseen | Jotta majoituskohteen huonevalikoima vastaisi tarjontaa
 Ylläpitäjä | Huonetyyppien poistaminen majoituskohteesta | Jotta majoituskohteen huonevalikoima vastaisi tarjontaa
