@@ -4,6 +4,8 @@
 
 ## Rajoitteet
 
+
+
 -huonetyyppiä on eri hotelleissa aina sama määrä
 
 -huoneen voi varata vain kerran
@@ -17,3 +19,7 @@
 -varauskalenteri, jolloin huoneen voisi varata useammin kuin kerran
 
 -huonetyypin laittaminen syrjään tietyssä hotellissa, vaikka siihen olisi jo tehty varauksia
+
+-tietyn matkakohteen majoitusvalikoimalistauksessa ei ilmoiteta, onko hotellissa tilaa
+
+-sivutus
