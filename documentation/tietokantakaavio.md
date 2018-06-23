@@ -1,4 +1,4 @@
-# Tietokantakaavio
+# Tietokannan rakenne
 
 
 
