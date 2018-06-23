@@ -4,6 +4,8 @@
 
 ## User stories
 
+(Toimintoa seuraava numero viittaa taulukon alla olevaan listaan keskeisimmistä SQL-kyselyistä.)
+
 Käyttäjärooli | Mitä | Miksi
 ------------ | ------------- | -------------
 Ylläpitäjä | Sisäänkirjautuminen ylläpitäjänä | Ylläpitäjällä ainoastaan on lupa muuttaa sovelluksen sisältöä
