@@ -8,6 +8,65 @@
 
 ## CREATE TABLE -lauseet
 
+
+CREATE TABLE Client (  
+	id INTEGER NOT NULL PRIMARY KEY,   
+	date_created DATETIME,   
+	date_modified DATETIME,   
+	name VARCHAR(144) NOT NULL,   
+	address VARCHAR(144) NOT NULL,   
+	country VARCHAR(20) NOT NULL,   
+	email VARCHAR(30) NOT NULL,   
+	phone VARCHAR(20) NOT NULL,   
+	username VARCHAR(20) NOT NULL,   
+	password VARCHAR(10) NOT NULL   
+);
+
+CREATE TABLE LikeDestination (  
+	id INTEGER NOT NULL PRIMARY KEY,   
+	client_id INTEGER NOT NULL,   
+	destination_id INTEGER NOT NULL,  
+	date_created DATETIME,    
+	FOREIGN KEY(client_id) REFERENCES Client (id),   
+	FOREIGN KEY(destination_id) REFERENCES Destination (id)  
+);
+
+CREATE TABLE LikeAccomodation (  
+	id INTEGER NOT NULL PRIMARY KEY,   
+	client_id INTEGER NOT NULL,   
+	accomodation_id INTEGER NOT NULL,  
+	date_created DATETIME,     
+	FOREIGN KEY(client_id) REFERENCES Client (id),   
+	FOREIGN KEY(accomodation_id) REFERENCES Accomodation (id)  
+);
+
+CREATE TABLE Destination (  
+	id INTEGER NOT NULL PRIMARY KEY,   
+	date_created DATETIME,   
+	date_modified DATETIME,   
+	name VARCHAR(20) NOT NULL,   
+	description VARCHAR(250) NOT NULL,   
+	unavailable BOOLEAN NOT NULL  
+);
+
+CREATE TABLE Booking (  
+	id INTEGER NOT NULL PRIMARY KEY,   
+	roomtype_id INTEGER NOT NULL,   
+	accomodation_id INTEGER NOT NULL,  
+	client_id INTEGER NOT NULL,  
+	date_created DATETIME,   
+	date_modified DATETIME,   
+	booking_number BIGINT NOT NULL,  
+	approved BOOLEAN NOT NULL,   
+	email_notification BOOLEAN NOT NULL,   
+	phone_notification BOOLEAN NOT NULL,   
+	price FLOAT NOT NULL,   
+	nights INTEGER NOT NULL,    
+	FOREIGN KEY(roomtype_id) REFERENCES Roomtype (id),   
+	FOREIGN KEY(accomodation_id) REFERENCES Accomodation (id),   
+	FOREIGN KEY(client_id) REFERENCES Client (id)  
+);
+
 CREATE TABLE Accomodation (  
 	id INTEGER NOT NULL PRIMARY KEY,   
         destination_id INTEGER NOT NULL,   
@@ -29,64 +88,6 @@ CREATE TABLE Association (
 	roomtype_id INTEGER,  
 	FOREIGN KEY(accomodation_id) REFERENCES Accomodation(id),  
 	FOREIGN KEY(roomtype_id) REFERENCES Roomtype(id) 
-);
-
-CREATE TABLE Booking (  
-	id INTEGER NOT NULL PRIMARY KEY,   
-	roomtype_id INTEGER NOT NULL,   
-	accomodation_id INTEGER NOT NULL,  
-	client_id INTEGER NOT NULL,  
-	date_created DATETIME,   
-	date_modified DATETIME,   
-	booking_number BIGINT NOT NULL,  
-	approved BOOLEAN NOT NULL,   
-	email_notification BOOLEAN NOT NULL,   
-	phone_notification BOOLEAN NOT NULL,   
-	price FLOAT NOT NULL,   
-	nights INTEGER NOT NULL,    
-	FOREIGN KEY(roomtype_id) REFERENCES Roomtype (id),   
-	FOREIGN KEY(accomodation_id) REFERENCES Accomodation (id),   
-	FOREIGN KEY(client_id) REFERENCES Client (id)  
-);
-
-CREATE TABLE Client (  
-	id INTEGER NOT NULL PRIMARY KEY,   
-	date_created DATETIME,   
-	date_modified DATETIME,   
-	name VARCHAR(144) NOT NULL,   
-	address VARCHAR(144) NOT NULL,   
-	country VARCHAR(20) NOT NULL,   
-	email VARCHAR(30) NOT NULL,   
-	phone VARCHAR(20) NOT NULL,   
-	username VARCHAR(20) NOT NULL,   
-	password VARCHAR(10) NOT NULL   
-);
-
-CREATE TABLE Destination (  
-	id INTEGER NOT NULL PRIMARY KEY,   
-	date_created DATETIME,   
-	date_modified DATETIME,   
-	name VARCHAR(20) NOT NULL,   
-	description VARCHAR(250) NOT NULL,   
-	unavailable BOOLEAN NOT NULL  
-);
-
-CREATE TABLE LikeAccomodation (  
-	id INTEGER NOT NULL PRIMARY KEY,   
-	client_id INTEGER NOT NULL,   
-	accomodation_id INTEGER NOT NULL,  
-	date_created DATETIME,     
-	FOREIGN KEY(client_id) REFERENCES Client (id),   
-	FOREIGN KEY(accomodation_id) REFERENCES Accomodation (id)  
-);
-
-CREATE TABLE LikeDestination (  
-	id INTEGER NOT NULL PRIMARY KEY,   
-	client_id INTEGER NOT NULL,   
-	destination_id INTEGER NOT NULL,  
-	date_created DATETIME,    
-	FOREIGN KEY(client_id) REFERENCES Client (id),   
-	FOREIGN KEY(destination_id) REFERENCES Destination (id)  
 );
 
 CREATE TABLE RoomType (  
