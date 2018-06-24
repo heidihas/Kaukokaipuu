@@ -36,6 +36,7 @@
     {% endif%}
     <br />
     <br />
+    <p>Looking for an <font color=#ff9900>accomodation</font>?</p>
     <form method="POST" action="{{ url_for('accomodations_search', destination_id=destination.id) }}">
         <input type="text" placeholder="Search.." name="search">
         <button type="submit" class="btn btn-default">
