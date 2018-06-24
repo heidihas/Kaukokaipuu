@@ -34,7 +34,7 @@ def destinations_one_change(destination_id):
 
 @app.route("/destinations/search/", methods=["POST"])
 def destinations_search():
-    destination = Destination.query.filter_by(name=request.form.get("search")).first()
+    destination = Destination.query.filter_by(name=request.form.get("search").capitalize()).first()
     if not destination:
         return redirect(url_for("destinations_index"))
     
