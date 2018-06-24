@@ -16,11 +16,7 @@
         </button>
     </form>
     {% if error|length > 0 %}
-        <div class="alert alert-danger" role="alert">
-            <ul>
-                <center>{{ error }}</center>
-            </ul>
-        </div>
+        <center>{{ error }}</center>
     {% endif %}
     <br />
     <table class="table">

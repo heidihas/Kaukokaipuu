@@ -36,7 +36,7 @@ def accomodations_roomtypes(accomodation_id):
 
 @app.route("/destinations/<destination_id>/accomodations/search/", methods=["POST"])
 def accomodations_search(destination_id):
-    accomodation = Accomodation.query.filter_by(name=request.form.get("search")).first()
+    accomodation = Accomodation.search(request.form.get("search"))
     if not accomodation:
         return render_template("destinations/destination.html", destination = Destination.query.get(destination_id), likes = LikeDestination.how_many_likes_destination(destination_id), accomodations = Accomodation.accomodations_in_order(destination_id), user = current_user, liked = like, bookings = Destination.how_many_bookings(destination_id), error = "No results were found")
     

@@ -37,6 +37,18 @@ class Accomodation(Base):
         self.destination_id = destination_id
     
     @staticmethod
+    def search(accomodation):
+        stmt = text("SELECT Accomodation.id, Accomodation.name, Accomodation.destination_id FROM Accomodation"
+                    " WHERE Accomodation.name LIKE :accomodation").params(accomodation=accomodation)
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"id":row[0], "name":row[1], "destination_id":row[2]})
+        
+        return response
+
+    @staticmethod
     def accomodations_in_order(destination_id):
         stmt = text("SELECT Accomodation.id, Accomodation.name, Accomodation.unavailable, COUNT(LikeAccomodation.id) AS likes FROM Accomodation"
                     " LEFT JOIN LikeAccomodation ON LikeAccomodation.accomodation_id = Accomodation.id"

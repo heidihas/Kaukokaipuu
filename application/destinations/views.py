@@ -34,7 +34,7 @@ def destinations_one_change(destination_id):
 
 @app.route("/destinations/search/", methods=["POST"])
 def destinations_search():
-    destination = Destination.query.filter_by(name=request.form.get("search")).first()
+    destination = Destination.search(request.form.get("search"))
     if not destination:
         return render_template("destinations/list.html", destinations = Destination.destinations_in_order(), user = current_user, error = "No results were found")
     
