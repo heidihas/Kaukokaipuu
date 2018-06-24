@@ -17,14 +17,6 @@ class Destination(Base):
         self.name = name
         self.description = description
         self.unavailable = False
-    
-    @staticmethod
-    def search(destination):
-        stmt = text("SELECT Destination.id FROM Destination"
-                    " WHERE Destination.name LIKE '%:destination%'").params(destination=destination)
-        res = db.engine.execute(stmt)
-        
-        return res
 
     @staticmethod
     def destinations_in_order():
