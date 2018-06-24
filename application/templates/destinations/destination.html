@@ -38,7 +38,9 @@
     <br />
     <form method="POST" action="{{ url_for('accomodations_search', destination_id=destination.id) }}">
         <input type="text" placeholder="Search.." name="search">
-        <button type="submit"><i class="fa fa-search"></i></button>
+        <button type="submit">
+            <font color=#ff9900><span class="glyphicon glyphicon-search"></span></font>
+        </button>
     </form>
     <br />
     <table class="table">

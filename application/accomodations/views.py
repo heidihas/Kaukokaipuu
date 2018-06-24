@@ -38,7 +38,7 @@ def accomodations_roomtypes(accomodation_id):
 def accomodations_search(destination_id):
     accomodation = Accomodation.query.filter_by(name=request.form.get("search")).first()
     if not accomodation:
-        return redirect(url_for("destinations_one", destination_id=destination.id))
+        return redirect(url_for("destinations_one", destination_id=destination_id))
     
     return redirect(url_for("accomodations_one", destination_id=accomodation.destination_id, accomodation_id=accomodation.id))
 
