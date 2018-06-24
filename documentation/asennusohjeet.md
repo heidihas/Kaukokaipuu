@@ -51,3 +51,57 @@ git add .
 ```
 git push -u origin master
 ```
+
+## Sovelluksen siirtäminen Herokuun
+
+Python-virtuaaliympäristön ollessa jo aktivoituna voidaan sovellukselle lisätä web-palvelin Gunicorn, jotta siirtäminen Herokuun olisi mahdollista. Lisääminen onnistuu alla olevalla komennolla.
+```
+pip install gunicorn
+```
+Koska ladatussa sovellushakemistossa on jo valmiina tiedostot requirements.txt ja Procfile, ei niitä tarvitse alustaa uudestaan.
+
+Mikäli toimijalla ei ole vielä omaa tunnusta Herokussa, on toimijan rekisteröidyttävä palveluun. Käytössä olevan tietokoneen komentorivillä on myös oltava Herokun työvälineet, jotka voidaan tarvittaessa ladata Internetistä löytyvillä ohjeilla.
+
+Herokuun voi kirjautua sisään komentoriviltä komennolla
+```
+heroku login
+```
+ja syöttämällä pyydetyt tiedot. Paikan luominen Herokuun onnistuu alla olevalla komennolla, jota varten tarvitaan sovellukselle uniikki nimi. Jos nimen jättää pois komennosta, luo Heroku sovellukselle satunnaisen nimen.
+```
+heroku create "sovelluksen-nimi"
+```
+Kun sovelluksella on paikka Herokussa, saadaan paikalliseen versionhallintaan tieto Herokusta komennolla:
+```
+git remote add heroku "git.heroku.com-muotoinen-osoite-jonka-heroku-sovellukselle-antaa"
+```
+Projekti saadaan lähetetty Herokuun komennoilla:
+```
+git add .
+```
+```
+git commit -m "Initial commit"
+```
+```
+git push heroku master
+```
+Sovellus on katseltavissa osoitteessa https://"sovelluksen-nimi".herokuapp.com/. Koska sovellukseen on tullut päivityksiä, on muutokset myös hyvä lähettää Githubiin.
+```
+git push origin master
+```
+Jos sovelluksen tiedostoja halutaan vielä muokata, on hyvä laittaa päälle Herokun sivuilla automaattinen tiedonvälitys käytössä olevasta git-repositoriosta Herokuun. Tämä onnistuu kirjautumalla sisään Herokun nettisivuilla ja muokkaamalla asetuksia kyseiseen sovellukseen liittyvillä sivuilla.
+
+## PostgreSQL-tuen lisääminen
+
+Koska sovelluksen ei haluta toimivan paikallisesti SQLiteä käyttäen, on sovellukseen lisättävä PostgreSQL-tuki. PostgreSQL-tietokannanhallintajärjestelmän käyttöä varten tarvitaan psycopg2-ajuri.
+```
+pip install psycopg2
+```
+Sovelluksen käyttöön saadaan tieto siitä, että se on Herokussa komennolla:
+```
+heroku config:set HEROKU=1
+```
+Tietokanta ei siirry automaattisesti Herokuun, vaan se on lisättävä komennolla:
+```
+heroku addons:add heroku-postgresql:hobby-dev
+```
+Nyt sovellus on halutulla tavalla Herokussa ja toimii itsenäisesti Herokun omalla tietokannalla.
