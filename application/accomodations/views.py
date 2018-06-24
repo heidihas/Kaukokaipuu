@@ -5,7 +5,7 @@ from application import app, db, login_required
 from application.destinations.models import Destination
 from application.roomtypes.models import RoomType
 from application.likes.models import LikeAccomodation
-from application.likes.model import LikeDestination
+from application.likes.models import LikeDestination
 from application.accomodations.models import Accomodation
 from application.accomodations.forms import AccomodationForm
 from application.accomodations.forms import AccomodationChangeForm
