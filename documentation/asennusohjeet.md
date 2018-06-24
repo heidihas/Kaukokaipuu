@@ -74,7 +74,7 @@ Kun sovelluksella on paikka Herokussa, saadaan paikalliseen versionhallintaan ti
 ```
 git remote add heroku "git.heroku.com-muotoinen-osoite-jonka-heroku-sovellukselle-antaa"
 ```
-Projekti saadaan lähetetty Herokuun komennoilla:
+Projekti saadaan lähetettyä Herokuun komennoilla:
 ```
 git add .
 ```
@@ -84,11 +84,11 @@ git commit -m "Initial commit"
 ```
 git push heroku master
 ```
-Sovellus on katseltavissa osoitteessa https://"sovelluksen-nimi".herokuapp.com/. Koska sovellukseen on tullut päivityksiä, on muutokset myös hyvä lähettää Githubiin.
+Sovellus on katseltavissa osoitteessa https://"sovelluksen-nimi".herokuapp.com/. Jos sovellukseen on tullut päivityksiä, on muutokset myös hyvä lähettää Githubiin.
 ```
 git push origin master
 ```
-Jos sovelluksen tiedostoja halutaan vielä muokata, on hyvä laittaa päälle Herokun sivuilla automaattinen tiedonvälitys käytössä olevasta git-repositoriosta Herokuun. Tämä onnistuu kirjautumalla sisään Herokun nettisivuilla ja muokkaamalla asetuksia kyseiseen sovellukseen liittyvillä sivuilla.
+Mikäli sovelluksen tiedostoja ja ominaisuuksia halutaan kehittää edelleen, on hyvä laittaa päälle Herokun sivuilla automaattinen tiedonvälitys käytössä olevasta git-repositoriosta Herokuun. Tämä onnistuu kirjautumalla sisään Herokun nettisivuilla ja muokkaamalla asetuksia kyseiseen sovellukseen liittyvillä sivuilla.
 
 ## PostgreSQL-tuen lisääminen
 
