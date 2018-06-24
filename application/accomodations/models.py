@@ -38,15 +38,11 @@ class Accomodation(Base):
     
     @staticmethod
     def search(accomodation):
-        stmt = text("SELECT Accomodation.id, Accomodation.name, Accomodation.destination_id FROM Accomodation"
-                    " WHERE Accomodation.name LIKE :accomodation").params(accomodation=accomodation)
+        stmt = text("SELECT Accomodation.id FROM Accomodation"
+                    " WHERE Accomodation.name LIKE '%:accomodation%'").params(accomodation=accomodation)
         res = db.engine.execute(stmt)
 
-        response = []
-        for row in res:
-            response.append({"id":row[0], "name":row[1], "destination_id":row[2]})
-        
-        return response
+        return res
 
     @staticmethod
     def accomodations_in_order(destination_id):

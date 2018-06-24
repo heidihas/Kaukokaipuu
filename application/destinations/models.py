@@ -20,15 +20,11 @@ class Destination(Base):
     
     @staticmethod
     def search(destination):
-        stmt = text("SELECT Destination.id, Destination.name FROM Destination"
-                    " WHERE Destination.name LIKE :destination").params(destination=destination)
+        stmt = text("SELECT Destination.id FROM Destination"
+                    " WHERE Destination.name LIKE '%:destination%'").params(destination=destination)
         res = db.engine.execute(stmt)
-
-        response = []
-        for row in res:
-            response.append({"id":row[0], "name":row[1]})
         
-        return response
+        return res
 
     @staticmethod
     def destinations_in_order():
