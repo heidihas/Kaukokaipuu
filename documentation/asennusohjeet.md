@@ -60,7 +60,7 @@ pip install gunicorn
 ```
 Koska ladatussa sovellushakemistossa on jo valmiina tiedostot requirements.txt ja Procfile, ei niitä tarvitse alustaa uudestaan.
 
-Mikäli toimijalla ei ole vielä omaa tunnusta Herokussa, on toimijan rekisteröidyttävä palveluun. Käytössä olevan tietokoneen komentorivillä on myös oltava Herokun työvälineet, jotka voidaan tarvittaessa ladata Internetistä löytyvillä ohjeilla.
+Mikäli toimijalla ei ole vielä omaa tunnusta Herokussa, on toimijan [rekisteröidyttävä](https://signup.heroku.com/?c=70130000001x9jFAAQ) palveluun. Käytössä olevan tietokoneen komentorivillä on myös oltava Herokun työvälineet, jotka voidaan tarvittaessa ladata Internetistä löytyvillä ohjeilla.
 
 Herokuun voi kirjautua sisään komentoriviltä komennolla
 ```
