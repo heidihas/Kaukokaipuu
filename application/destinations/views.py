@@ -34,11 +34,12 @@ def destinations_one_change(destination_id):
 
 @app.route("/destinations/search/", methods=["POST"])
 def destinations_search():
-    destination = Destination.search(request.form.get("search"))
-    if not destination:
+    destinations = Destination.search(request.form.get("search"))
+    if not destinations:
         return render_template("destinations/list.html", destinations = Destination.destinations_in_order(), user = current_user, error = "No results were found")
     
-    return redirect(url_for("destinations_one", destination_id=destination.id))
+    for destination in destinations:
+        return redirect(url_for("destinations_one", destination_id=destination.id))
 
 @app.route("/destinations/", methods=["POST"])
 @login_required(role="ADMIN")

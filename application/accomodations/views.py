@@ -36,11 +36,12 @@ def accomodations_roomtypes(accomodation_id):
 
 @app.route("/destinations/<destination_id>/accomodations/search/", methods=["POST"])
 def accomodations_search(destination_id):
-    accomodation = Accomodation.search(request.form.get("search"))
-    if not accomodation:
+    accomodations = Accomodation.search(request.form.get("search"))
+    if not accomodations:
         return render_template("destinations/destination.html", destination = Destination.query.get(destination_id), likes = LikeDestination.how_many_likes_destination(destination_id), accomodations = Accomodation.accomodations_in_order(destination_id), user = current_user, liked = like, bookings = Destination.how_many_bookings(destination_id), error = "No results were found")
     
-    return redirect(url_for("accomodations_one", destination_id=accomodation.destination_id, accomodation_id=accomodation.id))
+    for accomodation in accomodations:
+        return redirect(url_for("accomodations_one", destination_id=accomodation.destination_id, accomodation_id=accomodation.id))
 
 @app.route("/destinations/<destination_id>/accomodations/", methods=["POST"])
 @login_required(role="ADMIN")

@@ -43,11 +43,7 @@
         </button>
     </form>
     {% if error|length > 0 %}
-        <div class="alert alert-danger" role="alert">
-            <ul>
-                <center>{{ error }}</center>
-            </ul>
-        </div>
+        <font color=#ff9900>{{ error }}</font>
     {% endif %}
     <br />
     <table class="table">
