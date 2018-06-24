@@ -1,6 +1,8 @@
 # Tietokannan rakenne
 
+## Tietokannan taulut ja tietokantakaavio
 
+Sovelluksessa käytettävä tietokanta koostuu 
 
 <p align="center">
   <img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/kaukokaipuu_tietokantakaavio.jpg">
