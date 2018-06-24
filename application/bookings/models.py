@@ -2,6 +2,7 @@ from application import db
 from application.models import Base
 
 from sqlalchemy.sql import text
+from sqlalchemy.exc import SQLAlchemyError
 
 class Booking(Base):
 
@@ -38,11 +39,15 @@ class Booking(Base):
                     " AND Booking.accomodation_id = Accomodation.id"
                     " AND Accomodation.destination_id = Destination.id"
                     " ORDER BY Booking.date_created").params(client=client_id, approved=approved)
-        res = db.engine.execute(stmt)
+        try:
+            res = db.engine.execute(stmt)
 
-        response = []
-        for row in res:
-            response.append({"id":row[0], "booking_number":row[1], "date":row[2], "price":row[3], "nights":row[4], "email":row[5], "phone":row[6], "roomtype":row[7], "size":row[8], "accomodation":row[9], "destination":row[10]})
+            response = []
+            for row in res:
+                response.append({"id":row[0], "booking_number":row[1], "date":row[2], "price":row[3], "nights":row[4], "email":row[5], "phone":row[6], "roomtype":row[7], "size":row[8], "accomodation":row[9], "destination":row[10]})
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
         
         return response
     
@@ -57,11 +62,15 @@ class Booking(Base):
                     " AND Booking.accomodation_id = Accomodation.id"
                     " AND Accomodation.destination_id = Destination.id"
                     " ORDER BY Booking.date_created")
-        res = db.engine.execute(stmt)
+        try: 
+            res = db.engine.execute(stmt)
 
-        response = []
-        for row in res:
-            response.append({"id":row[0], "booking_number":row[1], "date":row[2], "approved":row[3], "nights":row[4], "price":row[5], "email":row[6], "phone":row[7], "roomtype":row[8], "size":row[9], "accomodation":row[10], "destination":row[11], "client":row[12]})
+            response = []
+            for row in res:
+                response.append({"id":row[0], "booking_number":row[1], "date":row[2], "approved":row[3], "nights":row[4], "price":row[5], "email":row[6], "phone":row[7], "roomtype":row[8], "size":row[9], "accomodation":row[10], "destination":row[11], "client":row[12]})
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
         
         return response
 
@@ -69,10 +78,14 @@ class Booking(Base):
     def booking_number_exists(booking_number):
         stmt = text("SELECT COUNT(*) FROM Booking"
                     " WHERE Booking.booking_number = :booking").params(booking=booking_number)
-        res = db.engine.execute(stmt)
+        try:
+            res = db.engine.execute(stmt)
 
-        response = []
-        for row in res:
-            response.append({"count":row[0]})
+            response = []
+            for row in res:
+                response.append({"count":row[0]})
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
         
         return response

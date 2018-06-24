@@ -2,6 +2,7 @@ from application import db
 from application.models import Like
 
 from sqlalchemy.sql import text
+from sqlalchemy.exc import SQLAlchemyError
 
 class LikeDestination(Like):
 
@@ -17,8 +18,12 @@ class LikeDestination(Like):
     def how_many_likes_destination(destination_id):
         stmt = text("SELECT COUNT(LikeDestination.id) FROM LikeDestination"
                     " WHERE LikeDestination.destination_id = :destination").params(destination=destination_id)
-        count = db.engine.execute(stmt).scalar()
-
+        try:
+            count = db.engine.execute(stmt).scalar()
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
+        
         return count
     
     @staticmethod
@@ -26,8 +31,12 @@ class LikeDestination(Like):
         stmt = text("SELECT COUNT(LikeDestination.id) FROM LikeDestination"
                     " WHERE LikeDestination.client_id = :client"
                     " AND LikeDestination.destination_id = :destination").params(client=client_id, destination=destination_id)
-        count = db.engine.execute(stmt).scalar()
-
+        try:
+            count = db.engine.execute(stmt).scalar()
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
+        
         return count
 
 
@@ -45,8 +54,12 @@ class LikeAccomodation(Like):
     def how_many_likes_accomodation(accomodation_id):
         stmt = text("SELECT COUNT(LikeAccomodation.id) FROM LikeAccomodation"
                     " WHERE LikeAccomodation.accomodation_id = :accomodation").params(accomodation=accomodation_id)
-        count = db.engine.execute(stmt).scalar()
-
+        try:
+            count = db.engine.execute(stmt).scalar()
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
+        
         return count
     
     @staticmethod
@@ -54,6 +67,10 @@ class LikeAccomodation(Like):
         stmt = text("SELECT COUNT(LikeAccomodation.id) FROM LikeAccomodation"
                     " WHERE LikeAccomodation.client_id = :client"
                     " AND LikeAccomodation.accomodation_id = :accomodation").params(client=client_id, accomodation=accomodation_id)
-        count = db.engine.execute(stmt).scalar()
-
+        try:
+            count = db.engine.execute(stmt).scalar()
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
+        
         return count

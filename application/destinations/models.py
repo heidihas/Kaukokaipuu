@@ -2,6 +2,7 @@ from application import db
 from application.models import Base
 
 from sqlalchemy.sql import text
+from sqlalchemy.exc import SQLAlchemyError
 
 class Destination(Base):
     
@@ -24,11 +25,15 @@ class Destination(Base):
                     " LEFT JOIN LikeDestination ON Destination.id = LikeDestination.destination_id"
                     " GROUP BY Destination.id"
                     " ORDER BY likes DESC")
-        res = db.engine.execute(stmt)
+        try:
+            res = db.engine.execute(stmt)
 
-        response = []
-        for row in res:
-            response.append({"id":row[0], "name":row[1], "unavailable":row[2], "likes":row[3]})
+            response = []
+            for row in res:
+                response.append({"id":row[0], "name":row[1], "unavailable":row[2], "likes":row[3]})
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
         
         return response
     
@@ -37,11 +42,15 @@ class Destination(Base):
         stmt = text("SELECT Destination.id, Destination.name, Destination.unavailable FROM Destination"
                     " GROUP BY Destination.id"
                     " ORDER BY Destination.name")
-        res = db.engine.execute(stmt)
+        try:
+            res = db.engine.execute(stmt)
 
-        response = []
-        for row in res:
-            response.append({"id":row[0], "name":row[1], "unavailable":row[2]})
+            response = []
+            for row in res:
+                response.append({"id":row[0], "name":row[1], "unavailable":row[2]})
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
         
         return response
 
@@ -50,8 +59,12 @@ class Destination(Base):
         stmt = text("SELECT COUNT(Booking.id) FROM Accomodation"
                     " LEFT JOIN Booking ON Accomodation.id = Booking.accomodation_id"
                     " WHERE Accomodation.destination_id = :destination").params(destination=destination_id)
-        count = db.engine.execute(stmt).scalar()
-
+        try:
+            count = db.engine.execute(stmt).scalar()
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
+        
         return count
     
     @staticmethod
@@ -61,10 +74,14 @@ class Destination(Base):
                     " INNER JOIN Booking ON Accomodation.id = Booking.accomodation_id"
                     " GROUP BY Destination.id"
                     " ORDER BY count DESC, Destination.name ASC")
-        res = db.engine.execute(stmt)
+        try:
+            res = db.engine.execute(stmt)
 
-        response = []
-        for row in res:
-            response.append({"name":row[0], "count":row[1]})
+            response = []
+            for row in res:
+                response.append({"name":row[0], "count":row[1]})
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
         
         return response

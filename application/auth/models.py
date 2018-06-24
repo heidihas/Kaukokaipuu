@@ -2,6 +2,7 @@ from application import db
 from application.models import Base
 
 from sqlalchemy.sql import text
+from sqlalchemy.exc import SQLAlchemyError
 
 class Client(Base):
 
@@ -52,10 +53,14 @@ class Client(Base):
                     " WHERE Client.username != 'admin'"
                     " GROUP BY Client.id"
                     " ORDER BY Client.name")
-        res = db.engine.execute(stmt)
+        try:
+            res = db.engine.execute(stmt)
 
-        response = []
-        for row in res:
-            response.append({"name":row[0], "count":row[1]})
+            response = []
+            for row in res:
+                response.append({"name":row[0], "count":row[1]})
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
         
         return response

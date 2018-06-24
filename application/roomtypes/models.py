@@ -2,6 +2,7 @@ from application import db
 from application.models import Base
 
 from sqlalchemy.sql import text
+from sqlalchemy.exc import SQLAlchemyError
 
 class RoomType(Base):
     __tablename__ = 'roomtype'
@@ -39,11 +40,15 @@ class RoomType(Base):
                     " WHERE association.roomtype_id = RoomType.id"
                     " AND association.accomodation_id = :accomodation)"
                     " ORDER BY RoomType.size, RoomType.name").params(accomodation=accomodation_id)
-        res = db.engine.execute(stmt)
+        try:
+            res = db.engine.execute(stmt)
 
-        response = []
-        for row in res:
-            response.append({"id":row[0], "unavailable":row[1], "name":row[2], "size":row[3]})
+            response = []
+            for row in res:
+                response.append({"id":row[0], "unavailable":row[1], "name":row[2], "size":row[3]})
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
         
         return response
     
@@ -51,18 +56,26 @@ class RoomType(Base):
     def delete_accomodations_linked(roomtype_id):
         stmt = text("DELETE FROM association"
                     " WHERE (association.roomtype_id = :roomtype)").params(roomtype=roomtype_id)
-        res = db.engine.execute(stmt)
+        try:
+            res = db.engine.execute(stmt)
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
     
     @staticmethod
     def roomtypes_alpabetic():
         stmt = text("SELECT RoomType.id, RoomType.name, RoomType.unavailable FROM RoomType"
                     " GROUP BY RoomType.id"
                     " ORDER BY RoomType.name")
-        res = db.engine.execute(stmt)
+        try:
+            res = db.engine.execute(stmt)
 
-        response = []
-        for row in res:
-            response.append({"id":row[0], "name":row[1], "unavailable":row[2]})
+            response = []
+            for row in res:
+                response.append({"id":row[0], "name":row[1], "unavailable":row[2]})
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
         
         return response
     
@@ -70,8 +83,12 @@ class RoomType(Base):
     def how_many_bookings(roomtype_id):
         stmt = text("SELECT COUNT(Booking.id) FROM Booking"
                     " WHERE Booking.roomtype_id = :roomtype").params(roomtype=roomtype_id)
-        count = db.engine.execute(stmt).scalar()
-
+        try:
+            count = db.engine.execute(stmt).scalar()
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
+        
         return count
     
     @staticmethod
@@ -80,10 +97,14 @@ class RoomType(Base):
                     " LEFT JOIN Booking ON Booking.roomtype_id = RoomType.id"
                     " GROUP BY RoomType.id"
                     " ORDER BY count DESC, RoomType.name ASC")
-        res = db.engine.execute(stmt)
+        try:
+            res = db.engine.execute(stmt)
 
-        response = []
-        for row in res:
-            response.append({"name":row[0], "count":row[1]})
+            response = []
+            for row in res:
+                response.append({"name":row[0], "count":row[1]})
+        except SQLAlchemyError:
+            db.session.rollback()
+            raise
         
         return response
