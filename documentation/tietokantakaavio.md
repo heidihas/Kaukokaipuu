@@ -2,7 +2,7 @@
 
 ## Tietokannan taulut ja tietokantakaavio
 
-Sovelluksessa käytettävä tietokanta koostuu seitsemästä varsinaisesta taulusta ja yhdestä liitostaulusta. Taulut kuvaavat sovelluksen kannalta merkittäviä käsitteitä: asiakasta, matkakohdetta, majoituskohdetta, huonetyyppiä, varausta ja "tykkäystä". Liitostaulu puolestaa mahdollistaa kahden taulun välille monesta moneen -suhteen.
+Sovelluksessa käytettävä tietokanta koostuu seitsemästä varsinaisesta taulusta ja yhdestä liitostaulusta. Taulut kuvaavat sovelluksen kannalta merkittäviä käsitteitä: asiakasta, matkakohdetta, majoituskohdetta, huonetyyppiä, varausta ja "tykkäystä". Liitostaulu puolestaa mahdollistaa kahden taulun välille monesta moneen -suhteen. Alla kuvataan sovelluksen tietokantarakenne kaaviona.
 
 <p align="center">
   <img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/kaukokaipuu_tietokantakaavio.jpg">
