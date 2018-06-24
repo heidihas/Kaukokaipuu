@@ -32,6 +32,14 @@ def destinations_one_change(destination_id):
     d = Destination.query.get(destination_id)
     return render_template("destinations/change.html", destination = d, form = DestinationChangeForm(name=d.name, description=d.description))
 
+@app.route("/destinations/search/", methods=["POST"])
+def destinations_search():
+    destination = Destination.query.filter_by(name=request.form.get("search")).first()
+    if not destination:
+        return redirect(url_for("destinations_index"))
+    
+    return redirect(url_for("destinations_one", destination_id=destination.id))
+
 @app.route("/destinations/", methods=["POST"])
 @login_required(role="ADMIN")
 def destinations_create():

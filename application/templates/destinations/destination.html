@@ -36,6 +36,11 @@
     {% endif%}
     <br />
     <br />
+    <form method="POST" action="{{ url_for('accomodations_search', destination_id=destination.id) }}">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    <br />
     <table class="table">
         <thead class="thead-light">
             <tr>

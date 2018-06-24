@@ -34,6 +34,14 @@ def accomodations_roomtypes(accomodation_id):
     a = Accomodation.query.get(accomodation_id)
     return render_template("roomtypes/list.html", accomodation = a, roomtypes = RoomType.remaining_roomtypes(accomodation_id))
 
+@app.route("/destinations/<destination_id>/accomodations/search/", methods=["POST"])
+def accomodations_search(destination_id):
+    accomodation = Accomodation.query.filter_by(name=request.form.get("search")).first()
+    if not accomodation:
+        return redirect(url_for("destinations_one", destination_id=destination.id))
+    
+    return redirect(url_for("accomodations_one", destination_id=accomodation.destination_id, accomodation_id=accomodation.id))
+
 @app.route("/destinations/<destination_id>/accomodations/", methods=["POST"])
 @login_required(role="ADMIN")
 def accomodations_create(destination_id):
