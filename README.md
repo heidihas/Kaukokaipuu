@@ -31,7 +31,7 @@ username = HelloWorld, password = helloworld
 
 [Käyttöohjeet](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/k%C3%A4ytt%C3%B6ohjeet.md)
 
-[User stories](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/userstories.md)
+[User stories ja keskeiset SQL-kyselyt](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/userstories.md)
 
 [Tietokannan rakenne](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/tietokantakaavio.md)
 
