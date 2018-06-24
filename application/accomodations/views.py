@@ -36,7 +36,7 @@ def accomodations_roomtypes(accomodation_id):
 
 @app.route("/destinations/<destination_id>/accomodations/search/", methods=["POST"])
 def accomodations_search(destination_id):
-    accomodation = Accomodation.query.filter_by(name=request.form.get("search").capitalize()).first()
+    accomodation = Accomodation.query.filter_by(name=request.form.get("search")).first()
     if not accomodation:
         return redirect(url_for("destinations_one", destination_id=destination_id))
     
