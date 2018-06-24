@@ -22,11 +22,11 @@ Huonetyyppien tiedot on kirjattu listaan, jossa huonetyypit ovat hintansa ja maj
 
 Jotta matkakohteiden ja majoitusvaihtoehtojen selaaminen olisi helpompaa, on sekä sovelluksen matkakohdelistan sisältävällä että matkakohdekohtaisilla sivuilla tarjolla tiedonhakumahdollisuus.
 
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_search.png" width=300>
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_search.png" width=250>
 
 Mikäli hakukenttään kirjoitettu nimi vastaa kirjoitusasustaan riippumatta sovelluksessa tarjolla olevaa kohdetta, siirtää suurennuslasinapin painaminen näkymän etsittyä kohdetta vastaavalle sivulle. Jos etsittyä kohdetta ei ole tarjolla tai etsityn kohteen nimi kirjoitetaan väärin, esittää sovellus käyttäjälle alla olevan virheilmoituksen.
 
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_search_not.png" width=300>
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_search_not.png" width=250>
 
 Selaajan on myös mahdollista luoda sovellukseen oman käyttäjätunnuksensa. Tämä tapahtuu klikkaamalla sivuston yläreunan "Login"-painiketta ja edelleen avautuvan näkymän vasemmassa yläreunassa olevaa "New account" -nappia. 
 
@@ -50,11 +50,11 @@ Virheellisestä tiedosta ilmoitetaan. Rekisteröityneen käyttäjän ollessa sis
 
 Kun rekisteröitynyt käyttäjä on kirjautunut sisään tunnuksillaan, on käyttäjän mahdollista selata sovelluksen tarjoamia matkakohteita ja niiden majoitusvaihtoehtoja samaan tapaan, kuin yllä esitettiin tavallisen selaajan tapauksessa. Erona tavallisen selaajan tilanteeseen on se, että rekisteröityneen käyttäjän on mahdollista "tykätä" sekä valitsemastaan matkakohteesta että majoitusvaihtoehdosta kunkin omalla sivulla. 
 
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_like.png" width=300>
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_like.png" width=250>
 
 "Tykkääminen" tapahtuu "Like"-nappia painamalla, ja samasta kohteesta voi "tykätä" vain kerran. Mikäli kirjautunut käyttäjä on jo "tykännyt" kohteesta, ilmoittaa sovellus tästä tekstillä "You have already liked". 
 
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_liked.png" width=300>
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_liked.png" width=250>
 
 Lisäksi rekisteröityneelle käyttäjälle on tarjolla huoneen varaaminen valitsemansa matkakohteen valitsemassaan majoitusvaihtoehdossa. Jos majoitusvaihtoehdon huonetyyppi on edelleen tarjolla - se ei ole varattu täyteen - on huonetyypin rivillä "Book"-nappi. Muussa tapauksessa napin paikalla lukee "Fully Booked", eikä nappia ole mahdollista painaa. 
 
