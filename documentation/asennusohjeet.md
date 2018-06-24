@@ -88,7 +88,7 @@ Sovellus on katseltavissa osoitteessa https://"sovelluksen-nimi".herokuapp.com/.
 ```
 git push origin master
 ```
-Mikäli sovelluksen tiedostoja ja ominaisuuksia halutaan kehittää edelleen, on hyvä laittaa päälle Herokun sivuilla automaattinen tiedonvälitys käytössä olevasta git-repositoriosta Herokuun. Tämä onnistuu kirjautumalla sisään Herokun nettisivuilla ja muokkaamalla asetuksia kyseiseen sovellukseen liittyvillä sivuilla.
+Mikäli sovelluksen tiedostoja ja ominaisuuksia halutaan kehittää edelleen, on hyvä laittaa päälle Herokun sivuilla automaattinen tiedonvälitys käytössä olevasta git-repositoriosta Herokuun. Tämä onnistuu kirjautumalla sisään Herokun nettisivuilla ja muokkaamalla kyseiseen sovellukseen liittyviä asetuksia.
 
 ## PostgreSQL-tuen lisääminen
 
