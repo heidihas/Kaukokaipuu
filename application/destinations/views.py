@@ -55,7 +55,11 @@ def destinations_create():
     d = Destination(form.name.data, form.description.data)
     
     db.session().add(d)
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("navigation"))
 
@@ -65,7 +69,12 @@ def destinations_delete(destination_id):
     Accomodation.query.filter_by(destination_id=destination_id).delete()
     LikeDestination.query.filter_by(destination_id=destination_id).delete()
     Destination.query.filter_by(id=destination_id).delete()
-    db.session().commit()
+    
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("navigation"))
 
@@ -78,7 +87,12 @@ def destinations_unavailable(destination_id):
 
     d = Destination.query.get(destination_id)
     d.unavailable = True
-    db.session().commit()
+    
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("destinations_one", destination_id=d.id))
 
@@ -87,7 +101,12 @@ def destinations_unavailable(destination_id):
 def destinations_available(destination_id):
     d = Destination.query.get(destination_id)
     d.unavailable = False
-    db.session().commit()
+    
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("destinations_one", destination_id=d.id))
 
@@ -103,7 +122,11 @@ def destinations_change(destination_id):
     d.name = form.name.data
     d.description = form.description.data
     
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("destinations_one", destination_id=d.id))
 
@@ -117,7 +140,11 @@ def destinations_like(destination_id):
     l = LikeDestination(c.id, d.id)
     
     db.session().add(l)
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
 
     return redirect(url_for("destinations_one", destination_id=d.id))
 

@@ -43,7 +43,11 @@ def roomtypes_create():
     r.bath = form.bath.data
 
     db.session().add(r)
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("navigation"))
 
@@ -53,7 +57,11 @@ def roomtypes_delete_one(accomodation_id, roomtype_id):
     a = Accomodation.query.get(accomodation_id)
     Accomodation.delete_roomtypes_one(accomodation_id, roomtype_id)
 
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("accomodations_one", destination_id=a.destination_id, accomodation_id=a.id))
 
@@ -62,7 +70,12 @@ def roomtypes_delete_one(accomodation_id, roomtype_id):
 def roomtypes_delete(roomtype_id):
     RoomType.delete_accomodations_linked(roomtype_id)
     RoomType.query.filter_by(id=roomtype_id).delete()
-    db.session().commit()
+
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("navigation"))
 
@@ -71,7 +84,12 @@ def roomtypes_delete(roomtype_id):
 def roomtypes_unavailable(roomtype_id):
     r = RoomType.query.get(roomtype_id)
     r.unavailable = True
-    db.session().commit()
+    
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("roomtypes_one", roomtype_id=r.id))
 
@@ -80,7 +98,12 @@ def roomtypes_unavailable(roomtype_id):
 def roomtypes_available(roomtype_id):
     r = RoomType.query.get(roomtype_id)
     r.unavailable = False
-    db.session().commit()
+    
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("roomtypes_one", roomtype_id=r.id))
 
@@ -103,7 +126,11 @@ def roomtypes_change(roomtype_id):
     r.tv = form.tv.data
     r.bath = form.bath.data
     
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("roomtypes_one", roomtype_id=r.id))
 
@@ -114,6 +141,10 @@ def roomtypes_add(roomtype_id, accomodation_id):
     r = RoomType.query.get(roomtype_id)
     a.children.append(r)
 
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("accomodations_roomtypes", accomodation_id=accomodation_id))

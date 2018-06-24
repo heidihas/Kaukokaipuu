@@ -67,7 +67,11 @@ def accomodations_create(destination_id):
     a.restaurant = form.restaurant.data
     
     db.session().add(a)
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("destinations_one", destination_id=a.destination_id))
 
@@ -87,7 +91,11 @@ def accomodations_unavailable(destination_id, accomodation_id):
     a = Accomodation.query.get(accomodation_id)
     a.unavailable = True
 
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("accomodations_one", destination_id=a.destination_id, accomodation_id=a.id))
 
@@ -97,7 +105,11 @@ def accomodations_available(destination_id, accomodation_id):
     a = Accomodation.query.get(accomodation_id)
     a.unavailable = False
 
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("accomodations_one", destination_id=a.destination_id, accomodation_id=a.id))
 
@@ -118,7 +130,11 @@ def accomodations_change(accomodation_id):
     a.gym = form.gym.data
     a.restaurant = form.restaurant.data
     
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("accomodations_one", destination_id=a.destination_id, accomodation_id=a.id))
 
@@ -132,6 +148,10 @@ def accomodations_like(accomodation_id):
     l = LikeAccomodation(c.id, a.id)
     
     db.session().add(l)
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("accomodations_one", destination_id=a.destination_id, accomodation_id=a.id))

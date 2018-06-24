@@ -69,7 +69,11 @@ def client_create():
     c = Client(form.name.data, form.address.data, form.country.data, form.email.data, form.phone.data, form.username.data, form.password.data)
     
     db.session().add(c)
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("auth_login"))
 
@@ -88,7 +92,11 @@ def client_change():
     c.email = form.email.data
     c.phone = form.phone.data
     
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("client_my"))
 
@@ -107,7 +115,11 @@ def client_password_change():
 
     c.password = form.new.data
     
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("client_my"))
 
@@ -118,6 +130,11 @@ def client_delete():
 
     Booking.query.filter_by(client_id=client.id).delete()
     Client.query.filter_by(id=client.id).delete()
-    db.session().commit()
+    
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
 
     return redirect(url_for("index"))

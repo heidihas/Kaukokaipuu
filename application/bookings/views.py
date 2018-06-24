@@ -58,7 +58,11 @@ def bookings_create(destination_id, accomodation_id, roomtype_id):
     b.client_id = current_user.id
     
     db.session().add(b)
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
     
     return redirect(url_for("client_my"))
 
@@ -67,7 +71,11 @@ def bookings_create(destination_id, accomodation_id, roomtype_id):
 def bookings_delete(booking_id):
 
     Booking.query.filter_by(id=booking_id).delete()
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
 
     return render_template("auth/my.html", client = current_user, approved_bookings = Booking.approved_bookings(current_user.id, True), not_approved_bookings = Booking.approved_bookings(current_user.id, False))
 
@@ -78,6 +86,10 @@ def bookings_set_approved(booking_id):
     b = Booking.query.get(booking_id)
     b.approved = True
     
-    db.session().commit()
+    try:
+        db.session().commit()
+    except:
+        db.session().rollback()
+        raise
 
     return redirect(url_for("bookings_index"))
