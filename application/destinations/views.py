@@ -36,7 +36,7 @@ def destinations_one_change(destination_id):
 def destinations_search():
     destination = Destination.query.filter_by(name=request.form.get("search")).first()
     if not destination:
-        return redirect(url_for("destinations_index"))
+        return render_template("destinations/list.html", destinations = Destination.destinations_in_order(), user = current_user, error = "No results were found")
     
     return redirect(url_for("destinations_one", destination_id=destination.id))
 

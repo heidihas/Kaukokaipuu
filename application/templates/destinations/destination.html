@@ -38,10 +38,17 @@
     <br />
     <form method="POST" action="{{ url_for('accomodations_search', destination_id=destination.id) }}">
         <input type="text" placeholder="Search.." name="search">
-        <button type="submit" class="btn btn-default>
+        <button type="submit" class="btn btn-default">
             <font color=#ff9900><span class="glyphicon glyphicon-search"></span></font>
         </button>
     </form>
+    {% if error|length > 0 %}
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                <center>{{ error }}</center>
+            </ul>
+        </div>
+    {% endif %}
     <br />
     <table class="table">
         <thead class="thead-light">

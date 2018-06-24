@@ -38,7 +38,7 @@ def accomodations_roomtypes(accomodation_id):
 def accomodations_search(destination_id):
     accomodation = Accomodation.query.filter_by(name=request.form.get("search")).first()
     if not accomodation:
-        return redirect(url_for("destinations_one", destination_id=destination_id))
+        return render_template("destinations/destination.html", destination = Destination.query.get(destination_id), likes = LikeDestination.how_many_likes_destination(destination_id), accomodations = Accomodation.accomodations_in_order(destination_id), user = current_user, liked = like, bookings = Destination.how_many_bookings(destination_id), error = "No results were found")
     
     return redirect(url_for("accomodations_one", destination_id=accomodation.destination_id, accomodation_id=accomodation.id))
 

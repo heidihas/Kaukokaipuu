@@ -15,6 +15,13 @@
             <font color=#ff9900><span class="glyphicon glyphicon-search"></span></font>
         </button>
     </form>
+    {% if error|length > 0 %}
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                <center>{{ error }}</center>
+            </ul>
+        </div>
+    {% endif %}
     <br />
     <table class="table">
         <thead class="thead-light">
