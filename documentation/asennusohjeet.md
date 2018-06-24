@@ -34,7 +34,7 @@ pip install -r requirements.txt
 
 ## Sovelluksen siirtäminen Githubiin
 
-Mikäli toimijalla ei ole olemassa omaa tunnusta Github-palvelussa, on toimijan ensin rekisteröidyttävä. Rekisteröitymisen jälkeen Githubiin on luotava uusi repositorio sovellusta varten. Github-repositorion osoitteen saa selville Githubista.
+Mikäli toimijalla ei ole olemassa omaa tunnusta Github-palvelussa, on toimijan ensin [rekisteröidyttävä](https://github.com/join?source=header-home). Rekisteröitymisen jälkeen Githubiin on luotava uusi repositorio sovellusta varten. Github-repositorion osoitteen saa selville Githubista.
 
 Projektikansiolle luodaan git-versionhallinta komennolla:
 ```
