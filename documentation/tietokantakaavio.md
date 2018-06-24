@@ -2,11 +2,21 @@
 
 ## Tietokannan taulut ja tietokantakaavio
 
-Sovelluksessa käytettävä tietokanta koostuu 
+Sovelluksessa käytettävä tietokanta koostuu seitsemästä varsinaisesta taulusta ja yhdestä liitostaulusta. Taulut kuvaavat sovelluksen kannalta merkittäviä käsitteitä: asiakasta, matkakohdetta, majoituskohdetta, huonetyyppiä, varausta ja "tykkäystä". Liitostaulu puolestaa mahdollistaa kahden taulun välille monesta moneen -suhteen.
 
 <p align="center">
   <img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/kaukokaipuu_tietokantakaavio.jpg">
 </p>
+
+Taulun Client rivit kuvaavat rekisteröityneitä asiakkaita. Client-taulusta on yhden suhde moneen -relaatio Booking-tauluun, sillä sama asiakas voi tehdä useamman varauksen, mutta yhteen varaukseen liittyy aina vain yksi asiakas. Toisaalta asiakkaan on mahdollista "tykätä" sovelluksen tarjoamista matka- ja majoituskohteista. Tätä varten Client-taulusta on yhden suhde moneen -relaatio myös tauluihin LikeDestination ja LikeAccomodation.
+
+Koska sekä taulu LikeDestination että taulu LikeAccomodation kuvaavat eräänlaista asiakkaan "suhdetta" joko matka- tai majoituskohteeseen, liittyy kumpaankin tauluun kaksi viiteavainta. Asiakas voi tehdä useita "tykkäyksiä", mutta "tykkäykseen" liittyy vain yksi asiakas. Samoin matka- tai majoituskohteesta on voitu "tykätä" monesti, mutta yksi "tykkäys" kohdistuu vain tiettyyn kohteeseen. Tietokantojen perusteet -kurssiin nojaten taulut luotaisiin itse asiassa yleisemmällä Like-taululla, jonka taulut LikeDestination ja LikeAccomodation perisivät. Näin vältettäisiin toisto tauluissa. Työn toteutuksessa tämä tehtiin luomalla perittävä osa Like-luokkana application-hakemiston models.py-tiedostoon samaan tapaan kuin lähes kaikkien muiden tietokannan taulujen perimä Base-luokka.
+
+Booking-taulu nimensä mukaisesti kuvastaa tehtyä varausta. Tietty varaus liittyy vain yhteen asiakkaaseen, majoituskohteeseen ja huonetyyppiin. Tämän vuoksi taulussa on kolme viiteavainta. Tauluun tarvitaan viiteavain sekä majoituskohteeseen että huonetyyppiin, sillä varauksen relaatio ainoastaan majoituskohteeseen ei sisältäisi yksiselitteistä tietoa siitä, mikä huonetyyppi varattiin. Toisaalta sama huonetyyppi voi olla useammassa majoituskohteessa, jolloin viiteavaimesta vain tauluun RoomType ei riitä.
+
+Taulut Destination ja Accomodation kuvaavat matka- ja majoituskohteita. Kuten yllä jo todettiin, liittyy kohteisiin "tykkäyksiä". Majoituskohde on myös mahdollista varata. Jotta majoituskohteet liitettäisiin matkakohteisiin, on taulujen välillä oltava relaatio. Yhden suhde moneen -relaatio syntyy, kun tiettyyn matkakohteeseen kuuluu monta majoitusvaihtoehtoa, mutta tietty majoituskohde voi sijaita vain yhdessä matkakohteessa.
+
+RoomType-taulu kuvastaa tarjolla olevia huonetyyppejä, jotka voivat olla tarjolla useammassa eri majoituskohteessa. Taulujen RoomType ja Accomodation välillä on monesta moneen -suhde: toisaalta huonetyyppi esiintyy monessa eri majoituskohteessa, toisaalta majoituskohteeseen liittyy monta eri tarjolla olevaa huonetyyppiä. Monesta moneen -suhde ratkaistaan tietokantarakenteessa liitostaululla, joka sisältää ainoastaan viiteavaimet kumpaankin relaation tauluun. Yllä kuvatun mukaan RoomType-taululla on relaatio myös Booking-taulun kanssa.
 
 ## Normalisointi
 
