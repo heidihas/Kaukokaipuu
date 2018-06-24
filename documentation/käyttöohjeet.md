@@ -12,13 +12,21 @@ Tavallisen, rekisteröitymättömän selaajan on mahdollista selata sovelluksen 
 
 Avautuu tarjolla olevien matkakohteiden lista, jossa kohteet ovat suosituimmuusjärjestyksessä. Kohteen nimeä klikkaamalla selaaja saa tarkempaa tietoa kyseisestä kohteesta - erityisesti selaaja löytää kohteessa tarjolla olevien majoitusvaihtoehtojen listan.
 
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_italia.png" width=900>
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_accomodations.png" width=900>
 
 Majoitusvaihtoehdot ovat samoin saamiensa "tykkäämisten" mukaisessa järjestyksessä. Majoitusvaihtoehdon nimeä klikkaamalla selaaja pääsee tarkemmin tutustumaan kyseisen kohteen ominaisuuksiin ja siellä tarjolla oleviin huonetyyppeihin. 
 
 <img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_ca'diLori.png" width=900>
 
 Huonetyyppien tiedot on kirjattu listaan, jossa huonetyypit ovat hintansa ja majoitettavien määränsä mukaisessa järjestyksessä. Sivun alareunassa ovat käytettyjen pikkukuvakkeiden selitykset.
+
+Jotta matkakohteiden ja majoitusvaihtoehtojen selaaminen olisi helpompaa, on sekä sovelluksen matkakohdelistan sisältävällä että matkakohdekohtaisilla sivuilla tarjolla tiedonhakumahdollisuus.
+
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_search.png" width=300>
+
+Mikäli hakukenttään kirjoitettu nimi vastaa kirjoitusasustaan riippumatta sovelluksessa tarjolla olevaa kohdetta, siirtää suurennuslasinapin painaminen näkymän etsittyä kohdetta vastaavalle sivulle. Jos etsittyä kohdetta ei ole tarjolla tai etsityn kohteen nimi kirjoitetaan väärin, esittää sovellus käyttäjälle alla olevan virheilmoituksen.
+
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_search_not.png" width=300>
 
 Selaajan on myös mahdollista luoda sovellukseen oman käyttäjätunnuksensa. Tämä tapahtuu klikkaamalla sivuston yläreunan "Login"-painiketta ja edelleen avautuvan näkymän vasemmassa yläreunassa olevaa "New account" -nappia. 
 
