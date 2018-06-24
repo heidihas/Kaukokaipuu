@@ -22,11 +22,11 @@ Huonetyyppien tiedot on kirjattu listaan, jossa huonetyypit ovat hintansa ja maj
 
 Jotta matkakohteiden ja majoitusvaihtoehtojen selaaminen olisi helpompaa, on sekä sovelluksen matkakohdelistan sisältävällä että matkakohdekohtaisilla sivuilla tarjolla tiedonhakumahdollisuus.
 
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_search.png" width=100>
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_search.png" width=400>
 
 Mikäli hakukenttään kirjoitettu nimi vastaa kirjoitusasustaan riippumatta sovelluksessa tarjolla olevaa kohdetta, siirtää suurennuslasinapin painaminen näkymän etsittyä kohdetta vastaavalle sivulle. Jos etsittyä kohdetta ei ole tarjolla tai etsityn kohteen nimi kirjoitetaan väärin, esittää sovellus käyttäjälle alla olevan virheilmoituksen.
 
-<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_search_not.png" width=100>
+<img src="https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/Pictures/Kaukokaipuu_search_not.png" width=400>
 
 Selaajan on myös mahdollista luoda sovellukseen oman käyttäjätunnuksensa. Tämä tapahtuu klikkaamalla sivuston yläreunan "Login"-painiketta ja edelleen avautuvan näkymän vasemmassa yläreunassa olevaa "New account" -nappia. 
 
