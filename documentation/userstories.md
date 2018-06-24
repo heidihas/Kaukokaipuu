@@ -37,8 +37,10 @@ Rek. Asiakas | Sisäänkirjautuneena käyttäjätunnuksen salasanan vaihtaminen 
 Rek. Asiakas | Käyttäjätunnuksella sisään kirjautuminen | Asiakkaan on mahdollista kirjautua sisään käyttäjätunnuksellaan ja tehdä varauksia
 Rek. Asiakas | Käyttäjätunnuksella ulos kirjautuminen | Jotta kukaan ulkopuolinen ei pääse tarkastelemaan asiakkaan käyttäjätietoja
 Asiakas/Rek. Asiakas | Matkakohdelistan tarkastelu | Asiakkaan on mahdollista tarkastella matkakohteita joko kirjautuneena tai ei; matkakohteet ovat listalla saamiensa "tykkäysten" määrän mukaisessa järjestyksessä (eniten "tykkäyksiä" saanut ylimpänä)
+Asiakas/Rek. Asiakas | Matkakohteen hakeminen | Asiakkaan on mahdollista hakea etsimäänsä matkakohdetta sen nimen mukaan
 Asiakas/Rek. Asiakas | Matkakohteen lähempi tarkastelu | Asiakkaan on mahdollista klikata matkakohdetta ja lukea tarkempaa tietoa kohteesta
 Asiakas/Rek. Asiakas | Matkakohteen majoitusvalikoiman tarkastelu (6)| Asiakkaan on mahdollista tarkastella klikkaamansa matkakohteen majoitusvalikoimaa; majoitusvaihtoehdot ovat listalla saamiensa "tykkäysten" määrän mukaisessa järjestyksessä (eniten "tykkäyksiä" saanut ylimpänä)
+Asiakas/Rek. Asiakas | Majoituskohteen hakeminen | Asiakkaan on mahdollista hakea tarkastelemastaan matkakohteesta etsimäänsä majoituskohdetta sen nimen mukaan
 Asiakas/Rek. Asiakas | Majoituskohteen lähempi tarkastelu | Asiakkaan on mahdollista klikata matkakohteen majoitusvaihtoehtoa ja lukea tarkempaa tietoa siitä
 Asiakas/Rek. Asiakas | Majoituskohteen huonevalikoiman tarkastelu (7)| Asiakkaan on mahdollista tarkastella klikkaamansa majoituskohteen huonevalikoimaa
 Rek. Asiakas | Sisäänkirjautuneena majoituskohteen vapaiden huonetyyppien tarkastelu (8)| Kirjautuneen asiakkaan on mahdollista nähdä klikkaamansa majoituskohteen vapaana olevat huonetyypit
