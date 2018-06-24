@@ -8,7 +8,9 @@
 
 ## Normalisointi
 
-client, accomodation, destination, booking, roomtype
+Tietokannan taulujen voidaan nähdä olevan niin ensimmäisessä, toisessa kuin kolmannessa normaalimuodossa. Taulujen sarakkeet täyttävät ensimmäisen normaalimuodon asettamat ehdot, ja taulujen sarakkeen "id" avulla muu tieto on yksiselitteisesti saavutettavissa. 
+
+Toisaalta voitaisiin pohtia, olisiko taulut Client, Destination, Booking, Accomodation ja RoomType vielä normalisoitavissa. Asiakkaiden osalta sarake "username", matkakohteiden, majoituskohteiden sekä huonetyyppien osalta sarake "name" ja varausten osalta sarake "booking_number" voisi toimia vaihtoehtoisena yksilöivänä tunnisteena. Nimittäin ainoastaan yhdellä rekisteröityneellä asiakkaalla voi olla sama käyttäjätunnus, matkaan liittyvillä tietokohteilla on oltava aina kullakin taulukohtaisesti eri nimi, ja sama varausnumero ei toistu. Täydellinen normalisointi edellä mainituilta osin tosin johtaisi 
 
 ## CREATE TABLE -lauseet
 
