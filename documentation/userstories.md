@@ -4,7 +4,7 @@
 
 ## User stories
 
-(Toimintoa seuraava numero viittaa taulukon alla olevaan listaan keskeisimmistä SQL-kyselyistä.)
+(Toiminnon nimeä seuraava numero viittaa taulukon alla olevaan listaan keskeisimmistä SQL-kyselyistä.)
 
 Käyttäjärooli | Mitä | Miksi
 ------------ | ------------- | -------------
